@@ -1,0 +1,203 @@
+html{
+	width: 100%;
+  height: 100%;
+}
+body{
+  margin:0%;
+}
+
+
+/*grid register*/
+.registerGrid{
+	position: relative;
+	display: grid;
+	grid-template-areas: 
+	"description register"
+	"description  register"
+	"footer footer";
+}
+
+
+.description{
+	grid-area: description;
+	background:#f0f0f0;
+	background-image: url("../images/people-coffee-notes-tea.jpg");
+	height: 110vh;
+	width: 100%;
+	background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.description__overlay{
+  position: absolute;
+  width: 38%;
+  height:100vh;
+  background: rgba(28, 29, 31, 0.7);
+}
+.description__overlay__text{
+  position: absolute;
+  height: 50vh;
+  width: 100%;
+  top: 20%;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+}
+
+/* close current window */
+#closeTab{
+	position: absolute;
+	top:1rem;
+	right:5rem;
+	font-size: 24px;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+}
+
+.register{
+	display: grid;
+	grid-area: register;
+	background:#494441;
+	align-items: center;
+	justify-content: center;
+  text-transform: none;
+	height: 100%;
+}
+
+.register > h1{
+	text-align: center;
+  font-family: sans-serif, serif;
+  margin-top: -2rem;
+	color: rgb(255, 255, 255);
+	display: none;
+;}
+
+.register >form{
+	margin-top: 1%;
+}
+label{
+  color: rgb(255, 255, 255);
+}
+select{
+  width: 106%;
+}
+.register >form> input{
+	padding: 2px;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  font-family: sans-serif, serif;
+  margin-bottom: 3%;
+  margin-top: 1%;
+}
+#submitButton{
+	height: 5vh;
+	width: 30%;
+	margin-left: 30%;
+	margin-top: 5px;
+	background:#272626;
+	color:rgb(255, 255, 255);	
+}
+ form>p ,#signin >a{
+	 	color:white;
+		 padding: 0.5rem;
+		 margin-top: -1%;
+	 }
+	 #signin>a:hover{
+		background:#272626;
+	 }
+.footer{
+  grid-area: footer;
+  text-align: center;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+	padding: 0.5rem;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+}
+
+
+@media all and (max-height: 480px){
+	#closeTab{
+		top:-1px;
+		right:1rem;
+	}
+  .description, .description__overlay{
+		display: none;
+	}
+	.register{
+		height: 100%;
+		width: 100vw;
+	}
+	.register > h1{
+	 display: none;
+		}
+	.register> form{
+		font-size: 12px;
+	}
+
+	.footer{
+		position: absolute;
+		bottom: 0;
+	}
+
+}
+
+@media all and (max-width: 600px){
+
+	/*chaning the layout to a one column 
+	with each context occupying the whole raw*/
+    .registerGrid{
+		display: grid;
+		position: relative;
+		grid-template-areas: 
+		  "description description"
+		  "register  register"
+		  "footer footer";
+	}
+	 
+	.description{
+		grid-area: description;
+		height:40vh;
+	}
+	.description__overlay{
+		width:100vw;
+		height: 39.9vh;
+	}
+	.description__overlay__text{
+		font-size: 16px;
+		font-family: sans-serif, serif,'Courier New', Courier, monospace;
+		font-weight: 700;
+		width:100vw;
+	}
+	
+     
+     /*signup form when device is <600px*/
+	.register{
+	 grid-area: register;	
+	 }
+   .register> h1{
+		 display: none;
+	 }
+	 .register> form{
+		 font-size: 12px;
+
+	 }
+
+	 .register> form>input, select{
+		font-size: 10px;
+	}
+	form> #submitButton{
+		height: 1.5rem;
+		margin-top: -3px;
+	}
+	
+	
+	 .footer{
+		 grid-area: footer;
+	 }
+
+}
+
