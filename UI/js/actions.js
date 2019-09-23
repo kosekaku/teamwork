@@ -36,3 +36,22 @@ const editPost = () => {
   } 
   
 };
+
+
+
+// message disappear helper
+const disappear =(selectorName) => {
+  const messages = document.querySelector(selectorName);
+  setTimeout( () => messages.innerHTML="" , 3000);//reset the message notification to empty after 3seconds
+}
+//delete post
+const deletePost = (postid) =>{
+ const youConfirm  = confirm('Do you really want to delete?');
+ if(youConfirm) //return true //delete the article here ie at the server side
+ { const selectorName = '.messages';
+   const messages = document.querySelector(selectorName);
+   const newMessage = messages.innerHTML= "Deleted successful";
+   // disappear the messages after 3 seconds
+   disappear(selectorName);
+ }
+}
