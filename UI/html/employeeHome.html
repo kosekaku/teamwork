@@ -283,6 +283,50 @@
             <div><button onclick="sharePost()" class="share"> Share</button></div>
             </div>
         </div>      
+
+
+         <!-- sample article 5 -->
+         <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(5);
+          </script></span>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat recusandae suscipit molestiae iste quisquam error incidunt sapiente. Reprehenderit dicta veritatis voluptate? Nobis ducimus in sed animi, et ratione quas molestias.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod autem enim illo. Quidem eveniet consequuntur architecto, expedita officiis esse dignissimos cum facilis mollitia iure nihil ipsa reprehenderit, pariatur consectetur possimus!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, quo asperiores sit exercitationem eius dolor delectus natus reiciendis hic amet quam odio corporis fugit dicta debitis dolore quasi eos sequi.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>      
+ 
+
  
 
 
