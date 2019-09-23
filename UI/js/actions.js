@@ -14,6 +14,16 @@
   
 };
 
+//share post
+const sharePost = () =>{
+  const selectorName ='.messages'; //message paragraph
+  const shareDoc = document.querySelector(selectorName);
+  const message = shareDoc.innerHTML = "Article successfully shared";
+  // shareDoc.style.position ="fixed"; make the message stays fixed when use click share at the bottom of the page
+  disappear(selectorName); // invoke the disappear message function
+
+}
+
 
 // edit post
 const editPost = () => {
