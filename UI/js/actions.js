@@ -65,3 +65,14 @@ const deletePost = (postid) =>{
    disappear(selectorName);
  }
 }
+
+
+const getFormatedDate = (index) => {
+  const date = document.querySelectorAll('#postTIme');
+     const day = new Date().getDate();
+     const month = new Date().getMonth();
+     const hour = new Date().getHours();
+     const min = new Date().getMinutes();
+     // console.log(date.getHours(), date.getDate(), date.getMonth(), date.getFullYear());
+     date[index].innerHTML = day+ " "+month+" at "+hour+":"+min;
+  };
