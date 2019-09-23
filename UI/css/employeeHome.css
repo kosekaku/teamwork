@@ -1,0 +1,396 @@
+body{
+  height: 100vh;
+  width: 100vw;
+  /* background: rgba(26, 27, 25, 0.1); */
+  
+}
+
+.body__container{
+  display: grid;
+  grid-template: 
+  "nav nav"
+  "aside  articles"
+  "foot  foot";
+  position: relative;
+  margin: -1% -1% 0% -1%;
+}
+
+.body__container__nav{
+  grid-area: nav;
+  background: rgb(59, 59, 59);
+  width: 100vw;
+  position: fixed;
+  height: 8vh;
+  color: rgb(255, 255, 255);
+}
+.body__container__nav> ul{
+  display: flex;
+  flex:1;
+}
+.body__container__nav> ul>li{
+  list-style: none;
+}
+.body__container__nav> ul>li:nth-child(2){
+  margin-left: auto;
+  margin-right: 2%;
+}
+.body__container__nav>ul>li>form>input{
+  background:rgb(47, 49, 47);
+  color: white;
+  height: 4.5vh;
+  font-size: 1em;
+  border: 2px solid rgb(47, 49, 47);
+  box-shadow: 1px 0px 20px 0px rgb(17, 17, 17);
+  font-family: 'Courier New', Courier, monospace
+  
+}
+/* according to grid specification, when we position elements at fixed 
+position, then it collapse ie the element move out of the grid sytem
+Due to that, the grid is being redesign to exclulde the side bar and nav bar elements  */
+.body__container__aside{ 
+  grid-area: aside;
+  width: 15vw;
+  position:fixed;
+  top: 7.4%;
+  height: 100vh;
+  background-color: rgba(26, 27, 25, 0.1);
+  /* display: flex;
+  flex:1;
+  flex-direction: column; */
+}
+
+
+
+.body__container__aside>div>a>img{
+  width: 15%;
+  margin-left: 2%;
+}
+
+.profile{
+  text-align: center;
+}
+
+.body__container__aside>.profile>a>img{
+  width: 50%;
+  margin-left: 0%;
+}
+.body__container__aside>div{
+  padding: 10px;
+}
+
+
+/*aside hovers*/
+.aside__home>span:hover, .aside__myarticles>span:hover, .aside__post>span:hover,
+.aside__notifications>span:hover, .aside__comments>span:hover,.aside__logout>a>span:hover{
+  cursor: pointer;
+  background: #f1f1f1;
+}
+.aside__home>a, .aside__logout>a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.body__container__articles{
+  grid-area: articles;
+  width: 85vw;
+  height:100vh;
+  margin-top:5%;
+  margin-left:6%;
+   /*
+  display: grid;
+  overflow-y: auto; */
+  
+}
+
+.body__container__articles>.articles__post{
+  text-align: center;
+  display: none;
+}
+
+.body__container__articles>.articles__post>form>input, textarea{
+  width: 50%;
+}
+
+/* display message after delete or post  */
+.messages{
+  margin-left:5%;
+  color: green;
+}
+/* general design of the post area*/
+.articles__posted{
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 0.5%;
+  /* overflow: hidden;
+  overflow-y: scroll; */
+  
+
+}
+
+/* disable anchor default styles on the body */
+.articles__posted>.article1>p>a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.article1, .article2, .article3, .article4{
+ box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
+ margin-left: 1%;
+ grid-column: span 2; /* breaking the columns into a single columns ie
+  disbale the two column property set above
+  single column is best use case for reading article as well as it being respnsive on small devices
+  */
+}
+.article1:first-letter, .article1>p:first-letter{
+  text-transform: capitalize;
+}
+.article1>p, .article2>p, .article3>p, .article4>p{
+  margin-left:10px;
+}
+.article1:nth-child(2n-1):nth-last-of-type(1){ /*2 is the no of columns, 1 is the last element in the row*/
+  grid-column: span 2; /*make the last div span the whole 2 columns*/
+  
+}
+
+/*action buttons ie edit, delete, flag on the article*/
+.dropdown{
+  display: inline-block;
+}
+.dropbtn {
+  display: inline-block;
+  background: white;
+  color: black;
+  width: 3vw;
+  height: 3vh;
+  box-shadow: 1px 1px 1px -10px black;
+}
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1; /*make the dropdown to appear infront of the text*/
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: inline-block; 
+  /*dont display on hover,
+ display only when button is clicked*  future enhancement*/
+} 
+ /* article footer ie comment area */
+ .articleFooter{
+   display: flex;
+   margin:0px 0px 10px 10px ;
+ }
+ /* .articleFooter>span>form>input, .articleFooter>span>button{
+   flex:1;
+   height: 4vh;
+   color:inherit;
+   background: inherit;
+ } */
+ .articleFooter>div{
+   flex:1;
+ }
+
+ .articleFooter>div>form>input:nth-child(2), .articleFooter>div>a>.view, .articleFooter>div>.share{
+   font-weight: 400;
+   width: 5vw;
+   height: 4vh;
+   text-transform: capitalize;
+   background: rgb(253, 252, 252);
+   border: 1px solid rgb(228, 223, 223);
+ }
+ .articleFooter>div>a>.view, .articleFooter>div>.share{
+   display: grid; /*displaying grid because we want to get rid of the two columns sys*/
+   margin-left: auto;
+   margin-right: 10px;
+   color:inherit;
+ }
+ .articleFooter>div>a>.view, .articleFooter>div>a{ /*BLOCK for later, for new details of article can be view via an article body clicks*/
+   margin-right: 0%;
+   text-decoration: none;
+   color: inherit;
+   line-height: 100p;
+   display: inline-block; /*when blocker resolve display the button*/
+ }
+ .articleFooter>div>form>input:nth-child(2):hover, .articleFooter>div>a>.view:hover, .articleFooter>div>.share:hover{
+   background: #dddada;
+ }
+ /* .articleFooter>span{
+   padding: 10px;
+   display: flex;
+   flex: 1;
+   float: left;
+ } */
+
+/* .submit_article, textarea{
+  margin-left: 3.5%;
+} */
+
+/* dont display menu, its only used for mobile devices */
+.menu{
+  display: none;
+}
+
+
+.body__container__footer{
+  grid-area: foot;
+  position: absolute;
+  background: rgb(0, 0, 0);
+  height: 2.5rem;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  display: none;
+  
+}
+
+
+/* responsiveness when user is on a mobile device */
+@media all and (max-width:380px){
+
+.body__container__aside{
+  display: none; /*hide the aside bar*/
+}
+
+/* new grid containter */
+.body__container{
+  display: grid;
+  grid-template-areas: 
+  "nav_search menu_aside"
+  "body body";
+}
+
+/* nav for form input ie searching by category */
+.body__container__nav{
+  grid-area: nav_search; 
+  top:0;
+  width: 100vw; 
+  left: 0;
+}
+ /* hide logo space */
+.body__container__nav>ul>li:nth-child(1){
+  display: none; /*logo space not important*/
+  margin-left: -13%;
+  font-size: 1rem;
+  position: relative;
+  z-index: -1;
+}
+
+.body__container__nav>ul>li>form>input{
+  margin-left:-23%;
+  font-size: 0.85rem;
+}
+.body__container__nav>ul>li>form>input:nth-child(2){
+  margin-left: 0.1px;
+
+}
+
+/* menu ie formed for doing aside operations */
+.menu{
+  display: grid;
+  grid-area: menu_aside;
+  color: #ffff;
+  position: fixed;
+  top:0;
+  right: 0;
+  font-family: inherit;
+  margin: 0;
+  
+  /* overflow: hidden; */  
+}
+.menu>p{
+  /*same design as the form inputs*/
+  background:rgb(47, 49, 47);
+  color: white;
+  height: 4.5vh;
+  font-size: 1em;
+  border: 2px solid rgb(47, 49, 47);
+  box-shadow: 1px 0px 20px 0px rgb(17, 17, 17);
+  margin-right: 5px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.menu>p:hover{
+  background-color: rgb(51, 53, 48);
+}
+.menu__content{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  font-family: inherit;
+  padding: 10px;
+  color:white;
+  outline: none;
+  z-index: 1;
+  margin-left:-100px;
+}
+
+.menu__content a{
+  color:black;
+  float: none;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  padding: 5px;
+}
+.menu__content a:hover{
+  background-color: #ddd;
+}
+
+.menu:hover .menu__content{
+  display: block;
+}
+/* body grid for the articles */
+.body__container__articles{
+  grid-area: body;
+  margin-top: 15%;
+}
+
+/* article posted */
+.articles__posted{
+  margin: 0;
+}
+
+/* redesign the article footer tomorrow 23/09/2019 */
+.articleFooter{
+  /* flex-direction: column; */
+}
+.articleFooter>div>a>.view, .articleFooter>div>.share{
+  margin-left: 10%;
+  height: 3vh;
+}
+.articleFooter>div>.share{
+  margin-top: 2%;
+}
+.articleFooter>div>form>input:nth-child(2){
+
+  font-size: 10px;
+  width: 15vw;
+  height: 3vh;
+}
+
+.articleFooter>div>a>.view, .articleFooter>div>.share{
+  font-size: 10px;
+  width: 15vw;
+}
+
+.messages{
+  /* margin-top: 15%; */
+}
+
+
+}
