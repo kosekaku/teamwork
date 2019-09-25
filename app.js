@@ -3,6 +3,7 @@ import mocha from 'mocha';
 import path from 'path';
 import dotenv from 'dotenv';
 import userRouter from './api/v1/routes/user';
+import { stat } from 'fs';
 // console.log(userRouter);
 dotenv.config(); // load .env Variables
 
@@ -14,25 +15,17 @@ const port = process.env.PORT;
 
 
 // generic error middleware functions
-app.use((req, res, next) => {
-  const error = new Error('Not Found');
+app.use((req, res) => {
+  const error = new Error('Not found');
   error.status = 404;
-  next(error);
-});
-
-app.use((error, req, res) => { // get the error from above middleware
-  // res.status(error.status || 500);
-  res.status(500).json({
-    status: 'error',
-    error: error.message,
-  });
+  return res.status(404).json({ status: error.status, message: error.message });
 });
 
 // make a static folder for public images
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
 if (!module.parent) { // check to see if there no test happening otherwise without this,
   // we get the error of address already in use when we run mocha test.
-  app.listen(port, (req, res) => console.log(`listenting on port ${port} `));
+  app.listen(port, () => console.log(`listenting on port ${port} `)); // BOCKER, find how to test this
 }
 
 export default app;
