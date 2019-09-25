@@ -1,7 +1,9 @@
 // logics for handling user operations
 // import uuidv1 from 'uuid/v1';
+import bcrypt from 'bcrypt';
 import { userStore, User } from '../models/User';
 import { hasPassword, generateTokens } from '../helpers/userHelper';
+import { success, dataCreated, notFound, accessDenied, alreadyExist } from '../helpers/messages';
 
 const signup = async (req, res) => {
   // get user data from request body
@@ -32,21 +34,41 @@ const signup = async (req, res) => {
   // create new user and send response
   const creatingUser = async () => {
     await user.createUser(); // create user
-    res.status(201).json({ // send response to the requester
-      status: 201,
-      message: 'user successfuly been created',
-      data,
-    });
+    // send response to the requester
+    dataCreated(data, res);
   };
   if (userStore.length === 0) {
     // user is created when the data store is empty
     creatingUser();
   } else {
     // check if user with given email already exist
-    if (user.findUserEmail()) return res.status(409).json({ status: 409, error: 'email already exist, use another one' });
+    if (user.findUserEmail()) return alreadyExist(res);
     // create new  user, when arry is not empty and email doesn't exist
     creatingUser();
   }
 };
 
-export default { signup };
+const signin = async (req, res) => {
+  const { email, password } = req.body.data;
+  // check to see if the data repository is not emplty
+  if (userStore.length === 0) return notFound(res);
+  const user = new User(null, null, email, password, null, null, null, null, null);
+  const userFound = user.findUserEmail(email);
+  if (!userFound) return accessDenied(res);
+  // check password match
+  bcrypt.compare(password, userFound.password, (err, result) => {
+    if (!result) return accessDenied(res);
+    // send success response
+    const data = {
+      token: generateTokens(email),
+      firstName: userFound.firstName,
+      lastName: userFound.lastName,
+      email,
+      jobRole: userFound.jobRole,
+      password: userFound.password,
+    };
+    success(data, res);
+  });
+};
+
+export default { signup, signin };
