@@ -1,5 +1,6 @@
 // validations middlewares goes here
 import Joi from 'joi';
+import { joiError } from '../helpers/messages';
 
 // validate user signup
 const signupValidation = (req, res, next) => {
@@ -8,7 +9,7 @@ const signupValidation = (req, res, next) => {
     data: {
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
-      email: Joi.string().email({ minDomainSegments: 2 }).required(),
+      email: Joi.string().email({ minDomainAtoms: 2 }).required(),
       password: Joi.string().min(5).required(),
       gender: Joi.string().required(),
       jobRole: Joi.string().required(),
@@ -20,10 +21,24 @@ const signupValidation = (req, res, next) => {
   const results = Joi.validate(req.body, schema);
   // get the error from the validation just done above
   const { error } = results;
-  if (error) return res.status(400).json({ status: 400, message: error.details[0].message });
+  if (error) return joiError(error, res);
   // no error, user can now signup
   next();
 };
 
+// signin validation
+const signinValidation = (req, res, next) => {
+  const schema = {
+    data: {
+      // minDomainSegments doesnt check . in the email, so minDomainAtoms is the best case
+      email: Joi.string().email({ minDomainAtoms: 2 }).required(),
+      password: Joi.string().required(),
+    },
+  };
+  const { error } = Joi.validate(req.body, schema);
+  if (error) return joiError(error, res);
+  next(); // no error occured, user can continue to login validation at the server controller
+};
 
-export { signupValidation };
+
+export { signupValidation, signinValidation };

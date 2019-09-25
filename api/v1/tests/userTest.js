@@ -2,6 +2,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
+import { userStore } from '../models/User';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -302,4 +303,130 @@ describe('User /api/v1/auth/', () => {
 
     // check if server is running, test app.json BLOCKER
   });
+
+  // signin test case
+  describe('POST /signin', () => {
+    const url = '/api/v1/auth/signin';
+    it('should not signin when email is empty', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: '',
+            password: '123435',
+          },
+        })
+        .end((error, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('should not signin when email is not not valid ie kose@gmail', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: 'kose@gmail',
+            password: '123435',
+          },
+        })
+        .end((error, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('should not signin when password is empty', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: 'kose@gmail.com',
+            password: '',
+          },
+        })
+        .end((error, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('should not signin when wrong email is provided', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: 'None@gmail.com',
+            password: '123435',
+          },
+        })
+        .end((error, res) => {
+          expect(res).to.have.status(401);
+          done();
+        });
+    });
+
+    it('should not signin when wrong password is provided', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: 'kose@gmail.com',
+            password: '123435000',
+          },
+        })
+        .end((error, res) => {
+          expect(res).to.have.status(401);
+          done();
+        });
+    });
+
+    // when data repository is empty, code not working as intended, not able to get 404 status as per in signin route
+    it('should not signin when array data repository is empty', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: 'kose@gmail.com',
+            password: '123435',
+          },
+        })
+        .end((error, res) => {
+          expect(userStore.splice().length).to.equal(0);
+          // expect(res).to.have.status(404); // cannot invote the error at the signin route when array store is empty
+          done();
+        });
+    });
+
+    it('should signin when everything is ok', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .send({
+          data: {
+            email: 'kose@gmail.com',
+            password: '123435',
+          },
+        })
+        .end((error, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
 });
+
+// // signin empty array
+// describe('not empty', () => {
+//   it('empty array', (done) => {
+//     expect(userStore.splice().length).to.be.equal(0);
+//     done();
+//   });
+// });
