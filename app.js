@@ -2,7 +2,7 @@ import express from 'express';
 import mocha from 'mocha';
 import path from 'path';
 import dotenv from 'dotenv';
-import userRouter from './api/v1/routes/user';
+import userRouter from './server/api/v1/routes/user';
 import { stat } from 'fs';
 // console.log(userRouter);
 dotenv.config(); // load .env Variables
