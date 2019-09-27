@@ -1,7 +1,7 @@
 import uuid from 'uuid/v1';
 import { Article, articleStore } from '../models/Article';
 import {
-  success, dataCreated, notFound, serverExceptions,
+  success, dataCreated, notFound, accessDenied, serverExceptions,
 } from '../helpers/messages';
 // logic for article operations
 
@@ -45,5 +45,14 @@ const editArticle = async (req, res) => {
     serverExceptions(err, res);
   }
 };
+// Block, update the editArticle above to use the same middleware as deleteArticle
+// delete article
+const deleteArticle = async (req, res) => {
+  // verification was done by our middleware verifyArticleAndUser
+  // req.index was set by our middleware,
+  articleStore.splice(req.index, 1);// delete article
+  // res.status(204).json({}) // 204 doesnt return any response text, so we use 200,
+  res.status(200).json({ status: 200, message: 'deleted article successful' });
+};
 
-export { writeArticle, editArticle };
+export { writeArticle, editArticle, deleteArticle };

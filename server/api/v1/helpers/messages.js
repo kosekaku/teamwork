@@ -4,8 +4,8 @@
 const joiError = (errorFound, res) => {
   res.status(400).json({ status: 400, error: errorFound.details[0].message });
 };
-const serverExceptions = (error, res) => {
-  res.status(500).json({ status: 500, error });
+const serverExceptions = (errors, res) => {
+  res.status(500).json({ status: 500, error: errors });
 };
 
 const success = (data, res) => {

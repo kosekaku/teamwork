@@ -26,6 +26,24 @@ class Article {
     const id = this.articleId.articleId; // an object was return
     return articleStore.find((elem, ind) => articleStore[ind].articleId === id);
   }
+  // // find artilce by id
+  // findArticleById() {
+  //   const id = this.articleId.articleId; // an object was return
+  //   let data;
+  //   let index;
+  //   articleStore.find((elem, ind) => {
+  //     if (articleStore[ind].articleId === id) {
+  //       data = elem;
+  //       index = ind;
+  //     } else {
+  //       return null;
+  //     }
+  //     const dataRecieved = { data, index };
+  //     console.log('data at the model .....');
+  //     console.log(dataRecieved);
+  //     return dataCreated;
+  //   });
+  // }
 
   // find artilce by category, one of the optional features
   // findArticleByCategory(searchQuery) {
