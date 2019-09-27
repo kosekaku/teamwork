@@ -3,16 +3,17 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../../app';
 import { GenerateTokens } from '../helpers/jwtAuthHelper';
+import { articleStore, Article } from '../models/Article';
 
 chai.use(chaiHttp);
 const { expect } = chai;
 let tokens;
 describe('Article test /api/v1/articles', () => {
   // post article test
+  before(() => {
+    tokens = GenerateTokens('kose', 'uk45', 'kose@gmail.com');
+  });
   describe('POST /articles', () => {
-    before(() => {
-      tokens = GenerateTokens('kose', 'uk45', 'kose@gmail.com');
-    });
     const url = '/api/v1/articles';
 
     it('deny access to articles route there is no access tokens', (done) => {
@@ -139,10 +140,97 @@ describe('Article test /api/v1/articles', () => {
           done();
         });
     });
+  });
 
+  // edit article
+  describe('PATCH /articleId', () => {
+    const url = '/api/v1/articles/<articleId>';
+    before(() => {
+      // do something here before patching
+    });
+    it('should not update article when title is empty', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          data: {
+            title: '',
+            content: 'update content',
+          },
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
 
+    it('should not update article when content is empty', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          data: {
+            title: 'updated title',
+            content: '',
+          },
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
 
+    it('return 404 when there\'s wrong id is given ', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          data: {
+            title: 'updated title',
+            content: 'updated content',
+          },
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
 
-
+    it('should update article when id matchs ', (done) => {
+      chai
+        .request(app)
+        .patch(`/api/v1/articles/${articleStore[0].articleId}`)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          data: {
+            title: 'updated title',
+            content: 'updated content',
+          },
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+    // BLOCKER, test case
+    // it('return 500 when somthing goes wrong ', (done) => {
+    //   chai
+    //     .request(app)
+    //     .patch(`/api/v1/articles/${articleStore[0].articleId}`)
+    //     .set('authorization', `Bearer ${tokens}`)
+    //     .send({
+    //       data: {
+    //         title: 'updated title',
+    //         content: 'updated content',
+    //       },
+    //     })
+    //     .end((err, res) => {
+    //       expect(res).to.have.status(500);
+    //       done();
+    //     });
+    // });
   });
 });
