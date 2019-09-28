@@ -1,5 +1,6 @@
 import uuid from 'uuid/v1';
 import { Article, articleStore } from '../models/Article';
+import { Comment, commentStore} from '../models/Comments';
 import {
   success, dataCreated, notFound, accessDenied, serverExceptions,
 } from '../helpers/messages';
@@ -55,4 +56,25 @@ const deleteArticle = async (req, res) => {
   res.status(200).json({ status: 200, message: 'deleted article successful' });
 };
 
-export { writeArticle, editArticle, deleteArticle };
+const postComment = (req, res) => {
+  const { articleId } = req.params;
+  const commentId = uuid();
+  const createdOn = new Date();
+  const authorId = req.loggedinUser.email; // get the user email from the tokens set in jwt verify
+  const { comment } = req.body;
+  const commentData = new Comment(articleId, commentId, createdOn, authorId, comment);
+  commentData.addComment(); // comment is created here
+  // response to send to requester ie article title, content , and comment
+  const data = {
+    createdOn,
+    articleTitle: articleStore[req.ArticleIndex].title, // index set in our middlware prior to this
+    article: articleStore[req.ArticleIndex].content,
+    comment,
+
+  };
+  dataCreated(data, res);
+};
+
+export {
+  writeArticle, editArticle, deleteArticle, postComment,
+};

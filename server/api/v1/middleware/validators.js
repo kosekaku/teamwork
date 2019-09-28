@@ -54,5 +54,16 @@ const writeArticleValidation = (req, res, next) => {
   next(); // when no error occur, allow user to continue to next step of validation
 };
 
+// validate comment input field
+const commentValidation = (req, res, next) => {
+  const schema = {
+    comment: Joi.string().required(),
+  };
+  const { error } = Joi.validate(req.body, schema);
+  if (error) return joiError(error, res);
+  next();
+};
 
-export { signupValidation, signinValidation, writeArticleValidation };
+export {
+  signupValidation, signinValidation, writeArticleValidation, commentValidation,
+};
