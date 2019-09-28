@@ -1,6 +1,8 @@
 // jason web tokens verifications goes here
 import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { articleStore } from '../models/Article';
+import { notFound, accessDenied, serverExceptions } from '../helpers/messages';
 
 dotenv.config();
 
@@ -25,4 +27,29 @@ const authUser = (req, res, next) => {
   }
 };
 
-export default { authUser };
+/* verify article exists and whether user owns it
+This middleware will help us in edit, delete, and any
+operations that require to validate if artice exist, and the owner
+*/
+const verifyArticleAndUser = async (req, res, next) => {
+  const { articleId } = req.params;
+  let article = null;
+  let index;
+  try {
+    await articleStore.forEach((elements, indexOf) => {
+      if (elements.articleId === articleId) { // article matches, do some setups and escape the loop
+        article = elements;
+        index = indexOf;
+      }
+    });
+    if (article === null) return notFound(res); // no article match the given id
+    if (article.ownerEmail !== req.loggedinUser.email) return accessDenied(res); // not own by user
+    req.index = index; // send this index such that we use it during delete operation
+    next(); // article exist and user owns it, allow handler function to do whatever it wants
+  } catch (error) {
+    serverExceptions(error, res);
+  }
+};
+
+
+export { authUser, verifyArticleAndUser };

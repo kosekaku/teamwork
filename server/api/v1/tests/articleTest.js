@@ -8,10 +8,12 @@ import { articleStore, Article } from '../models/Article';
 chai.use(chaiHttp);
 const { expect } = chai;
 let tokens;
+let notOwnerTokens;
 describe('Article test /api/v1/articles', () => {
   // post article test
   before(() => {
     tokens = GenerateTokens('kose', 'uk45', 'kose@gmail.com');
+    notOwnerTokens = GenerateTokens('kose2', 'uk452', 'kose2@gmail.com');
   });
   describe('POST /articles', () => {
     const url = '/api/v1/articles';
@@ -232,5 +234,47 @@ describe('Article test /api/v1/articles', () => {
     //       done();
     //     });
     // });
+  });
+
+  // delete article
+  describe('DELETE /articleId', () => {
+    let wrongIdURL;
+    let url;
+    before(() => {
+      wrongIdURL = '/api/v1/artilces/10';
+      url = `/api/v1/articles/${articleStore[0].articleId}`;
+    });
+    it('404 not found, cannot delete non existing article', (done) => {
+      chai
+        .request(app)
+        .delete(wrongIdURL)
+        .set('authorization', `Bearer ${tokens}`)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
+
+    it('401 unauthorized, cannot delete existing article not own by user', (done) => {
+      chai
+        .request(app)
+        .delete(url)
+        .set('authorization', `Bearer ${notOwnerTokens}`)
+        .end((err, res) => {
+          expect(res).to.have.status(401);
+          done();
+        });
+    });
+
+    it('200 sucess, should delete existing article own by user', (done) => {
+      chai
+        .request(app)
+        .delete(url)
+        .set('authorization', `Bearer ${tokens}`)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
   });
 });
