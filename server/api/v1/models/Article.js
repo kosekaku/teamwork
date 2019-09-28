@@ -14,6 +14,7 @@ class Article {
   createArticle() {
     return articleStore.push({
       articleId: this.articleId,
+      createdOn: this.createdOn,
       author: this.author,
       ownerEmail: this.ownerEmail,
       title: this.title,

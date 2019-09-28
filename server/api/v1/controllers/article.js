@@ -75,6 +75,31 @@ const postComment = (req, res) => {
   dataCreated(data, res);
 };
 
+// view all articles showing the most recent ones
+const viewAllArticles = (req, res) => {
+  /*
+  1. set an initial iteration of 1, we cant start from 0 coz we are offsetting by -1
+  2. if initial is less than length of the array, get the last article details
+  3. put the details into a new array
+  4. return the new array which has sorted by latest articles
+  */
+
+  const result = [];
+  for (let i = 1; i <= articleStore.length; i += 1) {
+    // if (i>articleStore.length) return console.log('stop here '+i);
+    const data = {
+      id: articleStore[articleStore.length-i].articleId,
+      createdOn: articleStore[articleStore.length-i].createdOn,
+      title: articleStore[articleStore.length-i].title,
+      article: articleStore[articleStore.length-i].content,
+    };
+    result.push(data);
+  }
+  //  array.slice(-negative) returns the last n(-negative) numbers, but doesnt order by latest
+  // success(articleStore[articleStore.length-2].title, res);
+  success(result, res);
+};
+
 export {
-  writeArticle, editArticle, deleteArticle, postComment,
+  writeArticle, editArticle, deleteArticle, postComment, viewAllArticles,
 };

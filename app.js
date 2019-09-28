@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/auth', userRouter.router);
 app.use('/api/v1/articles', articleRouter.router);
+app.use('/api/v1/feeds', articleRouter.router);
 const port = process.env.PORT;
 
 

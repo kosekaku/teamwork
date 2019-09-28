@@ -335,4 +335,20 @@ describe('Article test /api/v1/articles', () => {
         });
     });
   });
+
+  // view all articles
+  describe('GET /api/v1/feeds', () => {
+    it('200 success', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/feeds')
+        .set('authorization', `Bearer ${tokens}`)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+
 });
