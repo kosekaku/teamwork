@@ -1,7 +1,7 @@
 // routes for article
 import express from 'express';
 import {
-  writeArticle, editArticle, deleteArticle, postComment,
+  writeArticle, editArticle, deleteArticle, postComment, viewAllArticles,
 } from '../controllers/article';
 import { authUser, verifyArticleAndUser, verifyArticleExist } from '../middleware/auth';
 import { writeArticleValidation, commentValidation } from '../middleware/validators';
@@ -13,4 +13,5 @@ router.post('/', writeArticleValidation, writeArticle);
 router.patch('/:articleId', writeArticleValidation, editArticle); // using write article input validations as we are also updating same fieds
 router.delete('/:articleId', verifyArticleAndUser, deleteArticle); // we dont need input validation here
 router.post('/:articleId/comments', verifyArticleExist, commentValidation, postComment);
+router.get('/', viewAllArticles);
 export default { router };

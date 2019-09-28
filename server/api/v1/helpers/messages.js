@@ -13,7 +13,7 @@ const success = (data, res) => {
 };
 
 const dataCreated = (data, res) => {
-  res.status(201).json({ status: 201, error: 'Operation successful, data created', data });
+  res.status(201).json({ status: 201, message: 'Operation successful, data created', data });
 };
 const notFound = (res) => {
   res.status(404).json({ status: 404, error: 'resource not found' });
