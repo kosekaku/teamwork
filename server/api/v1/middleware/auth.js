@@ -51,5 +51,22 @@ const verifyArticleAndUser = async (req, res, next) => {
   }
 };
 
+const verifyArticleExist = async (req, res, next) => {
+  const { articleId } = req.params;
+  let article = null;
+  let index;
+  try {
+    await articleStore.forEach((elements, indexOf) => {
+      if (elements.articleId === articleId) {
+        article = elements;
+        index = indexOf;
+      }
+    });
+    if (article === null) return notFound(res);
+    req.ArticleIndex = index; // we will use this in comment controller to send details with comment
+    next();
+  } catch (error) { serverExceptions(error, res); }
+};
 
-export { authUser, verifyArticleAndUser };
+
+export { authUser, verifyArticleAndUser, verifyArticleExist };
