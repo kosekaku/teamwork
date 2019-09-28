@@ -3,8 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../../app';
 import { GenerateTokens } from '../helpers/jwtAuthHelper';
-import { articleStore, Article } from '../models/Article';
-
+import { articleStore } from '../models/Article';
 chai.use(chaiHttp);
 const { expect } = chai;
 let tokens;
@@ -17,7 +16,6 @@ describe('Article test /api/v1/articles', () => {
   });
   describe('POST /articles', () => {
     const url = '/api/v1/articles';
-
     it('deny access to articles route there is no access tokens', (done) => {
       chai
         .request(app)
@@ -273,6 +271,66 @@ describe('Article test /api/v1/articles', () => {
         .set('authorization', `Bearer ${tokens}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  // comment tests
+  describe('POST /:articleId/comments', () => {
+    // create new article as previous one was deleted
+    before(() => {
+      chai
+        .request(app)
+        .post('/api/v1/articles')
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          data: {
+            title: 'new test title',
+            content: 'new test content',
+          },
+        })
+        .end(() => {
+        });
+    });
+    // now we can conduct our test as we have new article
+    it('404 not found, cannot add comment when article id does not exist', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/articles/10/comments') // wrong id 10
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          comment: 'I am just commenting for funs here',
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
+    it('400 bad request, should not add comment when input field is empty', (done) => {
+      chai
+        .request(app)
+        .post(`/api/v1/articles/${articleStore[0].articleId}/comments`)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          comment: '',
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          // expect(res.body.error).to.equal('\"comment\" is not allowed to be empty');
+          done();
+        });
+    });
+    it('201 comments created', (done) => {
+      chai
+        .request(app)
+        .post(`/api/v1/articles/${articleStore[0].articleId}/comments`)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+          comment: 'I am just commenting for funs here',
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(201);
           done();
         });
     });

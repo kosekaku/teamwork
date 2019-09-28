@@ -72,7 +72,9 @@ const postComment = (req, res) => {
     comment,
 
   };
-  success(data, res);
+  dataCreated(data, res);
 };
 
-export { writeArticle, editArticle, deleteArticle, postComment };
+export {
+  writeArticle, editArticle, deleteArticle, postComment,
+};
