@@ -144,9 +144,12 @@ describe('Article test /api/v1/articles', () => {
 
   // edit article
   describe('PATCH /articleId', () => {
-    const url = '/api/v1/articles/<articleId>';
+    let wrongIdURL;
+    let url;
     before(() => {
       // do something here before patching
+      wrongIdURL = '/api/v1/articles/<articleId>';
+      url = `/api/v1/articles/${articleStore[0].articleId}`;
     });
     it('should not update article when title is empty', (done) => {
       chai
@@ -185,7 +188,7 @@ describe('Article test /api/v1/articles', () => {
     it('return 404 when there\'s wrong id is given ', (done) => {
       chai
         .request(app)
-        .patch(url)
+        .patch(wrongIdURL)
         .set('authorization', `Bearer ${tokens}`)
         .send({
           data: {
@@ -202,7 +205,7 @@ describe('Article test /api/v1/articles', () => {
     it('should update article when id matchs ', (done) => {
       chai
         .request(app)
-        .patch(`/api/v1/articles/${articleStore[0].articleId}`)
+        .patch(url)
         .set('authorization', `Bearer ${tokens}`)
         .send({
           data: {

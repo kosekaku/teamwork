@@ -29,22 +29,13 @@ const writeArticle = async (req, res) => {
 
 // edit article
 const editArticle = async (req, res) => {
-  const { articleId } = req.params;
-  const { title, content } = req.body.data;
-  // check if user own this article
-  try {
-    const article = new Article(articleId);
-    const data = await article.findArticleById();
-    if (!data) return notFound(res);
-    // article exist and can update it
-    data.title = title;
-    data.content = content;
-    // send success message witht the updated data
-    success(data, res);
-  } catch (err) {
-    // when anything else goes wrong, we return a 500 status and the error
-    serverExceptions(err, res);
-  }
+  const { title, content } = req.body.data; // get new data to replace old ones
+  //  Article existence and ownership was verified by our middleware on the router
+  const fieldsToUpdate = req.articleData; // data set by our middleware
+  fieldsToUpdate.title = title; // update title
+  fieldsToUpdate.content = content;
+  // send success message witht the updated data
+  success(fieldsToUpdate, res);
 };
 // Block, update the editArticle above to use the same middleware as deleteArticle
 // delete article

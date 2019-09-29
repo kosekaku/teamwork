@@ -45,6 +45,7 @@ const verifyArticleAndUser = async (req, res, next) => {
     if (article === null) return notFound(res); // no article match the given id
     if (article.ownerEmail !== req.loggedinUser.email) return accessDenied(res); // not own by user
     req.index = index; // send this index such that we use it during delete operation
+    req.articleData = article;
     next(); // article exist and user owns it, allow handler function to do whatever it wants
   } catch (error) {
     serverExceptions(error, res);
