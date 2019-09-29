@@ -29,7 +29,7 @@ const writeArticle = async (req, res) => {
 
 // edit article
 const editArticle = async (req, res) => {
-  const articleId = req.params;
+  const { articleId } = req.params;
   const { title, content } = req.body.data;
   // check if user own this article
   try {
@@ -78,6 +78,7 @@ const postComment = (req, res) => {
 // view all articles showing the most recent ones
 const viewAllArticles = (req, res) => {
   /*
+  Alogrithm:
   1. set an initial iteration of 1, we cant start from 0 coz we are offsetting by -1
   2. if initial is less than length of the array, get the last article details
   3. put the details into a new array
@@ -88,10 +89,10 @@ const viewAllArticles = (req, res) => {
   for (let i = 1; i <= articleStore.length; i += 1) {
     // if (i>articleStore.length) return console.log('stop here '+i);
     const data = {
-      id: articleStore[articleStore.length-i].articleId,
-      createdOn: articleStore[articleStore.length-i].createdOn,
-      title: articleStore[articleStore.length-i].title,
-      article: articleStore[articleStore.length-i].content,
+      id: articleStore[articleStore.length - i].articleId,
+      createdOn: articleStore[articleStore.length - i].createdOn,
+      title: articleStore[articleStore.length - i].title,
+      article: articleStore[articleStore.length - i].content,
     };
     result.push(data);
   }
@@ -100,6 +101,35 @@ const viewAllArticles = (req, res) => {
   success(result, res);
 };
 
+
+// view specific article details
+const viewSpecificArticle = async (req, res) => {
+  const { articleId } = req.params;
+  const article = new Article(articleId); // by default remaining parameters will be undefined
+  const data = await article.findArticleById(); // get article whose id matches requested artilce
+  const comments = new Comment(articleId);
+  const dataComment = await comments.findArticleComments();
+  if (dataComment.length === 0) {
+    return success({
+      id: data.articleId,
+      createdOn: data.createdOn,
+      titile: data.title,
+      article: data.content,
+      authorId: data.ownerEmail,
+      comments: 'No comment for this article',
+    }, res);
+  }
+  const results = {
+    id: data.articleId,
+    createdOn: data.createdOn,
+    titile: data.title,
+    article: data.content,
+    authorId: data.ownerEmail,
+    comments: dataComment,
+  };
+  success(results, res);
+};
+
 export {
-  writeArticle, editArticle, deleteArticle, postComment, viewAllArticles,
+  writeArticle, editArticle, deleteArticle, postComment, viewAllArticles, viewSpecificArticle,
 };

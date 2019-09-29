@@ -350,5 +350,17 @@ describe('Article test /api/v1/articles', () => {
     });
   });
 
-
+  // view specific article
+  describe('GET /articles/:articleId', () => {
+    it('200 success, should view article details', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles/${articleStore[0].articleId} `)
+        .set('authorization', `Bearer ${tokens}`)
+        .end((erro, res) => {
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
 });
