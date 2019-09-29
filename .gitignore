@@ -3,3 +3,7 @@ node_modules
 .nyc_output
 dist
 .coveralls.yml
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
