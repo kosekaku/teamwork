@@ -1,6 +1,6 @@
 # Teamwork
 > Interact, Collaborate, and have funs with your workmates
-
+[![Build Status](https://travis-ci.com/itsUk45/teamwork.svg?branch=develop)](https://travis-ci.com/itsUk45/teamwork)
 [![Coverage Status](https://coveralls.io/repos/github/itsUk45/teamwork/badge.svg?branch=develop)](https://coveralls.io/github/itsUk45/teamwork?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e2d6a8fb6e75de1a5da0/maintainability)](https://codeclimate.com/github/itsUk45/teamwork/maintainability)
 
