@@ -24,7 +24,7 @@ class Article {
 
   // find artilce by id
   findArticleById() {
-    const id = this.articleId.articleId; // an object was return
+    const id = this.articleId; // an object was return
     return articleStore.find((elem, ind) => articleStore[ind].articleId === id);
   }
   // // find artilce by id

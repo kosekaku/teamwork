@@ -63,6 +63,7 @@ const verifyArticleExist = async (req, res, next) => {
       }
     });
     if (article === null) return notFound(res);
+    // Not a good idea to send sensistive data in req body
     req.ArticleIndex = index; // we will use this in comment controller to send details with comment
     next();
   } catch (error) { serverExceptions(error, res); }

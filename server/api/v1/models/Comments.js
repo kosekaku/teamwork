@@ -22,6 +22,24 @@ class Comment extends Article {
     };
     return commentStore.push(comment);
   }
+
+  // find all comments of an article
+  // findArticleComments() {
+  //   return commentStore.filter((element, index) => commentStore[index].articleId === this.articleId);
+  // }
+  findArticleComments() {
+    let data = [];
+    commentStore.filter((element, index) => {
+      if (commentStore[index].articleId === this.articleId) {
+        data.push({
+          commentId: element.commentId,
+          authorId: element.authorId,
+          comment: element.comment,
+        });
+      }
+    });
+    return data;
+  }
 }
 
 export { Comment, commentStore };
