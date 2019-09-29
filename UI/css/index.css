@@ -1,0 +1,233 @@
+*{
+  margin-right: 0%;
+}
+body{
+  width: 100vw;
+  height: 100vh;
+  margin:0%;
+}
+
+.header{
+  background:rgb(59, 59, 59);
+  color: rgb(255, 255, 255);
+  margin-top: -20px;
+  padding: 0.2%;
+}
+ul{
+  display: flex;
+  flex: 1;
+  list-style: none;
+  justify-content: flex-start;
+  
+}
+ul>li {
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+li:nth-child(2){
+  margin-left: auto;
+}
+li>a{
+  text-decoration: none;
+  color: rgb(255,255,255);
+}
+
+li>a:hover{
+  text-decoration: none;
+  background: rgb(0, 0, 0);
+  padding: 10px;
+  color: rgb(255,255,255);
+}
+
+/* main page */
+
+
+.main{
+  width: 100vw;
+  height: 100vh;
+}
+.main__holder{
+  background: url('../images/co-working-coffee.jpeg') center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 60vh;
+  background-size: 100% 100%;
+  opacity: 1;
+  margin-top: -16px;
+  
+}
+
+
+.desc-overlay{
+  position: absolute;
+  background: rgba(26, 27, 25, 0.5);
+  height: 60%;
+  width: 100%;
+  /* background: rgba(211, 22, 22,0.2); */
+}
+
+.desc{
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  top:50%;
+  left:50%;
+  right: -20%;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+
+}
+.main__working{
+width: 100vw;
+height: 40vh;
+text-align: center;
+background: rgba(26, 27, 25, 0.1);
+margin-top: -1.9%;
+
+}
+.main__working> p{
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-family: inherit;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.main__working> p:nth-child(3){
+  color: rgb(0, 0, 0);
+  margin-top: 0%;
+  font-size: 18px;
+  font-weight: 500;
+}
+.main__working__lists1{
+  display: flex;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+}
+.main__working__lists1>span{
+ font-size: 16px;
+ text-transform: capitalize;
+ margin-top: -1%;
+ font-weight: 400;
+ padding: 10px;
+ box-shadow: 2px 2px 7px 1px rgb(202, 202, 186);
+ border-radius: 0.1em;
+ color: rgb(11, 82, 100);
+}
+
+.main__working__lists2{
+  display: flex;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+}
+.main__working__lists2>span{
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-top: -1%;
+  font-weight: 400;
+  padding: 10px;
+  box-shadow: 2px 2px 7px 1px rgb(202, 202, 186);
+  border-radius: 0.1em;
+  color: rgb(5, 59, 66);
+
+}
+
+
+/* footer*/
+.footer{
+  background:rgb(59, 59, 59);
+  position: relative;
+  padding: 1%;
+  text-align: center;
+}
+.footer>span{
+  border-style: none;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+.footer>span>a{
+  color: rgb(255, 255, 255);
+  text-decoration-line: underline;
+}
+
+.footer>span>a:hover{
+  color: rgb(255, 255, 255);
+  text-decoration-line: unset;
+  background: rgb(0, 0, 0);
+}
+
+
+/* media queries  BLOCKER, change when both width and height are at some length*/
+
+@media all and (max-height: 508px){
+  ul>li{
+    font-size: 15px;
+  }
+  
+  .desc{
+    width: 100%;
+  }
+  .desc>p{
+    font-size: 14px;
+    margin-bottom: 0.5%;
+  }
+ .main__working>p, .main__working>p:nth-child(3){
+   font-size: 14px;
+  }
+
+  .main__working__lists1>span , .main__working__lists2>span {
+    font-size: 12px;
+  }
+
+  
+
+ 
+}
+
+@media all and (max-height: 300px){
+  .desc{
+    width: 100%;
+  
+  }
+  .desc>p{
+    font-size: 13px;
+  }
+  .footer{
+    margin-top:40%;
+  }
+}
+@media all and (max-width: 425px){
+  /* put all the nav into a menu */
+  /* reduce height and the font size of the desc-overlay text */
+  .main__holder{
+    height:40%;
+  }
+  .desc-overlay{
+    height: 40%;
+  }
+  
+  .desc{
+    font-size: 16px;
+  }
+
+  /*main working area*/
+  .main__working{
+    height: 60vh;
+    margin-top: -5%;
+    }
+  
+    /*footer*/
+    .footer{
+      color:red;
+     
+      padding: 10px;
+    }
+ 
+ 
+}

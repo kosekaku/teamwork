@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>articles board</title>
+  <link rel="stylesheet" type="text/css" href="../css/employeeHome.css">		
+  <script src="../js/actions.js"></script>
+</head>
+<body>
+  <!--body container div-->
+  <div class="body__container">
+    <!-- nav bar -->
+    <div class="body__container__nav">
+      <ul>
+        <li>Team work</li>
+        <li>
+          <form action="#" method="GET" enctype="multipart/form-data">
+            <input type="search" name="search" list="search" placeholder="search by category">
+            <input type="submit" value="search">
+            <datalist id="search">
+              <option>programming</option>
+              <option>science</option>
+              <option>outdoor</option>
+              <option>daily living</option>
+            </datalist>
+          </form>
+        </li>
+      </ul>
+    </div>
+	
+    <!-- side content area -->
+    <div  class="body__container__aside">
+          <div class="profile">
+            <a href="#"> <img src="../images/icons/user-solid.svg" alt="employee avatar photo"></a>
+            <p>  welcome {kose}</p>
+          </div>
+
+          <div  class="aside__home">
+              <a href="employeeHome.html"><img src="../images/icons/home.svg"> </a>
+              <span > Home</span>
+          </div>
+
+          <div  class="aside__myarticles">
+              <a href="#"><img src="../images/icons/profile.svg"> </a>
+              <span > My articles</span>
+          </div>
+
+          <div  class="aside__post">
+              <a href="#" onclick="newPost()"><img src="../images/icons/plus-circle-solid.svg"> </a>
+              <span onclick="newPost()">new article</span>
+            </div>
+      
+          <div  class="aside__notifications">
+            <a href="#"><img src="../images/icons/bell-solid.svg"> </a>
+            <span > notifications</span>
+          </div>
+                    
+          <div class="aside__logout">
+          <a href="index.html">	<img src="../images/icons/sign-out-alt-solid.svg">
+          <span>logout</span></a>
+          </div>
+    </div>	
+
+    <!-- new aside content for responsiveness, it becomes a menu -->
+    <div class="menu">
+      <p>menu</p>
+      <div class="menu__content">
+        <a href="employeeHome.html">Home</a>
+        <a href="">My articles</a>
+        <a href="#" onclick="newPost()">New article</a>
+        <a href="">Notifications</a>
+        <a href="index.html">Logout</a>
+      </div>
+    </div>
+
+    <!--main area for articles-->
+    <div class="body__container__articles">
+      <p class="messages"></p>
+      <!-- post article div-->
+      <div class="articles__post">
+        <form action="" method="GET" enctype="multipart/form-data">
+          <!-- <label for="title">Title</label> -->
+          <input class="article__title" type="text" name="article__title" placeholder="Your article title"><br>
+          <textarea class="article__body" name="article__body" placeholder="what's happening" rows="6"></textarea><br>
+          <input  class="article__submit" type="submit" name="article__submit" value="post">
+        </form>
+      </div>
+      <!--display articles by default-->
+      <div class="articles__posted">
+       <!-- post date and time -->
+
+       <!-- sample article 1 -->
+       <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(0);
+          </script></span>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <!-- comment section  -->
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>   
+        
+        <!-- sample aricle 2 -->
+        <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(1);
+          </script></span>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni asperiores error sequi quibusdam, dolorem natus placeat quo veritatis suscipit. Nam similique assumenda, voluptatibus animi quisquam aut iusto enim eum ullam?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur corrupti aliquam, non atque saepe itaque vitae, nulla, facilis dolorum debitis sed accusamus minima impedit dignissimos. Sint fugit delectus eos dicta?
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>     
+        
+        
+        <!-- sample aricle 3 -->
+        <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(2);
+          </script></span>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem porro nam mollitia fuga pariatur autem iusto animi, et repellat
+               quod incidunt deserunt non aut quisquam quam inventore natus laboriosam molestiae
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio 
+              facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>     
+        
+        <!-- sample article 4 -->
+        <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(3);
+          </script></span>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>      
+        
+        <!-- sample article 5 -->
+        <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(4);
+          </script></span>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>      
+
+
+         <!-- sample article 5 -->
+         <div class="article1">
+            <span>Today in scientific research breakthough</span>
+             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <!-- display dropdown only when button is clicked
+            Also dont di splay edit, delete links when 
+            user is not the post owner -->
+              <script>
+                // display drop down links when drop down button is clicked by user
+                // const dropdownon  = document.querySelector('.dropdown-content');
+                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
+                // dropdownon.style.display="none";
+                </script>
+                
+                <div class="dropdown-content">
+                  <a href="#" onclick="editPost()">Edit</a>
+                  <a href="#" onclick="deletePost()">Delete</a>
+                  <a href="#">Flag</a>
+                </div>
+             </span><br>
+            <span>author</span> <span id="postTIme"> <script> 
+                 getFormatedDate(5);
+          </script></span>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat recusandae suscipit molestiae iste quisquam error incidunt sapiente. Reprehenderit dicta veritatis voluptate? Nobis ducimus in sed animi, et ratione quas molestias.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod autem enim illo. Quidem eveniet consequuntur architecto, expedita officiis esse dignissimos cum facilis mollitia iure nihil ipsa reprehenderit, pariatur consectetur possimus!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, quo asperiores sit exercitationem eius dolor delectus natus reiciendis hic amet quam odio corporis fugit dicta debitis dolore quasi eos sequi.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+            </p>
+            <div class="articleFooter">
+            <div>
+              <!-- comment section form -->
+              <form action="employeeHome.html" method="GET" enctype="multipart/form-data"> 
+                <input type="text" placeholder="write comment" >
+                <input type="submit" value="add">
+              </form>
+            </div>
+            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div><button onclick="sharePost()" class="share"> Share</button></div>
+            </div>
+        </div>      
+ 
+
+ 
+
+
+
+ 
+    
+        
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class ="body__container__footer">
+      <span>&copy2019 Team Work</span>
+    </div>
+  </div><!--end of body conatiner-->
+</body>
+</html>

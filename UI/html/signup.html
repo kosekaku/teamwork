@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Account Signup</title>
+	<link rel="stylesheet" type="text/css" href="../css/signup.css">
+</head>
+<body>
+
+	<!-- grid container for the page -->
+	<div class="registerGrid">
+    <div class="description">
+      <div class="description__overlay">
+        <div class="description__overlay__text">
+          <p>Join the interactive funs with workmates and collegues</p>
+        </div>
+      </div>
+    </div>
+
+		<!-- signup form div -->
+		<div class="register">
+			<a id="closeTab" href="index.html">X</a>
+			<h1>Signup Form</h1>
+			<form action="signin.html" method="GET" enctype="multipart/form-data">
+			
+				<label for="fname">First Name</label><br>
+				<input type="text" name="fname" placeholder="enter first name" required><br>
+
+				<label for="lname">Last Name</label><br>
+        <input type="text" name="lname" placeholder="enter last name" required><br>
+        
+        <label for="email">Email</label><br>
+        <input type="email" name="email" placeholder="enter email" required><br>
+        
+        <label for="password">Password</label><br>
+        <input type="Password" name="email" placeholder="create a strong password" required><br>
+        
+        <label for="gender">gender</label><br>
+        <select>
+          <option>Male</option>
+          <option>Female</option>
+        </select><br>
+
+        <label for="jobrole">Job role</label><br>
+        <input type="jobrole" name="jobrole" placeholder="enter your job role" required><br>
+
+        <label for="dept">Department</label><br>
+				<input type="text" name="dept" placeholder="enter dept" required><br>
+        
+				<label for="number">Mobile Number</label><br>
+				<input type="number" name="number" placeholder="enter contact number" required><br>
+				<label for="address">Address</label><br>
+				<input type="text" name="address" placeholder="enter address ex-KK SS" required><br>
+                 <input id="submitButton" type="submit" name="submit" value="SIGNUP">
+                   <p id="signin">Already have an account? <a href="signin.html">Login</a></p>
+			</form>
+		</div>
+
+		<!-- page footer -->
+		<div class="footer">
+				<span>&copy2019 Team work</span>
+		</div>
+		
+	</div>
+</body>
+</html>
