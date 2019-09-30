@@ -1,9 +1,19 @@
 html{
 	width: 100%;
-  height: 100%;
+	height: 100%;
 }
 body{
-  margin:0%;
+	margin:0;
+	font-family: initial;
+}
+
+/* close current window */
+#closeTab{
+	position: absolute;
+	top:1rem;
+	right:5rem;
+	height: 4vh;
+	background: rgb(255, 255, 255);
 }
 
 
@@ -12,8 +22,8 @@ body{
 	position: relative;
 	display: grid;
 	grid-template-areas: 
-	"description register"
-	"description  register"
+	"description description"
+	"register  register"
 	"footer footer";
 }
 
@@ -22,74 +32,54 @@ body{
 	grid-area: description;
 	background:#f0f0f0;
 	background-image: url("../images/people-coffee-notes-tea.jpg");
-	height: 110vh;
+	height: 40vh;
 	width: 100%;
 	background-repeat: no-repeat;
-  background-size: cover;
+	background-size: cover;
 }
 
 .description__overlay{
   position: absolute;
-  width: 38%;
-  height:100vh;
-  background: rgba(28, 29, 31, 0.7);
+	width: 100%;
+  /* height:100vh; */
 }
 .description__overlay__text{
   position: absolute;
-  height: 50vh;
-  width: 100%;
-  top: 20%;
+  height: 40vh;
+	width: 100%;
   text-align: center;
   font-size: 25px;
-  color: rgb(255, 255, 255);
+	color: rgb(255, 255, 255);
+	background: rgba(28, 29, 31, 0.7);
+}
+.description__overlay__text>p{
+	margin-top: 10%;
 }
 
-/* close current window */
-#closeTab{
-	position: absolute;
-	top:1rem;
-	right:5rem;
-	font-size: 24px;
-	font-weight: bold;
-	color: rgb(255, 255, 255);
-	text-decoration: none;
-}
 
 .register{
 	display: grid;
 	grid-area: register;
+	height: 60vh;
 	background:#494441;
 	align-items: center;
 	justify-content: center;
-  text-transform: none;
-	height: 100%;
 }
 
-.register > h1{
-	text-align: center;
-  font-family: sans-serif, serif;
-  margin-top: -2rem;
-	color: rgb(255, 255, 255);
-	display: none;
-;}
-
-.register >form{
-	margin-top: 1%;
-}
 label{
-  color: rgb(255, 255, 255);
+	color: rgb(255, 255, 255);
 }
 select{
-  width: 106%;
+  width: 105%;
 }
 .register >form> input{
 	padding: 2px;
   width: 100%;
   color: rgb(0, 0, 0);
-  font-family: sans-serif, serif;
   margin-bottom: 3%;
   margin-top: 1%;
 }
+
 #submitButton{
 	height: 5vh;
 	width: 30%;

@@ -5,6 +5,7 @@ body{
   width: 100vw;
   height: 100vh;
   margin:0%;
+  font-family: initial;
 }
 
 .header{
@@ -40,6 +41,7 @@ li>a:hover{
   padding: 10px;
   color: rgb(255,255,255);
 }
+
 
 /* main page */
 
@@ -114,8 +116,7 @@ margin-top: -1.9%;
  margin-top: -1%;
  font-weight: 400;
  padding: 10px;
- box-shadow: 2px 2px 7px 1px rgb(202, 202, 186);
- border-radius: 0.1em;
+ /* box-shadow: 2px 2px 7px 1px rgb(202, 202, 186); */
  color: rgb(11, 82, 100);
 }
 
@@ -131,8 +132,7 @@ margin-top: -1.9%;
   margin-top: -1%;
   font-weight: 400;
   padding: 10px;
-  box-shadow: 2px 2px 7px 1px rgb(202, 202, 186);
-  border-radius: 0.1em;
+  /* box-shadow: 2px 2px 7px 1px rgb(202, 202, 186); */
   color: rgb(5, 59, 66);
 
 }
@@ -141,9 +141,11 @@ margin-top: -1.9%;
 /* footer*/
 .footer{
   background:rgb(59, 59, 59);
-  position: relative;
+  position: absolute;
   padding: 1%;
   text-align: center;
+  width: 100%;
+  bottom: 10;
 }
 .footer>span{
   border-style: none;
