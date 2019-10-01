@@ -53,7 +53,7 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   position:fixed;
   top: 7.4%;
   height: 100vh;
-  background-color: rgba(26, 27, 25, 0.1);
+  /* background-color: rgba(26, 27, 25, 0.1); */
   /* display: flex;
   flex:1;
   flex-direction: column; */
@@ -89,7 +89,33 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   text-decoration: none;
   text-transform: capitalize;
   color: inherit;
+  margin-bottom: 200em;
 }
+
+.aside__home_t{
+  display: flex;
+}
+.aside__home_t>div{
+  flex: 1;
+  margin-left: 20%;
+}
+.aside__home_t>div:last-child{
+  margin: 2.0% 50% 0% 0%;
+}
+.aside__home_t>div:last-child>a{
+  text-decoration: none;
+  color: inherit;
+  margin-left: 4%;
+}
+.aside__home_t>.my__articles{
+margin-top: 1%;
+}
+.aside__home_t>.new__post:hover{
+cursor: pointer;
+}
+
+
+
 
 .body__container__articles{
   grid-area: articles;
@@ -138,12 +164,11 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
 
 .article1, .article2, .article3, .article4{
  box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
- margin-left: 1%;
  grid-column: span 2; /* breaking the columns into a single columns ie
   disbale the two column property set above
   single column is best use case for reading article as well as it being respnsive on small devices
   */
-  margin-top: 1%;
+  margin: 1% 10% 4% 10%;
 }
 .article1:first-letter, .article1>p:first-letter{
   text-transform: capitalize;
@@ -153,15 +178,27 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   font-size: 20px;
   /* font-weight: 600; */
 }
+.article1> span{
+  margin-top: 3%;
+}
+.article1> .dropdown{
+ margin-left: 40%;
+ /* float: right;
+ margin-right:1%;
+ margin-top: 5px; */
+}
+
 .author_and_date{
   margin:10px;
-  font-size: 14px;
+  margin-left:3%;
+  font-size: 10px;
   font-weight: 400;
 }
 
 .article1>p, .article2>p, .article3>p, .article4>p{
-  margin-left:10px;
-  font-size: 16px;
+  margin-left:3%;
+  margin-right:3%;
+  font-size: 14px;
 }
 .article1:nth-child(2n-1):nth-last-of-type(1){ /*2 is the no of columns, 1 is the last element in the row*/
   grid-column: span 2; /*make the last div span the whole 2 columns*/
@@ -174,11 +211,11 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
 }
 .dropbtn {
   display: inline-block;
-  background: white;
-  color: black;
-  width: 3vw;
-  height: 3vh;
   box-shadow: 1px 1px 1px -10px black;
+}
+.dropdown>.dropbtn>img{
+  margin-bottom: -15%;
+  width: 1.5vw;
 }
 .dropdown-content {
 display: none;
@@ -218,15 +255,21 @@ text-align: left;
  .articleFooter>div{
    flex:1;
  }
+ /* hide comment form here and display at sepcific article page */
+ .articleFooter>div>form{
+   display: none;
+ }
 
  .articleFooter>div>form>input:nth-child(2), .articleFooter>div>a>.view, .articleFooter>div>.share{
    font-weight: 400;
    width: 5vw;
    height: 4vh;
+   font-size: 12px;
    text-transform: capitalize;
    background: rgb(253, 252, 252);
    border: 1px solid rgb(228, 223, 223);
  }
+
  .articleFooter>div>a>.view, .articleFooter>div>.share{
    display: grid; /*displaying grid because we want to get rid of the two columns sys*/
    margin-left: auto;
@@ -234,6 +277,10 @@ text-align: left;
    color:inherit;
    background: rgba(26, 27, 25, 0.1);
  }
+
+ .articleFooter>div>a>.view{
+  margin-left: -255px;
+}
  .articleFooter>div>form>input:nth-child(2){
    background: rgba(26, 27, 25, 0.1);
  }
@@ -384,6 +431,19 @@ text-align: left;
 /* article posted */
 .articles__posted{
   margin: 0;
+}
+.article1> span:first-child{
+  font-size: 16px;
+}
+.article1> .author_and_date{
+  font-size: 10px;
+}
+.article1>p{
+  font-size: 14px;
+}
+.dropdown>.dropbtn>img{
+  margin-bottom: -15%;
+  width: 4vw;
 }
 
 /* redesign the article footer tomorrow 23/09/2019 */

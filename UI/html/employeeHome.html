@@ -38,9 +38,33 @@
             <p>  welcome {kose}</p>
           </div>
 
-          <div  class="aside__home">
-              <a href="employeeHome.html"><img src="../images/icons/home.svg"> 
-              <span > Home</span></a>
+          <div  class="aside__home_t">
+              <div ><a href="employeeHome.html"><img src="../images/icons/home.svg" width="15px" height="20"> </a></div>
+              <div class="spant"><a href="#"> Home</a></div> 
+          </div>
+          <div  class="aside__home_t">
+              <div class="my__articles"><a href="#"><img src="../images/icons/profile.svg" width="15px" height="20"> </a></div>
+              <div><a href="#"> Articles</a></div> 
+          </div>
+          <div  class="aside__home_t">
+              <div class="new__post"><a onclick="newPost()"><img src="../images/icons/plus-circle-solid.svg" width="15px" height="20"> </a></div>
+              <div class="new__post"><a onclick="newPost()"> New </a></div> 
+          </div>
+
+          <div  class="aside__home_t">
+              <div ><a href="#"><img src="../images/icons/bell-solid.svg" width="15px" height="20"> </a></div>
+              <div class="spant"><a href="#"> Notification</a></div> 
+          </div>
+
+          <div  class="aside__home_t">
+              <div ><a href="index.html"><img src="../images/icons/sign-out-alt-solid.svg" width="15px" height="20"> </a></div>
+              <div class="spant"><a href="index.html"> Logout</a></div> 
+          </div>
+
+
+          <!-- <div  class="aside__home">
+              <a href="employeeHome.html"><img src="../images/icons/home.svg">
+              <span class="aside_spans"> Home</span> </a>
           </div>
 
           <div  class="aside__myarticles">
@@ -61,7 +85,7 @@
           <div class="aside__logout">
           <a href="index.html">	<img src="../images/icons/sign-out-alt-solid.svg">
           <span>logout</span></a>
-          </div>
+          </div> -->
     </div>	
 
     <!-- new aside content for responsiveness, it becomes a menu -->
@@ -94,8 +118,8 @@
 
        <!-- sample article 1 -->
        <div class="article1">
-            <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+            <span class="article__title">Today in scientific research breakthough</span>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -126,7 +150,7 @@
                 <input type="submit" style="background: rgba(26, 27, 25, 0.1)" value="add">
               </form>
             </div>
-            <div><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
+            <div class="viewDetails"><a href="viewSpecificArticle.html"><button class="view"> view</button></a></div>
             <div><button onclick="sharePost()" class="share"> Share</button></div>
             </div>
         </div>   
@@ -134,7 +158,7 @@
         <!-- sample aricle 2 -->
         <div class="article1">
             <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -156,7 +180,8 @@
           </script></span>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni asperiores error sequi quibusdam, dolorem natus placeat quo veritatis suscipit. Nam similique assumenda, voluptatibus animi quisquam aut iusto enim eum ullam?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur corrupti aliquam, non atque saepe itaque vitae, nulla, facilis dolorum debitis sed accusamus minima impedit dignissimos. Sint fugit delectus eos dicta?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur corrupti aliquam, <br><br>
+              Lon atque saepe itaque vitae, nulla, facilis dolorum debitis sed accusamus minima impedit dignissimos. Sint fugit delectus eos dicta?
                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
             </p>
             <div class="articleFooter">
@@ -175,7 +200,7 @@
         <!-- sample aricle 3 -->
         <div class="article1">
             <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -197,7 +222,7 @@
           </script></span>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem porro nam mollitia fuga pariatur autem iusto animi, et repellat
-               quod incidunt deserunt non aut quisquam quam inventore natus laboriosam molestiae
+               quod incidunt deserunt non aut quisquam quam inventore natus laboriosam molestiae<br><br>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio 
               facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
             </p>
@@ -216,7 +241,7 @@
         <!-- sample article 4 -->
         <div class="article1">
             <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -254,7 +279,7 @@
         <!-- sample article 5 -->
         <div class="article1">
             <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -293,7 +318,7 @@
          <!-- sample article 5 -->
          <div class="article1">
             <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -316,6 +341,7 @@
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat recusandae suscipit molestiae iste quisquam error incidunt sapiente. Reprehenderit dicta veritatis voluptate? Nobis ducimus in sed animi, et ratione quas molestias.
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod autem enim illo. Quidem eveniet consequuntur architecto, expedita officiis esse dignissimos cum facilis mollitia iure nihil ipsa reprehenderit, pariatur consectetur possimus!
+              <br><br>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, quo asperiores sit exercitationem eius dolor delectus natus reiciendis hic amet quam odio corporis fugit dicta debitis dolore quasi eos sequi.
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
             </p>

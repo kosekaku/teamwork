@@ -57,7 +57,7 @@ const signin = async (req, res) => {
   // check to see if the data repository is not emplty
   if (userStore.length === 0) return notFound(res);
   const user = new User(null, null, email, password, null, null, null, null, null);
-  const userFound = user.findUserEmail(email);
+  const userFound = await user.findUserEmail(email);
   if (!userFound) return accessDenied(res);
   // check password match
   bcrypt.compare(password, userFound.password, (err, result) => {

@@ -1,25 +1,15 @@
 html{
 	width: 100%;
-	height: 100%;
+  height: 100%;
 }
 body{
-	margin:0;
-	font-family: initial;
-}
-
-/* close current window */
-#closeTab{
-	position: absolute;
-	top:1rem;
-	right:5rem;
-	height: 4vh;
-	background: rgb(255, 255, 255);
+  margin:0%;
+  font-family: initial;
 }
 
 
 /*grid register*/
 .registerGrid{
-	position: relative;
 	display: grid;
 	grid-template-areas: 
 	"description description"
@@ -32,45 +22,90 @@ body{
 	grid-area: description;
 	background:#f0f0f0;
 	background-image: url("../images/people-coffee-notes-tea.jpg");
-	height: 40vh;
+  height: 100vh;
 	width: 100%;
 	background-repeat: no-repeat;
-	background-size: cover;
+  background-size: cover;
 }
 
 .description__overlay{
   position: absolute;
-	width: 100%;
-  /* height:100vh; */
+  width: 100%;
+  height:100vh;
+  
 }
 .description__overlay__text{
   position: absolute;
-  height: 40vh;
-	width: 100%;
+  height: 100vh;
+  width: 100%;
   text-align: center;
   font-size: 25px;
-	color: rgb(255, 255, 255);
-	background: rgba(28, 29, 31, 0.7);
+  color: rgb(255, 255, 255);
+  background: rgba(28, 29, 31, 0.7);
 }
 .description__overlay__text>p{
-	margin-top: 10%;
+  position: relative;
+  top:10%;
 }
 
-
+/* close current window */
+#closeTab{
+	position: absolute;
+	top:1rem;
+	right:5rem;
+	height: 4vh;
+	background: rgb(255, 255, 255);
+}
+/* new design for feeback */
 .register{
-	display: grid;
-	grid-area: register;
-	height: 60vh;
-	background:#494441;
-	align-items: center;
-	justify-content: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  font-size: 16px;
+  /* background: rgba(28, 29, 31, 0.2); */
 }
 
 label{
-	color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
-select{
-  width: 105%;
+.register >form> input{
+	padding: 2px;
+  width: 100%;
+  height: 3.5vh;
+  color: rgb(0, 0, 0);
+  margin-bottom: 3%;
+  margin-top: 1%;
+}
+#submitButton{
+	height: 5vh;
+	width: 20%;
+	margin-top: 5px;
+	background:#272626;
+  color:rgb(255, 255, 255);	
+  text-align: center;
+}
+ form>p ,#signin >a{
+	 	color:white;
+     padding: 0.5rem;
+     margin-top: -2%;
+	 }
+/* .register{
+	display: grid;
+	grid-area: register;
+	background:#494441;
+	align-items: center;
+	justify-content: center;
+  text-transform: none;
+  height: 60vh;
+  background: rgba(73,68,65,1);
+}
+form{
+  margin-top: -30%;
+}
+
+label{
+  color: rgb(255, 255, 255);
 }
 .register >form> input{
 	padding: 2px;
@@ -79,7 +114,6 @@ select{
   margin-bottom: 3%;
   margin-top: 1%;
 }
-
 #submitButton{
 	height: 5vh;
 	width: 30%;
@@ -88,51 +122,48 @@ select{
 	background:#272626;
 	color:rgb(255, 255, 255);	
 }
- form>p ,#signin >a{
+ form>p ,#signup >a{
 	 	color:white;
-		 padding: 0.5rem;
-		 margin-top: -1%;
-	 }
-	 #signin>a:hover{
-		background:#272626;
-	 }
+     padding: 0.5rem;
+     margin-top: -2%;
+	 } */
 .footer{
   grid-area: footer;
   text-align: center;
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
-	padding: 0.5rem;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
+  padding: 0.5rem;
 
 }
 
 
-@media all and (max-height: 480px){
+@media all and (max-height: 520px){
 	#closeTab{
 		top:-1px;
-		right:1rem;
-	}
-  .description, .description__overlay{
-		display: none;
-	}
-	.register{
-		height: 100%;
-		width: 100vw;
-	}
-	.register > h1{
-	 display: none;
-		}
-	.register> form{
-		font-size: 12px;
-	}
+    right:1rem;
+    display: none;
+  
+  }
+  .description{
+    display: none;
+  } 
+   .register>form{
+    margin-top: 1%;
+  }
 
-	.footer{
-		position: absolute;
-		bottom: 0;
-	}
+     #submitButton{
+      height: 8vh;
+      
+    }
+    .registerGrid{
+      min-height: 100vh;
+    }
+    .footer{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
 
+    }
 }
 
 @media all and (max-width: 600px){
@@ -141,52 +172,45 @@ select{
 	with each context occupying the whole raw*/
     .registerGrid{
 		display: grid;
-		position: relative;
 		grid-template-areas: 
 		  "description description"
 		  "register  register"
 		  "footer footer";
 	}
-	 
-	.description{
-		grid-area: description;
-		height:40vh;
-	}
-	.description__overlay{
-		width:100vw;
-		height: 39.9vh;
-	}
-	.description__overlay__text{
-		font-size: 16px;
-		font-family: sans-serif, serif,'Courier New', Courier, monospace;
-		font-weight: 700;
-		width:100vw;
-	}
-	
+
+	 .description, .description__overlay{
+     grid-area: description;
+     height: 25vh;
+   }
+   .description__overlay__text{
+     font-size: 14px;
+   }
      
      /*signup form when device is <600px*/
-	.register{
-	 grid-area: register;	
+	 .register{
+     grid-area: register;
+     height:75vh;
+   }
+   .register>h1{
+     font-size: 18px;
+     margin-top: -40%;
+   }
+	 .register form >label{
+	 	font-size: 16px;
 	 }
-   .register> h1{
-		 display: none;
-	 }
-	 .register> form{
-		 font-size: 12px;
 
+	 #signin>{
+	 	font-size: 16px;
+	 	color:white;
+		padding: 2px;
 	 }
 
-	 .register> form>input, select{
-		font-size: 10px;
+   #closeTab{
+		top:9rem;
+		right:1rem;
 	}
-	form> #submitButton{
-		height: 1.5rem;
-		margin-top: -3px;
-	}
-	
-	
 	 .footer{
-		 grid-area: footer;
+	 	margin-top: 0px;
 	 }
 
 }
