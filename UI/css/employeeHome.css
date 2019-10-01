@@ -39,10 +39,17 @@ body{
   color: white;
   height: 4.5vh;
   font-size: 16px;
-  border: 2px solid rgb(47, 49, 47);
+  border: 1px solid rgb(63, 65, 63);
   /* box-shadow: 1px 0px 20px 0px rgb(17, 17, 17); */
   font-family: initial;
   
+  
+}
+
+.body__container__nav>ul>li>form>input:nth-child(2){
+  background: rgb(73, 75, 75);
+  border: 1px solid grey;
+  color:white
 }
 /* according to grid specification, when we position elements at fixed 
 position, then it collapse ie the element move out of the grid sytem
@@ -107,8 +114,11 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   color: inherit;
   margin-left: 4%;
 }
-.aside__home_t>.my__articles{
-margin-top: 1%;
+.aside__home_t>.my__articles__img{
+margin-top: 1.5%;
+}
+.aside__home_t> .my__home__img{
+  margin-top: 1.2%;
 }
 .aside__home_t>.new__post:hover{
 cursor: pointer;
@@ -140,7 +150,7 @@ cursor: pointer;
 
 /* display message after delete or post  */
 .messages{
-  margin-left:5%;
+  margin-left:12%;
   color: green;
 }
 /* general design of the post area*/
