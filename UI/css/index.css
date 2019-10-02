@@ -34,13 +34,22 @@ li:nth-child(2){
 li>a{
   text-decoration: none;
   color: rgb(255,255,255);
+
 }
+/* li:nth-child(2), li:nth-child(3){
+  background: grey;
+  height:1.8vh;
+  margin-top: 0.5%;
+  margin-right: 1%;
+
+} */
 
 li>a:hover{
   text-decoration: none;
   background: rgb(0, 0, 0);
   padding: 10px;
   color: rgb(255,255,255);
+  background: #535151;
 }
 
 
@@ -87,8 +96,9 @@ li>a:hover{
 width: 100vw;
 /* height: 40vh; */
 text-align: center;
-background: rgba(26, 27, 25, 0.1);
+/* background: rgba(26, 27, 25, 0.1); */
 margin-top: -1.9%;
+background: white;
 
 }
 .main__working> p{

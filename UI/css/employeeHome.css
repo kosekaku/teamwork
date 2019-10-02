@@ -57,7 +57,12 @@ body{
 .body__container__nav>ul>li>form>input:nth-child(2){
   background: rgb(73, 75, 75);
   border: 1px solid grey;
-  color:white
+  color:white;
+  background:grey;
+}
+
+.body__container__nav>ul>li>form>input:nth-child(2):hover{
+  background: #727070;
 }
 /* according to grid specification, when we position elements at fixed 
 position, then it collapse ie the element move out of the grid sytem
@@ -104,7 +109,8 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   text-decoration: none;
   text-transform: capitalize;
   color: inherit;
-  margin-bottom: 200em;
+  /* margin-bottom: 200em;
+  background: red; */
 }
 
 .aside__home_t{
@@ -121,9 +127,10 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   text-decoration: none;
   color: inherit;
   margin-left: 4%;
+  font-size: 14px;
 }
 .aside__home_t>.my__articles__img{
-margin-top: 1.5%;
+margin-top: 1.8%;
 }
 .aside__home_t> .my__home__img{
   margin-top: 1.2%;
@@ -154,6 +161,30 @@ cursor: pointer;
 
 .body__container__articles>.articles__post>form>input, textarea{
   width: 50%;
+  margin:0.1%;
+  padding:10px;
+}
+.body__container__articles>.articles__post>form>input:first-child{
+  width: 49.9%;
+  margin:0.1%;
+  color: black;
+  border: 1px solid grey;
+  height: 3vh;
+}
+.body__container__articles>.articles__post>form>textarea{
+  border:1px solid grey;
+  color: #000000;
+}
+.body__container__articles>.articles__post>form>input:last-child{
+  border:1px solid grey;
+  background: red;
+  width: 6.5%;
+  height: 4vh;
+  padding: 0px;
+
+  background: rgba(26, 27, 25, 0.1);
+  border: none;
+  margin-top: 1%;
 }
 
 /* display message after delete or post  */
@@ -194,6 +225,7 @@ cursor: pointer;
 .article1>span:first-child, .article2>span:first-child, .article3>span:first-child, .article4>span:first-child{
   margin:10px;
   font-size: 20px;
+  margin-left: 3%;
   /* font-weight: 600; */
 }
 .article1> span{
