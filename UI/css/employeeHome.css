@@ -39,13 +39,21 @@ body{
   color: white;
   height: 4.5vh;
   font-size: 16px;
-  border: 1px solid rgb(63, 65, 63);
+  /* border: 1px solid rgb(63, 65, 63); */
   /* box-shadow: 1px 0px 20px 0px rgb(17, 17, 17); */
   font-family: initial;
-  
-  
 }
-
+.body__container__nav>ul>li>form>input:first-child{
+  border: 1px solid grey;
+  width: 100%;
+  margin-left: -30%;
+  font-family: initial;
+  font-size: 14px;
+  padding-left:10px; 
+  /* background: whitesmoke; */
+  background: white;
+  color:black;
+}
 .body__container__nav>ul>li>form>input:nth-child(2){
   background: rgb(73, 75, 75);
   border: 1px solid grey;
