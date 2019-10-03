@@ -4,6 +4,7 @@ html{
 }
 body{
   margin:0%;
+  font-family: initial;
 }
 
 
@@ -11,17 +12,16 @@ body{
 .registerGrid{
 	display: grid;
 	grid-template-areas: 
-	"description register"
-	"description  register"
+	"description description"
+	"register  register"
 	"footer footer";
 }
 
 
 .description{
 	grid-area: description;
-	background:#f0f0f0;
-	background-image: url("../images/people-coffee-notes-tea.jpg");
-	height: 100vh;
+	/* background-image: url("../images/people-coffee-notes-tea.jpg"); */
+  height: 100vh;
 	width: 100%;
 	background-repeat: no-repeat;
   background-size: cover;
@@ -29,51 +29,93 @@ body{
 
 .description__overlay{
   position: absolute;
-  width: 38%;
+  width: 100%;
   height:100vh;
-  background: rgba(28, 29, 31, 0.7);
+  
 }
 .description__overlay__text{
   position: absolute;
-  height: 50vh;
+  height: 100vh;
   width: 100%;
-  top: 20%;
   text-align: center;
   font-size: 25px;
   color: rgb(255, 255, 255);
+  /* background: rgba(28, 29, 31, 0.7); */
 }
+.description__overlay__text>p{
+  position: relative;
+  top:5%;
+  color: black;
+}
+
 
 /* close current window */
 #closeTab{
 	position: absolute;
 	top:1rem;
 	right:5rem;
-	font-size: 24px;
-	font-weight: bold;
-	color: rgb(255, 255, 255);
-	text-decoration: none;
-}
+	height: 4vh;
+  background: rgb(255, 255, 255);
+  background: rgba(26, 27, 25, 0.1);
 
+}
+/* new design for feeback */
 .register{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+  font-size: 16px;
+  /* background: rgba(28, 29, 31, 0.2); */
+}
+.register>form {
+  box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
+  padding: 15px 20px 30px 20px;
+  margin-top:-10px;
+}
+label{
+  color: rgb(255, 255, 255);
+  /* background: #f5f5f5; */
+  color: black;
+}
+.register >form> input{
+  padding-left: 5px;
+  width: 90%;
+  height: 3.5vh;
+  color: rgb(0, 0, 0);
+  margin-bottom: 2%;
+  margin-top: 1%;
+}
+#submitButton{
+  cursor: pointer;
+	height: 4.5vh;
+	width: 25%;
+	margin-top: 5px;
+  background: rgba(26, 27, 25, 0.1);
+  border: none;
+  color:rgb(0, 0, 0);	
+  text-align: center;
+}
+ form>p ,#signup >a{
+	 	color:black;
+    padding: 0.5rem;
+    margin-top: 0%;
+     
+	 }
+/* .register{
 	display: grid;
 	grid-area: register;
 	background:#494441;
 	align-items: center;
 	justify-content: center;
   text-transform: none;
-  height: 100vh;
+  height: 60vh;
+  background: rgba(73,68,65,1);
+}
+form{
+  margin-top: -30%;
 }
 
-.register > h1{
-	text-align: center;
-  font-family: sans-serif, serif;
-  margin-top: -10%;
-  color: rgb(255, 255, 255)
-;}
-
-.register >form{
-	margin-top: -110%;
-}
 label{
   color: rgb(255, 255, 255);
 }
@@ -81,7 +123,6 @@ label{
 	padding: 2px;
   width: 100%;
   color: rgb(0, 0, 0);
-  font-family: sans-serif, serif;
   margin-bottom: 3%;
   margin-top: 1%;
 }
@@ -97,13 +138,17 @@ label{
 	 	color:white;
      padding: 0.5rem;
      margin-top: -2%;
-	 }
+	 } */
 .footer{
   grid-area: footer;
   text-align: center;
   background: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   padding: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: -1%;
 
 }
 
@@ -170,10 +215,10 @@ label{
 	 	font-size: 16px;
 	 }
 
-	 #signup >a{
+	 #signin>{
 	 	font-size: 16px;
 	 	color:white;
-	 	padding: 2px;
+		padding: 2px;
 	 }
 
    #closeTab{

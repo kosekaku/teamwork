@@ -13,6 +13,10 @@
     .articleFooter>div>a>.view{
      display: none;
     }
+    .articleFooter>div>form{
+   display: inline-block;
+   margin-left: 5%;
+ }
   </style>
 </head>
 <body>
@@ -44,30 +48,53 @@
             <p>  welcome {kose}</p>
           </div>
 
-          <div  class="aside__home">
-              <a href="employeeHome.html"><img src="../images/icons/home.svg"> </a>
-              <span > Home</span>
+          <div  class="aside__home_t">
+              <div class="my__home__img" ><a href="employeeHome.html"><img src="../images/icons/home.svg" width="15px" height="20"> </a></div>
+              <div class="spant"><a href="employeeHome.html"> Home</a></div> 
+          </div>
+          <div  class="aside__home_t">
+              <div class="my__articles__img"><a href="#"><img src="../images/icons/profile.svg" width="15px" height="20"> </a></div>
+              <div><a href="#"> Articles</a></div> 
+          </div>
+          <div  class="aside__home_t">
+              <div class="my__articles__img" class="new__post"><a onclick="newPost()"><img src="../images/icons/plus-circle-solid.svg" width="15px" height="20"> </a></div>
+              <div class="new__post"><a onclick="newPost()"> New </a></div> 
+          </div>
+
+          <div  class="aside__home_t">
+              <div class="my__articles__img" ><a href="#"><img src="../images/icons/bell-solid.svg" width="15px" height="20"> </a></div>
+              <div class="spant"><a href="#"> Notification</a></div> 
+          </div>
+
+          <div  class="aside__home_t">
+              <div class="my__articles__img" ><a href="index.html"><img src="../images/icons/sign-out-alt-solid.svg" width="15px" height="20"> </a></div>
+              <div class="spant"><a href="index.html"> Logout</a></div> 
+          </div>
+
+          <!-- <div  class="aside__home">
+              <a href="employeeHome.html"><img src="../images/icons/home.svg"> 
+              <span > Home</span></a>
           </div>
 
           <div  class="aside__myarticles">
-              <a href="#"><img src="../images/icons/profile.svg"> </a>
-              <span > My articles</span>
+              <a href="#"><img src="../images/icons/profile.svg">
+              <span > My articles</span> </a>
           </div>
 
           <div  class="aside__post">
               <a href="#" onclick="newPost()"><img src="../images/icons/plus-circle-solid.svg"> </a>
-              <span onclick="newPost()" id="hell">new article</span>
+              <span onclick="newPost()" id="hell">New article</span>
             </div>
       
           <div  class="aside__notifications">
-            <a href="#"><img src="../images/icons/bell-solid.svg"> </a>
-            <span > notifications</span>
+            <a href="#"><img src="../images/icons/bell-solid.svg">
+            <span > Notifications</span> </a>
           </div>
                     
           <div class="aside__logout">
           <a href="index.html">	<img src="../images/icons/sign-out-alt-solid.svg">
           <span>logout</span></a>
-          </div>
+          </div> -->
     </div>	
 
     <!-- new aside content for responsiveness, it becomes a menu -->
@@ -101,7 +128,7 @@
        <!-- sample article 1 -->
        <div class="article1">
             <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><button class="dropbtn" >::</button>
+             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
             <!-- display dropdown only when button is clicked
             Also dont di splay edit, delete links when 
             user is not the post owner -->
@@ -118,11 +145,27 @@
                   <a href="#">Flag</a>
                 </div>
              </span><br>
-            <span>Kose</span> <span id="postTIme"> <script> 
+            <span class="author_and_date">Kose</span> <span class="author_and_date" id="postTIme"> <script> 
                  getFormatedDate(0);
           </script></span>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati praesentium ut sunt fuga dolorem illum provident qui excepturi.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam consequuntur odio 
+              facilis, eveniet voluptatibus possimus est quasi voluptates ducimus itaque obcaecati
+               praesentium ut sunt fuga dolorem illum provident qui excepturi.
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla commodi sit id voluptatem ipsam consequuntur nisi quos alias facilis ea, illum recusandae, est eius ipsum ex rerum cupiditate veniam accusamus.
+               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque cumque iste facilis dolorum ab esse ipsam nam modi placeat, excepturi dicta dolore expedita enim perferendis dolor autem, quisquam minus magnam.
+               <br> <br>
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem amet omnis veritatis asperiores quo ipsum natus praesentium, quibusdam, quam sunt unde esse iusto in illum odio tempora! Alias, eum harum.
+               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quisquam amet officia quidem dicta odio commodi autem et dolorum sed numquam sunt voluptates unde dolor quos deserunt, consequatur eveniet placeat.
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, obcaecati. Consequuntur provident est porro earum, dignissimos ipsa vero libero vitae, iure eius officia numquam modi sit totam! Reprehenderit, facilis aspernatur.
+               <br> <br>
+               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa blanditiis non sed aliquid neque accusamus in voluptate fugiat veritatis laboriosam dolorem temporibus eos, libero hic quia aperiam magnam ipsam? Obcaecati!
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus facere assumenda omnis fuga! Eveniet, facilis laboriosam autem aperiam eum adipisci veritatis totam tempore impedit distinctio a similique quisquam blanditiis culpa!
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum dignissimos, cumque, veritatis nulla eum, fuga qui maxime neque beatae adipisci est earum omnis. Nam id vitae saepe aut, perferendis assumenda.
+               <br> <br>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, nisi distinctio enim provident unde perspiciatis ut reprehenderit possimus sunt officia eveniet ea iure! Doloremque laborum laboriosam 
+               expedita suscipit nemo asperiores.
+               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus ipsam dignissimos distinctio cum, aliquam culpa praesentium, quae aut alias accusantium beatae ullam molestias, est soluta amet dicta consequatur tempore illo?
             </p>
             <div class="articleFooter">
             <div>

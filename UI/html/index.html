@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href='../css/index.css'>
+  <script src="../js/actions.js"></script>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <title>Team work</title>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="container">
       <!--
         workflow
         nav on the .header div
@@ -18,14 +20,25 @@
         some other things 
         
       -->
-    <div class="header">
+    <!-- <div class="header">
       <ul>
-        <li class='logo'><a href="index.html">home</a> </li> <!--&#9977; person standing icon-->
+        <li class='logo'><a href="index.html">home</a> </li> <!--&#9977; person standing icon
         <li class='signup'><a href="signup.html">signup</a></li>
         <li class='signin'><a href="signin.html">signin</a></li>
+        <li id="nav__menu"><a><img src="../images/icons/menu-24px.svg"></a></li>
       </ul>
+    </div> -->
+    <!-- new responsive nav  testing-->
+    <div class="topnav" id="myTopnav">
+      <a href="index.html" class="active">Teamwork</a>
+      <a href="signup.html">Signup</a>
+      <a href="signin.html">Signin</a>
+      <a href="javascript:void(0);" class="icon" onclick="menuNav()">
+        <i><img src="../images/icons/menu-24px.svg"></i>
+      </a>
     </div>
-    <div class="main">
+
+    <div class="main" id="main">
       <div class="main__holder">
         <div class="desc-overlay">
 
@@ -46,6 +59,27 @@
             <!-- &#128106; people-->
             <span>Collaborate</span>
         </div>
+        <!-- sample article featured for users who wants to join the platfomr -->
+        <div class="adsArticle">
+           <p>Featured article</p>
+           <div class="ads__main__holder">
+              <div class="ads__desc__overlay">
+      
+                <div class='ads__desc'>
+                  <span>Breaking news, a new and latest trend in the pop musics is out</span><br>
+                  <span>kose</span>
+                  <span>oct 2019</span>
+                    <p class="ads__desc_text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta quia nisi, libero accusantium earum repudiandae, corrupti architecto fugit voluptatum perferendis, numquam qui sequi porro? Assumenda perspiciatis cupiditate corporis vitae. Quidem.
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque minus dolorum mollitia, asperiores provident esse porro soluta. Minima, voluptatum tempora enim beatae animi laboriosam ipsa reprehenderit voluptates quo voluptatem. Asperiores.
+                      <br><br>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique porro hic tenetur, nesciunt, sapiente maiores laudantium impedit minus magnam assumenda itaque voluptatem nisi accusamus officiis laboriosam aperiam eligendi voluptatum officia?
+                    </p>
+                </div>
+      
+              </div>
+            </div>
+           
+        </div>
         <p>Milestones</p>
         <div class="main__working__lists2">
           <span>10K Users</span>
@@ -58,9 +92,9 @@
         
     </div>
     
-    <div class="footer">
+    <div class="footer" id="footer">
       <span> &copy2019 TeamWork</span>
-      <span>Built by <a href="github.com/itsuk45">kose</a</span>
+      <span>Built by <a href="https://www.github.com/itsuk45">kose</a</span>
     </div>
   </div>
 </body>

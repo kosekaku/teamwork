@@ -41,4 +41,29 @@ const signinValidation = (req, res, next) => {
 };
 
 
-export { signupValidation, signinValidation };
+// POST /api/v1/articles route validation
+const writeArticleValidation = (req, res, next) => {
+  const schema = {
+    data: {
+      title: Joi.string().required(),
+      content: Joi.string().required(),
+    },
+  };
+  const { error } = Joi.validate(req.body, schema);
+  if (error) return joiError(error, res); // user requester didnt fullfill the our requirements
+  next(); // when no error occur, allow user to continue to next step of validation
+};
+
+// validate comment input field
+const commentValidation = (req, res, next) => {
+  const schema = {
+    comment: Joi.string().required(),
+  };
+  const { error } = Joi.validate(req.body, schema);
+  if (error) return joiError(error, res);
+  next();
+};
+
+export {
+  signupValidation, signinValidation, writeArticleValidation, commentValidation,
+};

@@ -1,8 +1,13 @@
 body{
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   /* background: rgba(26, 27, 25, 0.1); */
-  
+  font-family: initial;  
+  /* background: url('../images/people-coffee-notes-tea.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+  /* background-color: rgba(26, 27, 25, 0.1);  */
 }
 
 .body__container{
@@ -13,9 +18,12 @@ body{
   "foot  foot";
   position: relative;
   margin: -1% -1% 0% -1%;
+  /* background-color: rgba(26, 27, 25, 0.5); */
+  
 }
 
 .body__container__nav{
+
   grid-area: nav;
   background: rgb(59, 59, 59);
   width: 100vw;
@@ -38,11 +46,31 @@ body{
   background:rgb(47, 49, 47);
   color: white;
   height: 4.5vh;
-  font-size: 1em;
-  border: 2px solid rgb(47, 49, 47);
-  box-shadow: 1px 0px 20px 0px rgb(17, 17, 17);
-  font-family: 'Courier New', Courier, monospace
-  
+  font-size: 16px;
+  /* border: 1px solid rgb(63, 65, 63); */
+  /* box-shadow: 1px 0px 20px 0px rgb(17, 17, 17); */
+  font-family: initial;
+}
+.body__container__nav>ul>li>form>input:first-child{
+  border: 1px solid grey;
+  width: 100%;
+  margin-left: -30%;
+  font-family: initial;
+  font-size: 14px;
+  padding-left:10px; 
+  /* background: whitesmoke; */
+  background: white;
+  color:black;
+}
+.body__container__nav>ul>li>form>input:nth-child(2){
+  background: rgb(73, 75, 75);
+  border: 1px solid grey;
+  color:white;
+  background:grey;
+}
+
+.body__container__nav>ul>li>form>input:nth-child(2):hover{
+  background: #727070;
 }
 /* according to grid specification, when we position elements at fixed 
 position, then it collapse ie the element move out of the grid sytem
@@ -53,7 +81,7 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   position:fixed;
   top: 7.4%;
   height: 100vh;
-  background-color: rgba(26, 27, 25, 0.1);
+  /* background-color: rgba(26, 27, 25, 0.1); */
   /* display: flex;
   flex:1;
   flex-direction: column; */
@@ -62,7 +90,7 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
 
 
 .body__container__aside>div>a>img{
-  width: 15%;
+  width: 10%;
   margin-left: 2%;
 }
 
@@ -85,10 +113,42 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   cursor: pointer;
   background: #f1f1f1;
 }
-.aside__home>a, .aside__logout>a{
+.aside__home>a, .aside__myarticles>a, .aside__post>a, .aside__notifications>a, .aside__logout>a{
+  text-decoration: none;
+  text-transform: capitalize;
+  color: inherit;
+  /* margin-bottom: 200em;
+  background: red; */
+}
+
+.aside__home_t{
+  display: flex;
+}
+.aside__home_t>div{
+  flex: 1;
+  margin-left: 20%;
+}
+.aside__home_t>div:last-child{
+  margin: 2.0% 50% 0% 0%;
+}
+.aside__home_t>div:last-child>a{
   text-decoration: none;
   color: inherit;
+  margin-left: 4%;
+  font-size: 14px;
 }
+.aside__home_t>.my__articles__img{
+margin-top: 1.8%;
+}
+.aside__home_t> .my__home__img{
+  margin-top: 1.2%;
+}
+.aside__home_t>.new__post:hover{
+cursor: pointer;
+}
+
+
+
 
 .body__container__articles{
   grid-area: articles;
@@ -109,11 +169,35 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
 
 .body__container__articles>.articles__post>form>input, textarea{
   width: 50%;
+  margin:0.1%;
+  padding:10px;
+}
+.body__container__articles>.articles__post>form>input:first-child{
+  width: 49.9%;
+  margin:0.1%;
+  color: black;
+  border: 1px solid grey;
+  height: 3vh;
+}
+.body__container__articles>.articles__post>form>textarea{
+  border:1px solid grey;
+  color: #000000;
+}
+.body__container__articles>.articles__post>form>input:last-child{
+  border:1px solid grey;
+  background: red;
+  width: 6.5%;
+  height: 4vh;
+  padding: 0px;
+
+  background: rgba(26, 27, 25, 0.1);
+  border: none;
+  margin-top: 1%;
 }
 
 /* display message after delete or post  */
 .messages{
-  margin-left:5%;
+  margin-left:12%;
   color: green;
 }
 /* general design of the post area*/
@@ -137,17 +221,42 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
 
 .article1, .article2, .article3, .article4{
  box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
- margin-left: 1%;
  grid-column: span 2; /* breaking the columns into a single columns ie
   disbale the two column property set above
   single column is best use case for reading article as well as it being respnsive on small devices
   */
+  margin: 1% 10% 4% 10%;
 }
 .article1:first-letter, .article1>p:first-letter{
   text-transform: capitalize;
 }
+.article1>span:first-child, .article2>span:first-child, .article3>span:first-child, .article4>span:first-child{
+  margin:10px;
+  font-size: 20px;
+  margin-left: 3%;
+  /* font-weight: 600; */
+}
+.article1> span{
+  margin-top: 3%;
+}
+.article1> .dropdown{
+ margin-left: 40%;
+ /* float: right;
+ margin-right:1%;
+ margin-top: 5px; */
+}
+
+.author_and_date{
+  margin:10px;
+  margin-left:3%;
+  font-size: 10px;
+  font-weight: 400;
+}
+
 .article1>p, .article2>p, .article3>p, .article4>p{
-  margin-left:10px;
+  margin-left:3%;
+  margin-right:3%;
+  font-size: 14px;
 }
 .article1:nth-child(2n-1):nth-last-of-type(1){ /*2 is the no of columns, 1 is the last element in the row*/
   grid-column: span 2; /*make the last div span the whole 2 columns*/
@@ -160,24 +269,25 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
 }
 .dropbtn {
   display: inline-block;
-  background: white;
-  color: black;
-  width: 3vw;
-  height: 3vh;
   box-shadow: 1px 1px 1px -10px black;
+}
+.dropdown>.dropbtn>img{
+  margin-bottom: -15%;
+  width: 1.5vw;
 }
 .dropdown-content {
 display: none;
 position: absolute;
 background-color: #f9f9f9;
-min-width: 160px;
+min-width: 120px;
+margin-left: -50px;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1; /*make the dropdown to appear infront of the text*/
 }
 
 .dropdown-content a {
 color: black;
-padding: 12px 16px;
+padding: 12px 0px 0px 10px;
 text-decoration: none;
 display: block;
 text-align: left;
@@ -204,20 +314,37 @@ text-align: left;
  .articleFooter>div{
    flex:1;
  }
+ /* hide comment form here and display at sepcific article page */
+ .articleFooter>div>form{
+   display: none;
+ }
 
  .articleFooter>div>form>input:nth-child(2), .articleFooter>div>a>.view, .articleFooter>div>.share{
    font-weight: 400;
-   width: 5vw;
+   width: 8vw;
    height: 4vh;
+   font-size: 12px;
    text-transform: capitalize;
    background: rgb(253, 252, 252);
    border: 1px solid rgb(228, 223, 223);
  }
+
  .articleFooter>div>a>.view, .articleFooter>div>.share{
    display: grid; /*displaying grid because we want to get rid of the two columns sys*/
    margin-left: auto;
    margin-right: 10px;
    color:inherit;
+   background: rgba(26, 27, 25, 0.1);
+ }
+
+ .articleFooter>div>a>.view{
+  margin-left: 15px;
+}
+ .articleFooter>div>form>input:nth-child(2){
+   background: rgba(26, 27, 25, 0.1);
+ }
+ .articleFooter>div>.share{
+   line-height: 20px;
  }
  .articleFooter>div>a>.view, .articleFooter>div>a{ /*BLOCK for later, for new details of article can be view via an article body clicks*/
    margin-right: 0%;
@@ -281,6 +408,7 @@ text-align: left;
   top:0;
   width: 100vw; 
   left: 0;
+
 }
  /* hide logo space */
 .body__container__nav>ul>li:nth-child(1){
@@ -297,7 +425,25 @@ text-align: left;
 }
 .body__container__nav>ul>li>form>input:nth-child(2){
   margin-left: 0.1px;
+}
 
+.body__container__nav>ul>li>form>input:first-child{
+  width: 50%;
+  margin-left: 0%;
+  font-family: initial;
+  font-size: 14px;
+  padding-left:10px; 
+  /* background: whitesmoke; */
+  background: white;
+  color:black;
+  height: 4vh
+}
+.body__container__nav>ul>li>form>input:nth-child(2){
+  background: rgb(73, 75, 75);
+  border: 1px solid grey;
+  color:white;
+  background:grey;
+  height:4vh;
 }
 
 /* menu ie formed for doing aside operations */
@@ -322,7 +468,7 @@ text-align: left;
   border: 2px solid rgb(47, 49, 47);
   box-shadow: 1px 0px 20px 0px rgb(17, 17, 17);
   margin-right: 5px;
-  font-family: 'Courier New', Courier, monospace;
+ font-family: initial;
 }
 .menu>p:hover{
   background-color: rgb(51, 53, 48);
@@ -337,6 +483,7 @@ text-align: left;
   outline: none;
   z-index: 1;
   margin-left:-100px;
+  
 }
 
 .menu__content a{
@@ -364,6 +511,19 @@ text-align: left;
 .articles__posted{
   margin: 0;
 }
+.article1> span:first-child{
+  font-size: 16px;
+}
+.article1> .author_and_date{
+  font-size: 10px;
+}
+.article1>p{
+  font-size: 14px;
+}
+.dropdown>.dropbtn>img{
+  margin-bottom: -15%;
+  width: 4vw;
+}
 
 /* redesign the article footer tomorrow 23/09/2019 */
 .articleFooter{
@@ -387,10 +547,54 @@ text-align: left;
   font-size: 10px;
   width: 15vw;
 }
+.dropdown-content{
+  margin: 0% 0% 0% -10%;
+}
 
 .messages{
   /* margin-top: 15%; */
 }
 
 
+}
+
+
+@media all and (max-width: 360px){
+  .body__container__articles{
+    /* position: relative;
+    top: 5%; */
+  }
+  .messages{
+    margin-top: 10%;
+  }
+ .articles__posted{
+   margin-top: 50%;
+ }
+  
+}
+
+@media all and (max-width: 800px){
+  .body__container__articles{
+    margin-top: 5%;
+  }
+  .messages{
+    margin-top: 10%;
+  }
+ .articles__posted{
+   margin-top: 5%;
+ }
+  
+}
+
+@media all and (max-width: 1000px){
+  /* .articleFooter{
+    display: flex;
+    background: red;
+  }
+  .articleFooter > div > a > .view, .articleFooter > div > a > .share{
+    flex: 1;
+    float: left;
+    margin-left: 0px;
+  } */
+  
 }

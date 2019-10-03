@@ -2,7 +2,8 @@ import express from 'express';
 import mocha from 'mocha';
 import path from 'path';
 import dotenv from 'dotenv';
-import userRouter from './api/v1/routes/user';
+import userRouter from './server/api/v1/routes/user';
+import articleRouter from './server/api/v1/routes/article';
 import { stat } from 'fs';
 // console.log(userRouter);
 dotenv.config(); // load .env Variables
@@ -11,7 +12,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/auth', userRouter.router);
+app.use('/api/v1/articles', articleRouter.router);
+app.use('/api/v1/feeds', articleRouter.router);
 const port = process.env.PORT;
+
+
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+//   next();
+// });
 
 
 // generic error middleware functions

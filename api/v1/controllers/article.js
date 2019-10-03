@@ -1,1 +1,0 @@
-// logic for article operations
