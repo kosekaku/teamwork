@@ -1,8 +1,13 @@
 body{
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   /* background: rgba(26, 27, 25, 0.1); */
   font-family: initial;  
+  /* background: url('../images/people-coffee-notes-tea.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+  /* background-color: rgba(26, 27, 25, 0.1);  */
 }
 
 .body__container{
@@ -13,9 +18,12 @@ body{
   "foot  foot";
   position: relative;
   margin: -1% -1% 0% -1%;
+  /* background-color: rgba(26, 27, 25, 0.5); */
+  
 }
 
 .body__container__nav{
+
   grid-area: nav;
   background: rgb(59, 59, 59);
   width: 100vw;
@@ -271,14 +279,15 @@ cursor: pointer;
 display: none;
 position: absolute;
 background-color: #f9f9f9;
-min-width: 160px;
+min-width: 120px;
+margin-left: -50px;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1; /*make the dropdown to appear infront of the text*/
 }
 
 .dropdown-content a {
 color: black;
-padding: 12px 16px;
+padding: 12px 0px 0px 10px;
 text-decoration: none;
 display: block;
 text-align: left;
@@ -312,7 +321,7 @@ text-align: left;
 
  .articleFooter>div>form>input:nth-child(2), .articleFooter>div>a>.view, .articleFooter>div>.share{
    font-weight: 400;
-   width: 5vw;
+   width: 8vw;
    height: 4vh;
    font-size: 12px;
    text-transform: capitalize;
@@ -329,7 +338,7 @@ text-align: left;
  }
 
  .articleFooter>div>a>.view{
-  margin-left: -255px;
+  margin-left: 15px;
 }
  .articleFooter>div>form>input:nth-child(2){
    background: rgba(26, 27, 25, 0.1);
@@ -399,6 +408,7 @@ text-align: left;
   top:0;
   width: 100vw; 
   left: 0;
+
 }
  /* hide logo space */
 .body__container__nav>ul>li:nth-child(1){
@@ -415,7 +425,25 @@ text-align: left;
 }
 .body__container__nav>ul>li>form>input:nth-child(2){
   margin-left: 0.1px;
+}
 
+.body__container__nav>ul>li>form>input:first-child{
+  width: 50%;
+  margin-left: 0%;
+  font-family: initial;
+  font-size: 14px;
+  padding-left:10px; 
+  /* background: whitesmoke; */
+  background: white;
+  color:black;
+  height: 4vh
+}
+.body__container__nav>ul>li>form>input:nth-child(2){
+  background: rgb(73, 75, 75);
+  border: 1px solid grey;
+  color:white;
+  background:grey;
+  height:4vh;
 }
 
 /* menu ie formed for doing aside operations */
@@ -455,6 +483,7 @@ text-align: left;
   outline: none;
   z-index: 1;
   margin-left:-100px;
+  
 }
 
 .menu__content a{
@@ -519,7 +548,7 @@ text-align: left;
   width: 15vw;
 }
 .dropdown-content{
-  margin: 2% 0% 0% -10%;
+  margin: 0% 0% 0% -10%;
 }
 
 .messages{
@@ -527,4 +556,45 @@ text-align: left;
 }
 
 
+}
+
+
+@media all and (max-width: 360px){
+  .body__container__articles{
+    /* position: relative;
+    top: 5%; */
+  }
+  .messages{
+    margin-top: 10%;
+  }
+ .articles__posted{
+   margin-top: 50%;
+ }
+  
+}
+
+@media all and (max-width: 800px){
+  .body__container__articles{
+    margin-top: 5%;
+  }
+  .messages{
+    margin-top: 10%;
+  }
+ .articles__posted{
+   margin-top: 5%;
+ }
+  
+}
+
+@media all and (max-width: 1000px){
+  /* .articleFooter{
+    display: flex;
+    background: red;
+  }
+  .articleFooter > div > a > .view, .articleFooter > div > a > .share{
+    flex: 1;
+    float: left;
+    margin-left: 0px;
+  } */
+  
 }

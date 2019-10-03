@@ -1,3 +1,13 @@
+// index page menu
+const menuNav = ()  => {
+  let x = document.getElementById('myTopnav');
+  if (x.className === 'topnav') {
+    x.className += ' responsive';
+  } else {
+    x.className = 'topnav';
+  }
+}
+
 // posting article
 
 const newPost = () => {
