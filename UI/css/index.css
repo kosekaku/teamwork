@@ -1,59 +1,20 @@
-*{
-  margin-right: 0%;
-}
 body{
-  width: 100vw;
-  /* height: 100vh; */
-  margin:0%;
-  font-family: initial;
-  
+  margin:0;
+}
+#container{
+  grid-template-areas:
+  "nav nav"
+  "content content"
+  "foot foot";
+  position: relative;
+  height: 100%;
 }
 
-/* .header{
-  background:rgb(59, 59, 59);
-  color: rgb(255, 255, 255);
-  margin-top: -20px;
-  padding: 0.2%;
+/* navigation work  starts*/ 
+#myTopnav{
+  grid-area: nav;
 }
-ul{
-  display: flex;
-  flex: 1;
-  list-style: none;
-  justify-content: flex-start;
-  
-}
-ul>li {
-  font-size: 16px;
-  padding: 10px;
-  text-transform: uppercase;
-}
-
-li:nth-child(2){
-  margin-left: auto;
-}
-li>a{
-  text-decoration: none;
-  color: rgb(255,255,255);
-
-}
-/* li:nth-child(2), li:nth-child(3){
-  background: grey;
-  height:1.8vh;
-  margin-top: 0.5%;
-  margin-right: 1%;
-
-} 
-
-li>a:hover{
-  text-decoration: none;
-  background: rgb(0, 0, 0);
-  padding: 10px;
-  color: rgb(255,255,255);
-  background: #535151;
-} */
-
-
-/* new test responsive nav */
+/* new responsive nav */
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -75,24 +36,22 @@ li>a:hover{
   background: #535151;
 }
 .topnav a:not(:first-child){
-  /* margin-left: 75%; */
   float:right;
 }
 .topnav .icon {
   display: none;
 }
+/* nav ends here */
 
 
-
-
-
-/* main page */
-
-
+/* main starts here */
 .main{
+  grid-area: content;
+  /* position: relative; */
   width: 100vw;
-  /* height: 100%; */
 }
+
+/* main page  holder ie banner image*/
 .main__holder{
   background: url('../images/co-working-coffee.jpeg') center;
   background-repeat: no-repeat;
@@ -104,13 +63,11 @@ li>a:hover{
 
 }
 
-
 .desc-overlay{
   position: absolute;
   background: rgba(26, 27, 25, 0.5);
-  height: 60%;
+  height: 40vh;
   width: 100%;
-  /* background: rgba(211, 22, 22,0.2); */
 }
 
 .desc{
@@ -127,9 +84,7 @@ li>a:hover{
 }
 .main__working{
 width: 100vw;
-/* height: 40vh; */
 text-align: center;
-/* background: rgba(26, 27, 25, 0.1); */
 margin-top: -1.9%;
 background: white;
 
@@ -169,26 +124,23 @@ background: white;
   text-align: center;
   margin: 0% 10% -3% 10%;
   padding: 10px;
-  font-family: initial;
-  /* background: url('../images/jump-night.jpeg'); */
- 
+  font-family: initial; 
 }
 .ads__main__holder{
   background: url('../images/jump-night.jpeg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 40vh;
+  height: 30%;
   border-radius: 1%;
   /* background: rgba(11, 82, 100,0.9); */
 }
 .ads__desc__overlay{
   background: rgba(35, 11, 248, 0);
-  height: 30vh;
+  height: 30%;
   color: rgb(11, 82, 100);
 }
-
 .ads__desc{
-  height: 40vh;
+  height: 30%;
   background: rgba(25, 140, 179, 0.1);;
   text-align: center;
   color: rgb(255, 255, 255);
@@ -201,7 +153,6 @@ background: white;
 .ads__desc>span:nth-child(3),span:nth-child(4){
   font-size: 10px;
 }
-
 .ads__desc>p{
   text-align: left;
   font-size: 14px;
@@ -220,12 +171,10 @@ background: white;
   font-size: 12px;
   color: rgb(54, 71, 75);
 }
-
 .adsArticle__content{
   font-size: 14px;
   color: rgb(54, 71, 75);
 }
-
 /* end featured ads article */
 
 .main__working__lists2{
@@ -237,23 +186,24 @@ background: white;
 .main__working__lists2>span{
   font-size: 14px;
   text-transform: capitalize;
-  margin-top: -1%;
   font-weight: 400;
   padding: 10px;
   /* box-shadow: 2px 2px 7px 1px rgb(202, 202, 186); */
   color: rgb(5, 59, 66);
 
 }
+/* main ends here */
 
-
-/* footer*/
+/* footer starts */
 .footer{
+  grid-area: foot;
   background:rgb(59, 59, 59);
   position: absolute;
   padding: 1%;
   text-align: center;
   width: 100%;
-  bottom: 10;
+  bottom: 0;
+  margin-bottom:-50px;
 }
 .footer>span{
   border-style: none;
@@ -271,54 +221,12 @@ background: white;
   text-decoration-line: unset;
   background: rgb(0, 0, 0);
 }
+/* footer ends */
 
 
-/* media queries  BLOCKER, change when both width and height are at some length*/
-
-@media all and (max-height: 508px){
-  ul>li{
-    font-size: 15px;
-  }
-  
-  .desc{
-    width: 100%;
-  }
-  .desc>p{
-    font-size: 14px;
-    margin-bottom: 0.5%;
-  }
- .main__working>p, .main__working>p:nth-child(3){
-   font-size: 14px;
-  }
-
-  .main__working__lists1>span , .main__working__lists2>span {
-    font-size: 12px;
-  }
-
-  
-
- 
-}
-
-@media all and (max-height: 300px){
-  .desc{
-    width: 100%;
-  
-  }
-  .desc>p{
-    font-size: 13px;
-  }
-  .footer{
-    margin-top:40%;
-  }
-}
-#nav__menu{
-  display: none;
-}
-
-
- /* now the responsiveness goes here  */
- @media screen and (max-width: 600px) {
+/* media query */
+/* now the responsiveness goes here  */
+@media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
     float: right;
@@ -343,76 +251,53 @@ background: white;
     font-size: 14px;
     padding: 10px 15px 10px 10px;
   }
-  .topnav{
-    /* height: 6.5vh; */
-    /* margin-top: 10px; */
-  }
-
   .topnav a:nth-child(2){
     margin-left: 0%;
   }
-}
 
-@media all and (max-width: 556px){
-  /* put all the nav into a menu */
-  /* reduce height and the font size of the desc-overlay text */
-  #nav__menu{
-    display: inline-block;
-  }
+  /* main */
   .main__holder{
     height:25vh;
   }
-  .desc-overlay{
-    height: 25vh;
+  .desc-overlay{height: 25vh;}
+  
+  .desc{
+    width: 100vw;
+    font-size: 16px;
+  }
+}
+
+/* height media query */
+@media all and (max-height: 508px){
+  ul>li{
+    font-size: 15px;
   }
   
   .desc{
-    font-size: 16px;
     width: 100%;
   }
-
-  /*main working area*/
-  .main__working{
-    height: 75vh;
-    margin-top: -5%;
-    }
- 
-}
-
-@media all and (max-width: 530px){
-  .main__holder{height:25vh;}
-  .desc-overlay{ height: 25vh;}
-  .desc{
-    font-size: 16px;
-    width: 100%;
-  }
-
-  /*main working area*/
-  .main__working{
-    height: 75vh;
-    margin-top: -2%;
-    }
-    #footer{
-      margin-top: 20%;
-    }
- 
-}
-
-@media all and (max-width: 400px){
-  .main__holder{height:25vh;}
-  .desc-overlay{ height: 20vh;}
-  .desc{
+  .desc>p{
     font-size: 14px;
-    width: 100%;
+    margin-bottom: 0.5%;
+  }
+ .main__working>p, .main__working>p:nth-child(3){
+   font-size: 14px;
   }
 
-  /*main working area*/
-  .main__working{
-    height: 80vh;
-    margin-top: -2%;
-    }
-    #footer{
-      margin-top: 30%;
-    }
- 
+  .main__working__lists1>span , .main__working__lists2>span {
+    font-size: 12px;
+  }
+}
+
+@media all and (max-height: 300px){
+  .desc{
+    width: 100%;
+  
+  }
+  .desc>p{
+    font-size: 13px;
+  }
+  .footer{
+    margin-top:40%;
+  }
 }

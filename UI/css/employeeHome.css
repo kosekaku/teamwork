@@ -1,13 +1,5 @@
 body{
-  /* height: 100vh;
-  width: 100vw; */
-  /* background: rgba(26, 27, 25, 0.1); */
   font-family: initial;  
-  /* background: url('../images/people-coffee-notes-tea.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
-  /* background-color: rgba(26, 27, 25, 0.1);  */
 }
 
 .body__container{
@@ -17,9 +9,7 @@ body{
   "aside  articles"
   "foot  foot";
   position: relative;
-  margin: -1% -1% 0% -1%;
-  /* background-color: rgba(26, 27, 25, 0.5); */
-  
+  margin: -1% -1% 0% -1%;  
 }
 
 .body__container__nav{
@@ -47,7 +37,6 @@ body{
   color: white;
   height: 4.5vh;
   font-size: 16px;
-  /* border: 1px solid rgb(63, 65, 63); */
   /* box-shadow: 1px 0px 20px 0px rgb(17, 17, 17); */
   font-family: initial;
 }
@@ -58,7 +47,6 @@ body{
   font-family: initial;
   font-size: 14px;
   padding-left:10px; 
-  /* background: whitesmoke; */
   background: white;
   color:black;
 }
@@ -72,23 +60,13 @@ body{
 .body__container__nav>ul>li>form>input:nth-child(2):hover{
   background: #727070;
 }
-/* according to grid specification, when we position elements at fixed 
-position, then it collapse ie the element move out of the grid sytem
-Due to that, the grid is being redesign to exclulde the side bar and nav bar elements  */
 .body__container__aside{ 
   grid-area: aside;
   width: 15vw;
   position:fixed;
   top: 7.4%;
   height: 100vh;
-  /* background-color: rgba(26, 27, 25, 0.1); */
-  /* display: flex;
-  flex:1;
-  flex-direction: column; */
 }
-
-
-
 .body__container__aside>div>a>img{
   width: 10%;
   margin-left: 2%;
@@ -117,8 +95,6 @@ Due to that, the grid is being redesign to exclulde the side bar and nav bar ele
   text-decoration: none;
   text-transform: capitalize;
   color: inherit;
-  /* margin-bottom: 200em;
-  background: red; */
 }
 
 .aside__home_t{
@@ -146,19 +122,12 @@ margin-top: 1.8%;
 .aside__home_t>.new__post:hover{
 cursor: pointer;
 }
-
-
-
-
 .body__container__articles{
   grid-area: articles;
   width: 85vw;
   height:100vh;
   margin-top:5%;
   margin-left:6%;
-   /*
-  display: grid;
-  overflow-y: auto; */
   
 }
 
@@ -207,10 +176,6 @@ cursor: pointer;
   grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
   grid-auto-rows: auto;
   grid-gap: 0.5%;
-  /* overflow: hidden;
-  overflow-y: scroll; */
-  
-
 }
 
 /* disable anchor default styles on the body */
@@ -221,10 +186,7 @@ cursor: pointer;
 
 .article1, .article2, .article3, .article4{
  box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
- grid-column: span 2; /* breaking the columns into a single columns ie
-  disbale the two column property set above
-  single column is best use case for reading article as well as it being respnsive on small devices
-  */
+ grid-column: span 2; 
   margin: 1% 10% 4% 10%;
 }
 .article1:first-letter, .article1>p:first-letter{
@@ -234,16 +196,12 @@ cursor: pointer;
   margin:10px;
   font-size: 20px;
   margin-left: 3%;
-  /* font-weight: 600; */
 }
 .article1> span{
   margin-top: 3%;
 }
 .article1> .dropdown{
  margin-left: 40%;
- /* float: right;
- margin-right:1%;
- margin-top: 5px; */
 }
 
 .author_and_date{
@@ -258,9 +216,8 @@ cursor: pointer;
   margin-right:3%;
   font-size: 14px;
 }
-.article1:nth-child(2n-1):nth-last-of-type(1){ /*2 is the no of columns, 1 is the last element in the row*/
-  grid-column: span 2; /*make the last div span the whole 2 columns*/
-  
+.article1:nth-child(2n-1):nth-last-of-type(1){
+  grid-column: span 2;
 }
 
 /*action buttons ie edit, delete, flag on the article*/
@@ -297,20 +254,12 @@ text-align: left;
 
 .dropdown:hover .dropdown-content {
   display: inline-block; 
-  /*dont display on hover,
- display only when button is clicked*  future enhancement*/
 } 
  /* article footer ie comment area */
  .articleFooter{
    display: flex;
    margin:0px 0px 10px 10px ;
  }
- /* .articleFooter>span>form>input, .articleFooter>span>button{
-   flex:1;
-   height: 4vh;
-   color:inherit;
-   background: inherit;
- } */
  .articleFooter>div{
    flex:1;
  }
@@ -346,26 +295,16 @@ text-align: left;
  .articleFooter>div>.share{
    line-height: 20px;
  }
- .articleFooter>div>a>.view, .articleFooter>div>a{ /*BLOCK for later, for new details of article can be view via an article body clicks*/
+ .articleFooter>div>a>.view, .articleFooter>div>a{
    margin-right: 0%;
    text-decoration: none;
    color: inherit;
    line-height: 100p;
-   display: inline-block; /*when blocker resolve display the button*/
+   display: inline-block; 
  }
  .articleFooter>div>form>input:nth-child(2):hover, .articleFooter>div>a>.view:hover, .articleFooter>div>.share:hover{
    background: #dddada;
  }
- /* .articleFooter>span{
-   padding: 10px;
-   display: flex;
-   flex: 1;
-   float: left;
- } */
-
-/* .submit_article, textarea{
-  margin-left: 3.5%;
-} */
 
 /* dont display menu, its only used for mobile devices */
 .menu{
@@ -412,7 +351,7 @@ text-align: left;
 }
  /* hide logo space */
 .body__container__nav>ul>li:nth-child(1){
-  display: none; /*logo space not important*/
+  display: none; 
   margin-left: -13%;
   font-size: 1rem;
   position: relative;
@@ -456,9 +395,7 @@ text-align: left;
   right: 0;
   font-family: inherit;
   margin: 0;
-  
-  /* overflow: hidden; */  
-}
+  }
 .menu>p{
   /*same design as the form inputs*/
   background:rgb(47, 49, 47);
@@ -525,10 +462,6 @@ text-align: left;
   width: 4vw;
 }
 
-/* redesign the article footer tomorrow 23/09/2019 */
-.articleFooter{
-  /* flex-direction: column; */
-}
 .articleFooter>div>a>.view, .articleFooter>div>.share{
   margin-left: 10%;
   height: 3vh;
@@ -551,19 +484,10 @@ text-align: left;
   margin: 0% 0% 0% -10%;
 }
 
-.messages{
-  /* margin-top: 15%; */
-}
-
-
 }
 
 
 @media all and (max-width: 360px){
-  .body__container__articles{
-    /* position: relative;
-    top: 5%; */
-  }
   .messages{
     margin-top: 10%;
   }
@@ -583,18 +507,5 @@ text-align: left;
  .articles__posted{
    margin-top: 5%;
  }
-  
-}
-
-@media all and (max-width: 1000px){
-  /* .articleFooter{
-    display: flex;
-    background: red;
-  }
-  .articleFooter > div > a > .view, .articleFooter > div > a > .share{
-    flex: 1;
-    float: left;
-    margin-left: 0px;
-  } */
   
 }
