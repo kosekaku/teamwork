@@ -7,11 +7,10 @@ import { authUser, verifyArticleAndUser, verifyArticleExist } from '../middlewar
 import { writeArticleValidation, commentValidation } from '../middleware/validators';
 
 const router = express.Router();
-// middle ware to use for all article routes ie router.post('/',authUsers.authUse, writeArticle);
 router.use(authUser); // midleware handle anything performed on this route
 router.post('/', writeArticleValidation, writeArticle);
-router.patch('/:articleId', verifyArticleAndUser, writeArticleValidation, editArticle); // using write article input validations as we are also updating same fieds
-router.delete('/:articleId', verifyArticleAndUser, deleteArticle); // we dont need input validation here
+router.patch('/:articleId', verifyArticleAndUser, writeArticleValidation, editArticle);
+router.delete('/:articleId', verifyArticleAndUser, deleteArticle);
 router.post('/:articleId/comments', verifyArticleExist, commentValidation, postComment);
 router.get('/', viewAllArticles);
 router.get('/:articleId', verifyArticleExist, viewSpecificArticle);

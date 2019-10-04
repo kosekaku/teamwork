@@ -8,6 +8,10 @@ const serverExceptions = (errors, res) => {
   res.status(500).json({ status: 500, error: errors });
 };
 
+const somethingWrongErr = (res) => {
+  res.status(400).json({ status: 400, error: 'something went wrong, please ensure to provide required data' });
+};
+
 const success = (data, res) => {
   res.status(200).json({ status: 200, message: 'Operation successful', data });
 };
@@ -20,7 +24,11 @@ const notFound = (res) => {
 };
 
 const accessDenied = (res) => {
-  res.status(401).json({ status: 401, error: 'operation denied, please ensure you provide correct credentials ' });
+  res.status(401).json({ status: 401, error: 'operation denied, you dont have access rights ' });
+};
+
+const badRequest = (res) => {
+  res.status(400).json({ status: 400, error: 'bad request, please ensure you provide correct credentials ' });
 };
 
 const alreadyExist = (res) => {
@@ -28,5 +36,7 @@ const alreadyExist = (res) => {
 };
 
 export {
-  success, dataCreated, notFound, accessDenied, alreadyExist, joiError, serverExceptions,
+  success, dataCreated, notFound, accessDenied, badRequest, alreadyExist, joiError, 
+  serverExceptions,
+  somethingWrongErr,
 };
