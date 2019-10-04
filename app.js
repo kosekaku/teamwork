@@ -16,15 +16,6 @@ app.use('/api/v1/articles', articleRouter.router);
 app.use('/api/v1/feeds', articleRouter.router);
 const port = process.env.PORT;
 
-
-// app.use(function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-//   next();
-// });
-
-
 // generic error middleware functions
 app.use((req, res) => {
   const error = new Error('Not found');
@@ -32,11 +23,8 @@ app.use((req, res) => {
   return res.status(404).json({ status: error.status, message: error.message });
 });
 
-// make a static folder for public images
-// app.use('/uploads', express.static('uploads'));
-if (!module.parent) { // check to see if there no test happening otherwise without this,
-  // we get the error of address already in use when we run mocha test.
-  app.listen(port, () => console.log(`listenting on port ${port} `)); // BOCKER, find how to test this
+if (!module.parent) {
+  app.listen(port, () => console.log(`listenting on port ${port} `));
 }
 
 export default app;
