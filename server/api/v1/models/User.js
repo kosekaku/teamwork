@@ -33,8 +33,8 @@ class User {
   }
 
   // find user by email
-  findUserEmail() {
-    const checkEmail = userStore.find( (email, index) => userStore[index].email === this.email);
+  static findUserEmail(emailFromUser) {
+    const checkEmail = userStore.find( (email, index) => userStore[index].email === emailFromUser);
     return checkEmail;
   }
 }

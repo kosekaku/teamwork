@@ -1,6 +1,5 @@
 // user helper functions
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
 // hash passwords using bcrypt module
 const hasPassword = (password) => {

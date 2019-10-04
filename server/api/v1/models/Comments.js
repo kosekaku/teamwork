@@ -24,13 +24,10 @@ class Comment extends Article {
   }
 
   // find all comments of an article
-  // findArticleComments() {
-  //   return commentStore.filter((element, index) => commentStore[index].articleId === this.articleId);
-  // }
-  findArticleComments() {
-    let data = [];
+  static findArticleComments(articleIdFromUser) {
+    const data = [];
     commentStore.filter((element, index) => {
-      if (commentStore[index].articleId === this.articleId) {
+      if (commentStore[index].articleId === articleIdFromUser) {
         data.push({
           commentId: element.commentId,
           authorId: element.authorId,
