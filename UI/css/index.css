@@ -66,8 +66,9 @@ body{
 .desc-overlay{
   position: absolute;
   background: rgba(26, 27, 25, 0.5);
-  height: 40vh;
+  height: 60vh;
   width: 100%;
+  background: rgba(57, 58, 57, 0.5); 
 }
 
 .desc{
@@ -123,29 +124,34 @@ background: white;
 .adsArticle{
   text-align: center;
   margin: 0% 10% -3% 10%;
-  padding: 10px;
-  font-family: initial; 
+  /* padding: 10px; */
+  font-family: initial;
+  /* width: 100vw;  */
 }
 .ads__main__holder{
-  background: url('../images/jump-night.jpeg');
+  /* background: url('../images/co-working.jpeg'); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 30%;
   border-radius: 1%;
-  /* background: rgba(11, 82, 100,0.9); */
+  /* background: rgba(222, 229, 231, 0.5); */
 }
 .ads__desc__overlay{
-  background: rgba(35, 11, 248, 0);
   height: 30%;
   color: rgb(11, 82, 100);
+  background: rgba(223, 212, 197, 0.1); 
+  
 }
 .ads__desc{
   height: 30%;
-  background: rgba(25, 140, 179, 0.1);;
+  /* background: rgba(45, 46, 46, 0.8); */
   text-align: center;
-  color: rgb(255, 255, 255);
+  color: rgb(216, 212, 212);
   padding-left: 20px;
   padding-right: 20px;
+  padding: 30px;
+  color: black;
+  /* background: rgba(255, 255, 255, 0.8); */
 }
 .ads__desc>span:first-child{
   font-size: 18px;
@@ -232,6 +238,43 @@ background: white;
     float: right;
     display: block;
   }
+  .topnav a.icon>i>img {
+    background:white;
+  }
+  #myTopnav{
+    padding-bottom: 10px;
+  }
+  .main__holder{
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .main__working>p{
+    font-size: 16px;
+  }
+  .main__working__lists1>span, .main__working__lists2>span{
+    font-size: 12px;
+  }
+  #featured{
+    font-size: 16px;
+  }
+
+  .ads__desc>span:nth-child(1){
+    font-size:15px;
+    font-weight: 500;
+  }
+  .ads__desc span:not(first-child){
+    font-size:8px;
+  }
+  .ads__desc> .ads__desc_text{
+    font-size:12px;
+  }
+
+
+
+
+
+
+
 }
 
 @media screen and (max-width: 600px) {
