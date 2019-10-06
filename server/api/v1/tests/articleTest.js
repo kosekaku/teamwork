@@ -17,11 +17,11 @@ describe('Article test /api/v1/articles', () => {
   });
   describe('POST /articles', () => {
     const url = '/api/v1/articles';
-    it('deny access to articles route there is no access tokens', (done) => {
+    it('deny access to articles route when no access tokens is provided', (done) => {
       chai
         .request(app)
         .post(url)
-        // .set('authorization', `Bearer ${tokens}`) dont provie access tokens
+        // .set('x-auth-token', `Bearer ${tokens}`) dont provie access tokens
         .send({
           data: {
             title: 'outting in the paradise',
@@ -29,7 +29,7 @@ describe('Article test /api/v1/articles', () => {
           },
         })
         .end((err, res) => {
-          expect(res).to.have.status(403);
+          expect(res).to.have.status(401);
           done();
         });
     });
@@ -39,7 +39,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${malformedTokens}`) // json verifcation fails here during verify() at auth middleware
+        .set('x-auth-token', `Bearer ${malformedTokens}`) // json verifcation fails here during verify() at auth middleware
         .send({
           data: {
             title: 'outting in the paradise',
@@ -58,7 +58,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${invalidTokens}`) // json verifcation fails here during verify() at auth middleware
+        .set('x-auth-token', `Bearer ${invalidTokens}`) // json verifcation fails here during verify() at auth middleware
         .send({
           data: {
             title: 'outting in the paradise',
@@ -77,7 +77,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${expiredTokens}`) // json verifcation fails here during verify() at auth middleware
+        .set('x-auth-token', `Bearer ${expiredTokens}`) // json verifcation fails here during verify() at auth middleware
         .send({
           data: {
             title: 'outting in the paradise',
@@ -94,7 +94,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: 'jhfjhggj',
@@ -112,7 +112,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: '',
@@ -129,7 +129,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: 'A day out in paradise',
@@ -146,7 +146,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
         })
         .end((err, res) => {
@@ -169,7 +169,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .patch(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: '',
@@ -186,7 +186,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .patch(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: 'updated title',
@@ -203,7 +203,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .patch(wrongIdURL)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: 'updated title',
@@ -220,7 +220,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .patch(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
         })
         .end((err, res) => {
@@ -233,7 +233,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .patch(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: 'updated title',
@@ -259,7 +259,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .delete(wrongIdURL)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .end((err, res) => {
           expect(res).to.have.status(404);
           done();
@@ -270,7 +270,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .delete(url)
-        .set('authorization', `Bearer ${notOwnerTokens}`)
+        .set('x-auth-token', `Bearer ${notOwnerTokens}`)
         .end((err, res) => {
           expect(res).to.have.status(401);
           done();
@@ -281,7 +281,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .delete(url)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
           done();
@@ -296,7 +296,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post('/api/v1/articles')
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           data: {
             title: 'new test title',
@@ -311,7 +311,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post('/api/v1/articles/10/comments') // wrong id 10
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           comment: 'I am just commenting for funs here',
         })
@@ -324,7 +324,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(`/api/v1/articles/${articleStore[0].articleId}/comments`)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           comment: '',
         })
@@ -339,7 +339,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(`/api/v1/articles/${articleStore[0].articleId}/comments`)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send()
         .end((err, res) => {
           expect(res).to.have.status(400);
@@ -351,7 +351,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .post(`/api/v1/articles/${articleStore[0].articleId}/comments`)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .send({
           comment: 'I am just commenting for funs here',
         })
@@ -368,7 +368,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .get('/api/v1/feeds')
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .end((err, res) => {
           expect(res).to.have.status(200);
           done();
@@ -382,7 +382,7 @@ describe('Article test /api/v1/articles', () => {
       chai
         .request(app)
         .get(`/api/v1/articles/${articleStore[0].articleId} `)
-        .set('authorization', `Bearer ${tokens}`)
+        .set('x-auth-token', `Bearer ${tokens}`)
         .end((erro, res) => {
           expect(res).to.have.status(200);
           done();
