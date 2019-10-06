@@ -1,13 +1,15 @@
 import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { articleStore } from '../models/Article';
-import { notFound, accessDenied, serverExceptions } from '../helpers/messages';
+import {
+  notFound, accessDenied, serverExceptions,
+} from '../helpers/messages';
 
 dotenv.config();
 
 // authenitication function
 const authUser = (req, res, next) => {
-  const header = req.headers.authorization;
+  const header = req.headers['x-auth-token'];
   if (typeof header !== 'undefined') {
     const bearer = header.split(' ');
     const token = bearer[1];
@@ -15,22 +17,21 @@ const authUser = (req, res, next) => {
     // const decoded = JWT.verify(token, 'secretKeys'); // sync way
     // async way
     JWT.verify(req.token, process.env.JWT_KEY, (error, data) => {
-      if (error) return res.status(403).json({ status: 403, error });
+      if (error) return res.status(403).json({ status: 403, error }); // forbidden(res);
       req.loggedinUser = data;
-      res.status(204);
       next();
     });
   } else {
-    res.status(403).json({ status: 403, error: 'access denied, no authentication provided' });
+    accessDenied(res);
   }
 };
 
 // verify article/user exist middleware
 const verifyArticleAndUser = async (req, res, next) => {
-  const { articleId } = req.params;
-  let article = null;
-  let index;
   try {
+    const { articleId } = req.params;
+    let article = null;
+    let index;
     await articleStore.forEach((elements, indexOf) => {
       if (elements.articleId === articleId) {
         article = elements;

@@ -14,7 +14,6 @@ const signup = async (req, res) => {
     } = req.body.data;
     const encryptedPassword = hasPassword(password);
     const createdOn = new Date();
-    
     const tokens = GenerateTokens(firstName, lastName, email);
     const user = new User(firstName, lastName, email, encryptedPassword, null, null,
       null, null, null, createdOn);
