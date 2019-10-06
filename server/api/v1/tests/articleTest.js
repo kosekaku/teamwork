@@ -4,6 +4,7 @@ import chaiHttp from 'chai-http';
 import app from '../../../../app';
 import { GenerateTokens } from '../helpers/jwtAuthHelper';
 import { articleStore } from '../models/Article';
+
 chai.use(chaiHttp);
 const { expect } = chai;
 let tokens;
@@ -140,6 +141,19 @@ describe('Article test /api/v1/articles', () => {
           done();
         });
     });
+
+    it('return 400 when data is not supplied ie request with no data(empty object)', (done) => {
+      chai
+        .request(app)
+        .post(url)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
   });
 
   // edit article
@@ -202,6 +216,19 @@ describe('Article test /api/v1/articles', () => {
         });
     });
 
+    it('return 400 when data is not supplied ie request with no data(empty object)', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('authorization', `Bearer ${tokens}`)
+        .send({
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
     it('should update article when id matchs ', (done) => {
       chai
         .request(app)
@@ -218,23 +245,6 @@ describe('Article test /api/v1/articles', () => {
           done();
         });
     });
-    // BLOCKER, test case
-    // it('return 500 when somthing goes wrong ', (done) => {
-    //   chai
-    //     .request(app)
-    //     .patch(`/api/v1/articles/${articleStore[0].articleId}`)
-    //     .set('authorization', `Bearer ${tokens}`)
-    //     .send({
-    //       data: {
-    //         title: 'updated title',
-    //         content: 'updated content',
-    //       },
-    //     })
-    //     .end((err, res) => {
-    //       expect(res).to.have.status(500);
-    //       done();
-    //     });
-    // });
   });
 
   // delete article
@@ -324,6 +334,19 @@ describe('Article test /api/v1/articles', () => {
           done();
         });
     });
+
+    it('return 400 when data is not supplied ie request with no object', (done) => {
+      chai
+        .request(app)
+        .post(`/api/v1/articles/${articleStore[0].articleId}/comments`)
+        .set('authorization', `Bearer ${tokens}`)
+        .send()
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
     it('201 comments created', (done) => {
       chai
         .request(app)

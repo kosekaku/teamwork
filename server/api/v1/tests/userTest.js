@@ -1,4 +1,3 @@
-// import mocha from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../../app';
@@ -6,7 +5,6 @@ import { userStore } from '../models/User';
 
 chai.use(chaiHttp);
 const { expect } = chai;
-// test cases goes here
 describe('User /api/v1/auth/', () => {
   // signup test cases
   describe('POST /signup', () => {
@@ -22,11 +20,6 @@ describe('User /api/v1/auth/', () => {
             lastName: 'uk45',
             email: 'kose@gmail.com',
             password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -45,11 +38,6 @@ describe('User /api/v1/auth/', () => {
             lastName: '',
             email: 'kose@gmail.com',
             password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -68,11 +56,6 @@ describe('User /api/v1/auth/', () => {
             lastName: 'uk45',
             email: '',
             password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -91,11 +74,6 @@ describe('User /api/v1/auth/', () => {
             lastName: 'uk45',
             email: 'kose@gmail.com',
             password: '',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -103,122 +81,6 @@ describe('User /api/v1/auth/', () => {
           done();
         });
     });
-
-    it('should not create user when gender field is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-            gender: '',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-
-    it('should not create user when jobRole field is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-            gender: 'Male',
-            jobRole: '',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-
-    it('should not create user when department field is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: '',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-
-    it('should not create user when phone number field is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '',
-            address: 'KG 101 EAST',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-
-    it('should not create user when addres field is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: '',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-
 
     it('should create user when all fields are correctly filled', (done) => {
       chai
@@ -230,11 +92,6 @@ describe('User /api/v1/auth/', () => {
             lastName: 'uk45',
             email: 'kose@gmail.com',
             password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -253,11 +110,6 @@ describe('User /api/v1/auth/', () => {
             lastName: 'uk45',
             email: 'kose@gmail.com',
             password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -276,11 +128,6 @@ describe('User /api/v1/auth/', () => {
             lastName: 'uk45',
             email: 'kose2@gmail.com',
             password: '123435',
-            gender: 'Male',
-            jobRole: 'Developer',
-            department: 'Engineering',
-            phoneNumber: '+12123',
-            address: 'KG 101 EAST',
           },
         })
         .end((err, res) => {
@@ -355,7 +202,7 @@ describe('User /api/v1/auth/', () => {
         });
     });
 
-    it('should not signin when wrong email is provided', (done) => {
+    it('should not signin when unregistered email is provided', (done) => {
       chai
         .request(app)
         .post(url)
@@ -366,7 +213,7 @@ describe('User /api/v1/auth/', () => {
           },
         })
         .end((error, res) => {
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(400);
           done();
         });
     });
@@ -382,7 +229,7 @@ describe('User /api/v1/auth/', () => {
           },
         })
         .end((error, res) => {
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(400);
           done();
         });
     });
@@ -422,11 +269,3 @@ describe('User /api/v1/auth/', () => {
     });
   });
 });
-
-// // signin empty array
-// describe('not empty', () => {
-//   it('empty array', (done) => {
-//     expect(userStore.splice().length).to.be.equal(0);
-//     done();
-//   });
-// });

@@ -288,9 +288,11 @@ text-align: left;
 
  .articleFooter>div>a>.view{
   margin-left: 15px;
+
 }
  .articleFooter>div>form>input:nth-child(2){
    background: rgba(26, 27, 25, 0.1);
+  
  }
  .articleFooter>div>.share{
    line-height: 20px;
@@ -299,8 +301,8 @@ text-align: left;
    margin-right: 0%;
    text-decoration: none;
    color: inherit;
-   line-height: 100p;
    display: inline-block; 
+   
  }
  .articleFooter>div>form>input:nth-child(2):hover, .articleFooter>div>a>.view:hover, .articleFooter>div>.share:hover{
    background: #dddada;
@@ -443,6 +445,7 @@ text-align: left;
 .body__container__articles{
   grid-area: body;
   margin-top: 15%;
+  
 }
 
 /* article posted */
@@ -469,6 +472,7 @@ text-align: left;
 }
 .articleFooter>div>.share{
   margin-top: 2%;
+  
 }
 .articleFooter>div>form>input:nth-child(2){
 
