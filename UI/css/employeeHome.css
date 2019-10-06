@@ -327,7 +327,7 @@ text-align: left;
 
 
 /* responsiveness when user is on a mobile device */
-@media all and (max-width:380px){
+@media all and (max-width:520px){
 
 .body__container__aside{
   display: none; /*hide the aside bar*/
@@ -406,6 +406,7 @@ text-align: left;
   box-shadow: 1px 0px 20px 0px rgb(17, 17, 17);
   margin-right: 5px;
  font-family: initial;
+
 }
 .menu>p:hover{
   background-color: rgb(51, 53, 48);
