@@ -36,10 +36,10 @@ body{
   text-transform: capitalize;
 }
 .topnav>a:first-child {
-  padding-left: 20px;
+  margin-left: 4%;
 }
 .topnav>a:nth-child(2) {
-  padding-right: 20px;
+  margin-right: 5%;
 }
 .topnav a:not(:first-child):hover{
   padding: 10px;

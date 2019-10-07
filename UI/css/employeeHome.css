@@ -33,7 +33,7 @@ body{
 }
 .body__container__nav> ul>li:nth-child(2){
   margin-left: auto;
-  margin-right: 11%;
+  margin-right: 5%;
 }
 .body__container__nav>ul>li>form>input{
   background:rgb(47, 49, 47);
@@ -135,6 +135,7 @@ cursor: pointer;
   height:100vh;
   margin-top:5%;
   margin-left:6%;
+
   
 }
 
@@ -194,7 +195,8 @@ cursor: pointer;
 .article1, .article2, .article3, .article4{
  box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
  grid-column: span 2; 
-  margin: 1% 10% 4% 10%;
+  margin: 1% 3% 4% 10%;
+  
 }
 .article1:first-letter, .article1>p:first-letter{
   text-transform: capitalize;

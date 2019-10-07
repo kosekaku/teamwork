@@ -10,6 +10,9 @@ body{
 #myTopnav{
   height: 7vh;
 }
+#myTopnav>a{
+  margin-left: 4%;
+}
 /* close current window */
 #closeTab{
 	/* position: absolute; */
