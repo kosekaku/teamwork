@@ -6,11 +6,16 @@ body{
   margin:0%;
   font-family: initial;
 }
+
+#myTopnav{
+  height: 7vh;
+}
+#myTopnav>a{
+  margin-left: 4%;
+}
 /* close current window */
 #closeTab{
-	/* position: absolute; */
-	/* top:1rem;
-  right:5rem; */
+	display: none;
   margin-left: auto;
 	height: 4vh;
   background: rgb(255, 255, 255);
@@ -104,4 +109,9 @@ font-size: 12px;}
 
 @media all and (max-height: 470px){
  .footer{margin-bottom: -15em;}
+}
+@media all and (max-width: 950px){
+  #myTopnav>a{
+    margin-top: 0.5%;
+  }
 }

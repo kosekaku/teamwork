@@ -18,6 +18,11 @@ body{
 .topnav {
   overflow: hidden;
   background-color: #333;
+  background: rgb(59, 59, 59);
+  height: 10vh;
+  color: rgb(255, 255, 255);
+
+  ;
 }
 
 .topnav a {
@@ -28,7 +33,13 @@ body{
   padding: 10px 10px 25px;
   text-decoration: none;
   font-size: 16px;
-  text-transform: uppercase;
+  text-transform: capitalize;
+}
+.topnav>a:first-child {
+  margin-left: 4%;
+}
+.topnav>a:nth-child(2) {
+  margin-right: 5%;
 }
 .topnav a:not(:first-child):hover{
   padding: 10px;
@@ -57,7 +68,7 @@ body{
   background-repeat: no-repeat;
   width: 100vw;
   height: 60vh;
-  background-size: 100% 100%;
+  background-size: cover;
   opacity: 1;
   margin-top: -16px;
 
@@ -288,14 +299,18 @@ background: white;
     float: none;
     display: block;
     text-align: left;
+    
   }
 
   .topnav a {
     font-size: 14px;
-    padding: 10px 15px 10px 10px;
+    padding: 10px 15px 0px 10px;
+    
+
   }
-  .topnav a:nth-child(2){
-    margin-left: 0%;
+  .topnav a:nth-child(2), .topnav a:nth-child(3){
+    margin-left:4%;
+    padding-top:5px; 
   }
 
   /* main */

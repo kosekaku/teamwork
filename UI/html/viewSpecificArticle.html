@@ -127,24 +127,16 @@
 
        <!-- sample article 1 -->
        <div class="article1">
-            <span>Today in scientific research breakthough</span>
-             <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
-            <!-- display dropdown only when button is clicked
-            Also dont di splay edit, delete links when 
-            user is not the post owner -->
-              <script>
-                // display drop down links when drop down button is clicked by user
-                // const dropdownon  = document.querySelector('.dropdown-content');
-                // if(dropdownon.style.display=="none") return dropdownon.style.display="inline-block"; 
-                // dropdownon.style.display="none";
-                </script>
-                
-                <div class="dropdown-content">
-                  <a href="#" onclick="editPost()">Edit</a>
-                  <a href="#" onclick="deletePost()">Delete</a>
-                  <a href="#">Flag</a>
-                </div>
-             </span><br>
+          <div class="testTitleMenu">
+              <span class="article__title">Today in scientific research breakthough</span>
+               <span class="dropdown" ><span class="dropbtn" ><img src="../images/icons/menu-24px.svg"></span>
+                  <div class="dropdown-content">
+                    <a href="#" onclick="editPost()">Edit</a>
+                    <a href="#" onclick="deletePost()">Delete</a>
+                    <a href="#">Flag</a>
+                  </div>
+               </span><br>
+              </div>
             <span class="author_and_date">Kose</span> <span class="author_and_date" id="postTIme"> <script> 
                  getFormatedDate(0);
           </script></span>

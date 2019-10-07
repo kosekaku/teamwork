@@ -13,7 +13,6 @@ body{
 }
 
 .body__container__nav{
-
   grid-area: nav;
   background: rgb(59, 59, 59);
   width: 100vw;
@@ -27,10 +26,14 @@ body{
 }
 .body__container__nav> ul>li{
   list-style: none;
+  margin-top: -2.5px;
+}
+.body__container__nav> ul>li:nth-child(1){
+  margin-left: 2%;
 }
 .body__container__nav> ul>li:nth-child(2){
   margin-left: auto;
-  margin-right: 2%;
+  margin-right: 5%;
 }
 .body__container__nav>ul>li>form>input{
   background:rgb(47, 49, 47);
@@ -66,10 +69,14 @@ body{
   position:fixed;
   top: 7.4%;
   height: 100vh;
+
+  
 }
 .body__container__aside>div>a>img{
   width: 10%;
-  margin-left: 2%;
+}
+.body__container__aside>.profile>p{
+  font-size: 16px;
 }
 
 .profile{
@@ -79,6 +86,11 @@ body{
 .body__container__aside>.profile>a>img{
   width: 50%;
   margin-left: 0%;
+}
+.body__container__aside>.profile>span{
+  font-size: 12px;
+  text-align: center;
+  margin-left: 12%;
 }
 .body__container__aside>div{
   padding: 10px;
@@ -128,6 +140,7 @@ cursor: pointer;
   height:100vh;
   margin-top:5%;
   margin-left:6%;
+
   
 }
 
@@ -154,7 +167,6 @@ cursor: pointer;
 }
 .body__container__articles>.articles__post>form>input:last-child{
   border:1px solid grey;
-  background: red;
   width: 6.5%;
   height: 4vh;
   padding: 0px;
@@ -187,7 +199,8 @@ cursor: pointer;
 .article1, .article2, .article3, .article4{
  box-shadow: 1px 1px 10px 1px rgb(214, 222, 241);
  grid-column: span 2; 
-  margin: 1% 10% 4% 10%;
+  margin: 1% 3% 4% 10%;
+  
 }
 .article1:first-letter, .article1>p:first-letter{
   text-transform: capitalize;
@@ -199,6 +212,18 @@ cursor: pointer;
 }
 .article1> span{
   margin-top: 3%;
+}
+.testTitleMenu{
+  margin:10px;
+  font-size: 20px;
+  margin-left: 3%;
+  position: relative;
+  }
+
+.testTitleMenu>span:nth-child(2){
+top: 0;
+right: 0;
+position: absolute;
 }
 .article1> .dropdown{
  margin-left: 40%;
