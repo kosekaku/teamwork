@@ -15,9 +15,7 @@ body{
 }
 /* close current window */
 #closeTab{
-	/* position: absolute; */
-	/* top:1rem;
-  right:5rem; */
+	display: none;
   margin-left: auto;
 	height: 4vh;
   background: rgb(255, 255, 255);
