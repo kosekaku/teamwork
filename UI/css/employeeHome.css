@@ -23,10 +23,10 @@ body{
 .body__container__nav> ul{
   display: flex;
   flex:1;
-  
 }
 .body__container__nav> ul>li{
   list-style: none;
+  margin-top: -2.5px;
 }
 .body__container__nav> ul>li:nth-child(1){
   margin-left: 2%;
@@ -65,7 +65,7 @@ body{
 }
 .body__container__aside{ 
   grid-area: aside;
-  width: 20vw;
+  width: 15vw;
   position:fixed;
   top: 7.4%;
   height: 100vh;
@@ -73,7 +73,6 @@ body{
 }
 .body__container__aside>div>a>img{
   width: 10%;
-  margin-left: 0%;
 }
 .body__container__aside>.profile>p{
   font-size: 16px;
@@ -86,6 +85,11 @@ body{
 .body__container__aside>.profile>a>img{
   width: 50%;
   margin-left: 0%;
+}
+.body__container__aside>.profile>span{
+  font-size: 12px;
+  text-align: center;
+  margin-left: 12%;
 }
 .body__container__aside>div{
   padding: 10px;
@@ -208,6 +212,18 @@ cursor: pointer;
 }
 .article1> span{
   margin-top: 3%;
+}
+.testTitleMenu{
+  margin:10px;
+  font-size: 20px;
+  margin-left: 3%;
+  position: relative;
+  }
+
+.testTitleMenu>span:nth-child(2){
+top: 0;
+right: 0;
+position: absolute;
 }
 .article1> .dropdown{
  margin-left: 40%;

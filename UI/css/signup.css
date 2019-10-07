@@ -112,3 +112,8 @@ font-size: 12px;}
 @media all and (max-height: 470px){
  .footer{margin-bottom: -15em;}
 }
+@media all and (max-width: 950px){
+  #myTopnav>a{
+    margin-top: 0.5%;
+  }
+}
