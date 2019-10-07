@@ -1,6 +1,7 @@
-node_modules
+node_modules/
 .env
-.nyc_output
+.nyc_output/
+package-lock.json
 dist
 .coveralls.yml
 /node_modules
