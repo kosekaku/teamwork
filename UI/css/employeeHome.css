@@ -118,8 +118,6 @@ body{
 }
 .aside__home_t>div:last-child{
   margin: 2.0% 50% 0% 0%;
-  background: red;
-
 }
 .aside__home_t>div:last-child>a{
   text-decoration: none;
@@ -169,7 +167,6 @@ cursor: pointer;
 }
 .body__container__articles>.articles__post>form>input:last-child{
   border:1px solid grey;
-  background: red;
   width: 6.5%;
   height: 4vh;
   padding: 0px;
