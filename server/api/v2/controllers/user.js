@@ -1,42 +1,37 @@
 import bcrypt from 'bcrypt';
-import { userStore, User } from '../models/User';
+import uuid from 'uuid/v1';
+import  User  from '../models/User';
 import { hasPassword } from '../helpers/userHelper';
 import {
   success, dataCreated, notFound, badRequest, alreadyExist,
   somethingWrongErr,
 } from '../helpers/messages';
 import { GenerateTokens } from '../helpers/jwtAuthHelper';
+import { serverExceptions } from '../../v1/helpers/messages';
 
 const signup = async (req, res) => {
   try {
     const {
       firstName, lastName, email, password,
-    } = req.body.data;
-    const encryptedPassword = hasPassword(password);
-    const createdOn = new Date();
-    const tokens = GenerateTokens(firstName, lastName, email);
-    const user = new User(firstName, lastName, email, encryptedPassword, null, null,
-      null, null, null, createdOn);
+    } = req.body;
+    const user = new User(uuid(), firstName, lastName, email, hasPassword(password), null, null,
+    null, null, new Date());
     // response data to requester
-    const data = {
-      token: tokens,
-      firstName,
-      lastName,
-      email,
-      createdOn,
-    };
-    const creatingUser = async () => {
-      await user.createUser(); // create user
+      const result = await User.findUserEmail(email);
+      if(result.rows.length !== 0) return alreadyExist(res);
+      const creatingUser = await user.createUser(); // create user and do something with data from RETURNING
+      if(!creatingUser) return somethingWrongErr(res)
+      const data = { //data from postgresql RETURNING 
+        token: GenerateTokens(firstName, lastName, email),
+        userId: creatingUser.rows[0].userid,
+        firstName: creatingUser.rows[0].firstname,
+        lastName: creatingUser.rows[0].lastname,
+        email: creatingUser.rows[0].email,
+        createdOn: creatingUser.rows[0].createdon,
+      };
       dataCreated(data, res);
-    };
-    if (userStore.length === 0) {
-      creatingUser();
-    } else {
-      if (await User.findUserEmail(email)) return alreadyExist(res);
-      creatingUser();
-    }
   } catch (err) {
-    somethingWrongErr(res);
+      somethingWrongErr(res);
   }
 };
 

@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../../app';
-import { userStore } from '../models/User';
+import { User} from '../models/User';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -118,24 +118,6 @@ describe('User /api/v1/auth/', () => {
         });
     });
 
-    it('should create user when all fields are correctly filled and array is not empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose2@gmail.com',
-            password: '123435',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(201);
-          done();
-        });
-    });
-
     // resource url is wrong
     it('should return "not found" error when non existing routes is called', (done) => {
       const wrongURL = '/api/v1/auth/signup/someRouteNotExisting';
@@ -147,8 +129,6 @@ describe('User /api/v1/auth/', () => {
           done();
         });
     });
-
-    // check if server is running, test app.json BLOCKER
   });
 
   // signin test case
@@ -230,24 +210,6 @@ describe('User /api/v1/auth/', () => {
         })
         .end((error, res) => {
           expect(res).to.have.status(400);
-          done();
-        });
-    });
-
-    // when data repository is empty, code not working as intended, not able to get 404 status as per in signin route
-    it('should not signin when array data repository is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
-        })
-        .end((error, res) => {
-          expect(userStore.splice().length).to.equal(0);
-          // expect(res).to.have.status(404); // cannot invote the error at the signin route when array store is empty
           done();
         });
     });

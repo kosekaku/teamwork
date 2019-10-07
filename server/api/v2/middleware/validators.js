@@ -5,12 +5,10 @@ import { joiError } from '../helpers/messages';
 // validate user signup
 const signupValidation = (req, res, next) => {
   const schema = {
-    data: {
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       email: Joi.string().email({ minDomainAtoms: 2 }).required(),
       password: Joi.string().min(5).required(),
-    },
   };
   const results = Joi.validate(req.body, schema);
   const { error } = results;
