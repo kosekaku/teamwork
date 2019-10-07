@@ -13,7 +13,6 @@ body{
 }
 
 .body__container__nav{
-
   grid-area: nav;
   background: rgb(59, 59, 59);
   width: 100vw;
@@ -24,13 +23,17 @@ body{
 .body__container__nav> ul{
   display: flex;
   flex:1;
+  
 }
 .body__container__nav> ul>li{
   list-style: none;
 }
+.body__container__nav> ul>li:nth-child(1){
+  margin-left: 2%;
+}
 .body__container__nav> ul>li:nth-child(2){
   margin-left: auto;
-  margin-right: 2%;
+  margin-right: 11%;
 }
 .body__container__nav>ul>li>form>input{
   background:rgb(47, 49, 47);
@@ -62,14 +65,18 @@ body{
 }
 .body__container__aside{ 
   grid-area: aside;
-  width: 15vw;
+  width: 20vw;
   position:fixed;
   top: 7.4%;
   height: 100vh;
+  
 }
 .body__container__aside>div>a>img{
   width: 10%;
-  margin-left: 2%;
+  margin-left: 0%;
+}
+.body__container__aside>.profile>p{
+  font-size: 16px;
 }
 
 .profile{

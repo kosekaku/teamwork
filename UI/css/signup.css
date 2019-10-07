@@ -6,6 +6,10 @@ body{
   margin:0%;
   font-family: initial;
 }
+
+#myTopnav{
+  height: 7vh;
+}
 /* close current window */
 #closeTab{
 	/* position: absolute; */
