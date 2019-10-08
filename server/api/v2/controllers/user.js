@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import uuid from 'uuid/v1';
-import  User  from '../models/User';
+import User from '../models/User';
 import { hasPassword } from '../helpers/userHelper';
 import {
   success, dataCreated, notFound, badRequest, alreadyExist,
@@ -15,23 +15,23 @@ const signup = async (req, res) => {
       firstName, lastName, email, password,
     } = req.body;
     const user = new User(uuid(), firstName, lastName, email, hasPassword(password), null, null,
-    null, null, new Date());
+      null, null, new Date());
     // response data to requester
-      const result = await User.findUserEmail(email);
-      if(result.rows.length !== 0) return alreadyExist(res);
-      const creatingUser = await user.createUser(); // create user and do something with data from RETURNING
-      if(!creatingUser) return somethingWrongErr(res)
-      const data = { //data from postgresql RETURNING 
-        token: GenerateTokens(firstName, lastName, email),
-        userId: creatingUser.rows[0].userid,
-        firstName: creatingUser.rows[0].firstname,
-        lastName: creatingUser.rows[0].lastname,
-        email: creatingUser.rows[0].email,
-        createdOn: creatingUser.rows[0].createdon,
-      };
-      dataCreated(data, res);
+    const result = await User.findUserEmail(email);
+    if (result.rows.length !== 0) return alreadyExist(res);
+    const creatingUser = await user.createUser(); // do something with user data from RETURNING
+    if (!creatingUser) return somethingWrongErr(res);
+    const data = { // data from postgresql RETURNING
+      token: GenerateTokens(firstName, lastName, email),
+      userId: creatingUser.rows[0].userid,
+      firstName: creatingUser.rows[0].firstname,
+      lastName: creatingUser.rows[0].lastname,
+      email: creatingUser.rows[0].email,
+      createdOn: creatingUser.rows[0].createdon,
+    };
+    dataCreated(data, res);
   } catch (err) {
-      somethingWrongErr(res);
+    somethingWrongErr(res);
   }
 };
 
