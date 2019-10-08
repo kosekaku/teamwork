@@ -147,6 +147,7 @@ describe('User /api/v2/auth/', () => {
           password,
         })
         .end((error, res) => {
+          expect(res.body.error).to.equal('"email" is not allowed to be empty');
           expect(res).to.have.status(400);
           done();
         });
@@ -161,6 +162,7 @@ describe('User /api/v2/auth/', () => {
           password,
         })
         .end((error, res) => {
+          expect(res.body.error).to.equal('"email" must be a valid email');
           expect(res).to.have.status(400);
           done();
         });
@@ -175,6 +177,7 @@ describe('User /api/v2/auth/', () => {
           password: '',
         })
         .end((error, res) => {
+          expect(res.body.error).to.equal('"password" is not allowed to be empty');
           expect(res).to.have.status(400);
           done();
         });
@@ -189,6 +192,7 @@ describe('User /api/v2/auth/', () => {
           password,
         })
         .end((error, res) => {
+          expect(res.body.error).to.equal('resource not found');
           expect(res).to.have.status(404);
           done();
         });
@@ -203,6 +207,7 @@ describe('User /api/v2/auth/', () => {
           password: data[3].password,
         })
         .end((error, res) => {
+          expect(res.body.error).to.equal('resource not found');
           expect(res).to.have.status(404);
           done();
         });
@@ -217,6 +222,11 @@ describe('User /api/v2/auth/', () => {
           password,
         })
         .end((error, res) => {
+          expect(res.body.data).to.haveOwnProperty('token');
+          expect(res.body.data).to.haveOwnProperty('userid');
+          expect(res.body.data).to.haveOwnProperty('email');
+          expect(res.body.data).to.not.haveOwnProperty('password');
+          expect(res.body.data.email).to.equal(email);
           expect(res).to.have.status(200);
           done();
         });
