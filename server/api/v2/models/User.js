@@ -41,13 +41,13 @@ class User {
     address, createdOn) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING userId,firstName, lastName,
     email, createdOn`;
     const values = [this.userId, this.firstName, this.lastName, this.email, this.password,
-    this.gender, this.jobRole, this.department, this.address, this.createdOn];
+      this.gender, this.jobRole, this.department, this.address, this.createdOn];
     return pool.query(query, values);
   }
 
   // find user by email
   static findUserEmail(emailFromUser) {
-    return pool.query('SELECT email FROM userStore WHERE email=$1', [emailFromUser]);
+    return pool.query('SELECT email, password FROM userStore WHERE email=$1', [emailFromUser]);
   }
 }
 

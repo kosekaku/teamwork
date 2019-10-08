@@ -3,11 +3,10 @@ import uuid from 'uuid/v1';
 import User from '../models/User';
 import { hasPassword } from '../helpers/userHelper';
 import {
-  success, dataCreated, notFound, badRequest, alreadyExist,
+  success, dataCreated, notFound, alreadyExist,
   somethingWrongErr,
 } from '../helpers/messages';
 import { GenerateTokens } from '../helpers/jwtAuthHelper';
-import { serverExceptions } from '../../v1/helpers/messages';
 
 const signup = async (req, res) => {
   try {
@@ -37,16 +36,15 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
   try {
-    const { email, password } = req.body.data;
-    if (userStore.length === 0) return notFound(res);
+    const { email, password } = req.body;
     const userFound = await User.findUserEmail(email);
-    if (!userFound) return badRequest(res);
-    await bcrypt.compare(password, userFound.password, (err, result) => {
-      if (!result) return badRequest(res);
+    if (userFound.rows.length === 0) return notFound(res);
+    await bcrypt.compare(password, userFound.rows[0].password, (err, result) => {
+      if (!result) return notFound(res);
       const data = {
-        token: GenerateTokens(userFound.firstName, userFound.lastName, email),
-        firstName: userFound.firstName,
-        lastName: userFound.lastName,
+        token: GenerateTokens(userFound.rows[0].firstName, userFound.rows[0].lastName, email),
+        firstName: userFound.rows[0].firstName,
+        lastName: userFound.rows[0].lastName,
         email,
       };
       success(data, res);
