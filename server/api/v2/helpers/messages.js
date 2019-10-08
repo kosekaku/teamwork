@@ -33,8 +33,8 @@ const notFound = (res) => {
   res.status(404).json({ status: 404, error: 'resource not found' });
 };
 
-const alreadyExist = (res) => {
-  res.status(409).json({ status: 409, error: 'data already exist , please try with new credentials' });
+const alreadyExist = (data, res) => {
+  res.status(409).json({ status: 409, error: `Email ${data} already exist , please try with new credentials`});
 };
 
 const serverExceptions = (errors, res) => {

@@ -97,8 +97,8 @@ describe('User /api/v2/auth/', () => {
         .end((err, res) => {
           expect(res.body.data).to.have.property('token');
           expect(res.body.data).to.not.have.property('password');
-          expect(res.body.data.firstName).to.equal(firstName);
-          expect(res.body.data.lastName).to.equal(lastName);
+          expect(res.body.data.firstname).to.equal(firstName);
+          expect(res.body.data.lastname).to.equal(lastName);
           expect(res.body.data.email).to.equal(email);
           expect(res).to.have.status(201);
           done();
@@ -116,7 +116,7 @@ describe('User /api/v2/auth/', () => {
           password,
         })
         .end((err, res) => {
-          expect(res.body.error).to.equal('data already exist , please try with new credentials');
+          expect(res.body.error).to.equal(`Email ${email} already exist , please try with new credentials`);
           expect(res).to.have.status(409);
           done();
         });

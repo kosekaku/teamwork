@@ -9,7 +9,7 @@ userStore(
   lastName VARCHAR(30) NOT NULL,
   email VARCHAR(30) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL,
-  gender VARCHAR(10) ,
+  gender VARCHAR(10),
   jobRole VARCHAR(30),
   department VARCHAR(30),
   address VARCHAR(30),
@@ -39,7 +39,7 @@ class User {
   createUser() {
     const query = `INSERT INTO userStore(userId, firstName, lastName, email, password, gender, jobRole, department,
     address, createdOn) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING userId,firstName, lastName,
-    email, createdOn`;
+    email,gender, jobRole, department, address, createdOn`;
     const values = [this.userId, this.firstName, this.lastName, this.email, this.password,
       this.gender, this.jobRole, this.department, this.address, this.createdOn];
     return pool.query(query, values);

@@ -15,18 +15,14 @@ const signup = async (req, res) => {
     } = req.body;
     const user = new User(uuid(), firstName, lastName, email, hasPassword(password), null, null,
       null, null, new Date());
-    // response data to requester
     const result = await User.findUserEmail(email);
-    if (result.rows.length !== 0) return alreadyExist(res);
+    if (result.rows.length !== 0) return alreadyExist(email, res);
     const creatingUser = await user.createUser(); // do something with user data from RETURNING
     if (!creatingUser) return somethingWrongErr(res);
     const data = { // data from postgresql RETURNING
       token: GenerateTokens(firstName, lastName, email),
-      userId: creatingUser.rows[0].userid,
-      firstName: creatingUser.rows[0].firstname,
-      lastName: creatingUser.rows[0].lastname,
-      email: creatingUser.rows[0].email,
-      createdOn: creatingUser.rows[0].createdon,
+      // get data using spread operator
+      ...creatingUser.rows[0],
     };
     dataCreated(data, res);
   } catch (err) {
