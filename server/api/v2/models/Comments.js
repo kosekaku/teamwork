@@ -35,5 +35,6 @@ class Comment extends Article {
   static findArticleComments(articleIdFromUser) {
   return pool.query(`SELECT commentId, authorId, comment   FROM commentStore WHERE articleId=$1`,[articleIdFromUser]);
 };
+}
 
 export { Comment };

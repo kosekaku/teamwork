@@ -12,7 +12,7 @@ articleStore(
 )`;
 pool.query(articleSchema, (error, results) => {
   if(error) return console.log(error); // not able to create
-  console.log('table created')// created table
+  // console.log('table created')// created table
 });
 
 class Article {

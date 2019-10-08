@@ -1,28 +1,29 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../../app';
-import { userStore } from '../models/User';
+import pool from '../models/dbConfig';
+import data from '../data/data';
 
 chai.use(chaiHttp);
 const { expect } = chai;
-describe('User /api/v1/auth/', () => {
+describe('User /api/v2/auth/', () => {
+  // data
+  const { firstName, lastName, email, password } = data[0];
   // signup test cases
   describe('POST /signup', () => {
-    const url = '/api/v1/auth/signup';
-
+    const url = '/api/v2/auth/signup';
     it('should not create when first name field is empty', (done) => {
       chai
         .request(app)
         .post(url)
         .send({
-          data: {
-            firstName: '',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
+          firstName: '',
+          lastName,
+          email,
+          password,
         })
         .end((err, res) => {
+          expect(res.body.error).to.equals('"firstName" is not allowed to be empty');
           expect(res).to.have.status(400);
           done();
         });
@@ -33,14 +34,13 @@ describe('User /api/v1/auth/', () => {
         .request(app)
         .post(url)
         .send({
-          data: {
-            firstName: 'kose',
-            lastName: '',
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
+          firstName,
+          lastName: '',
+          email,
+          password,
         })
         .end((err, res) => {
+          expect(res.body.error).to.equals('"lastName" is not allowed to be empty');
           expect(res).to.have.status(400);
           done();
         });
@@ -51,14 +51,13 @@ describe('User /api/v1/auth/', () => {
         .request(app)
         .post(url)
         .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: '',
-            password: '123435',
-          },
+          firstName,
+          lastName,
+          email: '',
+          password,
         })
         .end((err, res) => {
+          expect(res.body.error).to.equals('"email" is not allowed to be empty');
           expect(res).to.have.status(400);
           done();
         });
@@ -69,32 +68,38 @@ describe('User /api/v1/auth/', () => {
         .request(app)
         .post(url)
         .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '',
-          },
+          firstName,
+          lastName,
+          email,
+          password: '',
         })
         .end((err, res) => {
+          expect(res.body.error).to.equals('"password" is not allowed to be empty');
           expect(res).to.have.status(400);
           done();
         });
     });
 
+    // delete data that already exist such that no conflict arise
+    before(async () => {
+      await pool.query('DELETE FROM userStore WHERE email = $1', [email]);
+    });
     it('should create user when all fields are correctly filled', (done) => {
       chai
         .request(app)
         .post(url)
         .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
+          firstName,
+          lastName,
+          email,
+          password,
         })
         .end((err, res) => {
+          expect(res.body.data).to.have.property('token');
+          expect(res.body.data).to.not.have.property('password');
+          expect(res.body.data.firstname).to.equal(firstName);
+          expect(res.body.data.lastname).to.equal(lastName);
+          expect(res.body.data.email).to.equal(email);
           expect(res).to.have.status(201);
           done();
         });
@@ -105,40 +110,21 @@ describe('User /api/v1/auth/', () => {
         .request(app)
         .post(url)
         .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
+          firstName,
+          lastName,
+          email,
+          password,
         })
         .end((err, res) => {
+          expect(res.body.error).to.equal(`Email ${email} already exist , please try with new credentials`);
           expect(res).to.have.status(409);
-          done();
-        });
-    });
-
-    it('should create user when all fields are correctly filled and array is not empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            firstName: 'kose',
-            lastName: 'uk45',
-            email: 'kose2@gmail.com',
-            password: '123435',
-          },
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(201);
           done();
         });
     });
 
     // resource url is wrong
     it('should return "not found" error when non existing routes is called', (done) => {
-      const wrongURL = '/api/v1/auth/signup/someRouteNotExisting';
+      const wrongURL = '/api/v2/auth/signup/someRouteNotExisting';
       chai
         .request(app)
         .post(wrongURL)
@@ -147,22 +133,18 @@ describe('User /api/v1/auth/', () => {
           done();
         });
     });
-
-    // check if server is running, test app.json BLOCKER
   });
 
   // signin test case
   describe('POST /signin', () => {
-    const url = '/api/v1/auth/signin';
+    const url2 = '/api/v2/auth/signin';
     it('should not signin when email is empty', (done) => {
       chai
         .request(app)
-        .post(url)
+        .post(url2)
         .send({
-          data: {
-            email: '',
-            password: '123435',
-          },
+          email: '',
+          password,
         })
         .end((error, res) => {
           expect(res).to.have.status(400);
@@ -173,12 +155,10 @@ describe('User /api/v1/auth/', () => {
     it('should not signin when email is not not valid ie kose@gmail', (done) => {
       chai
         .request(app)
-        .post(url)
+        .post(url2)
         .send({
-          data: {
-            email: 'kose@gmail',
-            password: '123435',
-          },
+          email: data[1].email,
+          password,
         })
         .end((error, res) => {
           expect(res).to.have.status(400);
@@ -189,12 +169,10 @@ describe('User /api/v1/auth/', () => {
     it('should not signin when password is empty', (done) => {
       chai
         .request(app)
-        .post(url)
+        .post(url2)
         .send({
-          data: {
-            email: 'kose@gmail.com',
-            password: '',
-          },
+          email,
+          password: '',
         })
         .end((error, res) => {
           expect(res).to.have.status(400);
@@ -205,15 +183,13 @@ describe('User /api/v1/auth/', () => {
     it('should not signin when unregistered email is provided', (done) => {
       chai
         .request(app)
-        .post(url)
+        .post(url2)
         .send({
-          data: {
-            email: 'None@gmail.com',
-            password: '123435',
-          },
+          email: data[2].email,
+          password,
         })
         .end((error, res) => {
-          expect(res).to.have.status(400);
+          expect(res).to.have.status(404);
           done();
         });
     });
@@ -221,33 +197,13 @@ describe('User /api/v1/auth/', () => {
     it('should not signin when wrong password is provided', (done) => {
       chai
         .request(app)
-        .post(url)
+        .post(url2)
         .send({
-          data: {
-            email: 'kose@gmail.com',
-            password: '123435000',
-          },
+          email,
+          password: data[3].password,
         })
         .end((error, res) => {
-          expect(res).to.have.status(400);
-          done();
-        });
-    });
-
-    // when data repository is empty, code not working as intended, not able to get 404 status as per in signin route
-    it('should not signin when array data repository is empty', (done) => {
-      chai
-        .request(app)
-        .post(url)
-        .send({
-          data: {
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
-        })
-        .end((error, res) => {
-          expect(userStore.splice().length).to.equal(0);
-          // expect(res).to.have.status(404); // cannot invote the error at the signin route when array store is empty
+          expect(res).to.have.status(404);
           done();
         });
     });
@@ -255,12 +211,10 @@ describe('User /api/v1/auth/', () => {
     it('should signin when everything is ok', (done) => {
       chai
         .request(app)
-        .post(url)
+        .post(url2)
         .send({
-          data: {
-            email: 'kose@gmail.com',
-            password: '123435',
-          },
+          email,
+          password,
         })
         .end((error, res) => {
           expect(res).to.have.status(200);
