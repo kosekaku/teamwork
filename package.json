@@ -10,7 +10,7 @@
     "start": "babel-node ./app.js",
     "build": "babel ./server -d lib",
     "lint": "eslint",
-    "test": "mocha --require @babel/register ./server/api/v2/tests ",
+    "test": "mocha --require @babel/register ./server/api/v1/tests && mocha --require @babel/register ./server/api/v2/tests ",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "author": "uk45",
