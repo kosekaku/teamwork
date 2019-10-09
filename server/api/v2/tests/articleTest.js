@@ -2,10 +2,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { after } from 'mocha';
+import jwt from 'jsonwebtoken';
 import app from '../../../../app';
 import { GenerateTokens } from '../helpers/jwtAuthHelper';
 import data from '../data/data';
 import User from '../models/User';
+
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -13,8 +15,10 @@ const { firstName, lastName, email } = data[0];
 const {
   atUserId, atFirstName, atLastName, atEmail, atPassword, atCreatedOn,
 } = data[4];
+
 let tokens;
 let notOwnerTokens;
+let expiredToken;
 describe('Article test cases /api/v2/', () => {
   // post article test
   before(async () => {
@@ -24,6 +28,18 @@ describe('Article test cases /api/v2/', () => {
     await newUser.createUser();
     tokens = GenerateTokens(atUserId, firstName, lastName, email);
     notOwnerTokens = GenerateTokens(2, firstName, lastName, email); // notice the id is 2
+    // tokens that expires immediatly after creation
+    expiredToken = jwt.sign(
+      {
+        atUserId,
+        atFirstName,
+        atLastName,
+        atEmail,
+      }, process.env.JWT_KEY,
+      {
+        expiresIn: 0,
+      },
+    );
   });
   after(async () => {
     // delete the test user so we can have a clean test in the next run
@@ -83,12 +99,10 @@ describe('Article test cases /api/v2/', () => {
     });
 
     it('deny access to articles route when expired access token is given', (done) => {
-      // invalid token but expired
-      const expiredTokens = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhYjkwYmUxMC1lYTZmLTExZTktYWY1Yy1iOTNmMTM0OGEzNzgiLCJmaXJzdE5hbWUiOiJrb3NlIiwibGFzdE5hbWUiOiJ1azQ1IiwiZW1haWwiOiJ1azQ1NEBnbWFpbC5jb20iLCJpYXQiOjE1NzA2MTAwOTksImV4cCI6MTU3MDYxMzY5OX0.mUHpf5Vqm__Pye7vfNCmjlEaD9qnfbmMAocGSBYbUn8';
       chai
         .request(app)
         .post(url)
-        .set('x-auth-token', `Bearer ${expiredTokens}`) // json verifcation fails here during verify() at auth middleware
+        .set('x-auth-token', `Bearer ${expiredToken}`) // json verifcation fails here during verify() at auth middleware
         .send({
           title: 'first title post',
           article: 'first article body',
