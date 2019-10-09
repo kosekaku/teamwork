@@ -34,6 +34,10 @@ const data = [
     atPassword: '12345',
     atCreatedOn: new Date(),
   },
+  {
+    title: 'first article title',
+    article: 'first article body',
+  },
 ];
 
 export default data;
