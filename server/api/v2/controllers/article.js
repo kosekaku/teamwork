@@ -30,11 +30,11 @@ const writeArticle = async (req, res) => {
 // edit article
 const editArticle = async (req, res) => {
   try {
-    const { title, content } = req.body.data;
-    const fieldsToUpdate = req.articleData; // data set by our middleware
-    fieldsToUpdate.title = title; // update title
-    fieldsToUpdate.content = content;
-    success(fieldsToUpdate, res);
+    const { articleId } = req.params;
+    const { title, article } = req.body;
+    const updatingArticle = await Article.updateArticle(title, article, articleId);
+    if (!updatingArticle) return somethingWrongErr(res);
+    success({ ...updatingArticle.rows[0] }, res);
   } catch (err) {
     somethingWrongErr(res);
   }

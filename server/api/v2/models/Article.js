@@ -33,6 +33,16 @@ class Article {
     return pool.query(query, values);
   }
 
+  // update article title and body
+  static updateArticle(titleToUpdate, articleToUpdate, articleId) {
+    const query = `UPDATE articleStore SET 
+    title = $1,
+    article =$2
+    WHERE articleId=$3 RETURNING authorid, title, article`;
+    const values = [titleToUpdate, articleToUpdate, articleId];
+    return pool.query(query, values);
+  }
+
   // find artilce by id
   static findArticleById(idFromUser) {
     return pool.query('SELECT * FROM articleStore WHERE articleId=$1', [idFromUser]);

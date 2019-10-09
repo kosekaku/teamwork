@@ -1,6 +1,6 @@
 import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { articleStore } from '../models/Article';
+import Article from '../models/Article';
 import {
   notFound, accessDenied, serverExceptions, forbidden,
 } from '../helpers/messages';
@@ -30,19 +30,10 @@ const authUser = (req, res, next) => {
 const verifyArticleAndUser = async (req, res, next) => {
   try {
     const { articleId } = req.params;
-    let article = null;
-    let index;
-    await articleStore.forEach((elements, indexOf) => {
-      if (elements.articleId === articleId) {
-        article = elements;
-        index = indexOf;
-      }
-    });
-    if (article === null) return notFound(res);
-    // valid token, but resource not allowed for them
-    if (article.ownerEmail !== req.loggedinUser.email) return forbidden(res);
-    req.index = index; // will be used in delete op
-    req.articleData = article;
+    const article = await Article.findArticleById(articleId);
+    if (article.rows.length === 0) return notFound(res);
+    // compare logined user data from tokens with the article data
+    if (article.rows[0].authorid !== req.loggedinUser.userId) return forbidden(res);
     next();
   } catch (error) {
     serverExceptions(error, res);
@@ -50,18 +41,10 @@ const verifyArticleAndUser = async (req, res, next) => {
 };
 
 const verifyArticleExist = async (req, res, next) => {
-  const { articleId } = req.params;
-  let article = null;
-  let index;
   try {
-    await articleStore.forEach((elements, indexOf) => {
-      if (elements.articleId === articleId) {
-        article = elements;
-        index = indexOf;
-      }
-    });
-    if (article === null) return notFound(res);
-    req.ArticleIndex = index; // we will use this in comment controller to send details with comment
+    const { articleId } = req.params;
+    const article = await Article.findArticleById(articleId);
+    if (article.rows.length === 0) return notFound(res);
     next();
   } catch (error) { serverExceptions(error, res); }
 };
