@@ -32,16 +32,17 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email } = req.body;
+    const passwordFromUser = req.body.password;
     const userFound = await User.findUserEmail(email);
     if (userFound.rows.length === 0) return notFound(res);
-    await bcrypt.compare(password, userFound.rows[0].password, (err, result) => {
+    await bcrypt.compare(passwordFromUser, userFound.rows[0].password, (err, result) => {
       if (!result) return notFound(res);
+      // using destructuring and spread to get data but exclude password in response
+      const { password, ...allColumns } = userFound.rows[0];
       const data = {
-        token: GenerateTokens(userFound.rows[0].firstName, userFound.rows[0].lastName, email),
-        firstName: userFound.rows[0].firstName,
-        lastName: userFound.rows[0].lastName,
-        email,
+        token: GenerateTokens(allColumns.firstname, allColumns.lastname, allColumns.email),
+        ...allColumns,
       };
       success(data, res);
     });

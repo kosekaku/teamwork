@@ -47,7 +47,7 @@ class User {
 
   // find user by email
   static findUserEmail(emailFromUser) {
-    return pool.query('SELECT email, password FROM userStore WHERE email=$1', [emailFromUser]);
+    return pool.query('SELECT * FROM userStore WHERE email=$1', [emailFromUser]);
   }
 }
 
