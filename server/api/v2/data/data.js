@@ -24,6 +24,20 @@ const data = [
     email: 'uk45@gmail.com',
     password: '12345NotMatch',
   },
+
+  // article test user, prefix at
+  {
+    atUserId: 1,
+    atFirstName: 'koseTest',
+    atLastName: 'uk45Test',
+    atEmail: 'uk45Test@gmail.com',
+    atPassword: '12345',
+    atCreatedOn: new Date(),
+  },
+  {
+    title: 'first article title',
+    article: 'first article body',
+  },
 ];
 
 export default data;

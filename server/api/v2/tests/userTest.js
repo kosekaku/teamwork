@@ -8,7 +8,9 @@ chai.use(chaiHttp);
 const { expect } = chai;
 describe('User /api/v2/auth/', () => {
   // data
-  const { firstName, lastName, email, password } = data[0];
+  const {
+    firstName, lastName, email, password,
+  } = data[0];
   // signup test cases
   describe('POST /signup', () => {
     const url = '/api/v2/auth/signup';

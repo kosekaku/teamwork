@@ -41,7 +41,8 @@ const signin = async (req, res) => {
       // using destructuring and spread to get data but exclude password in response
       const { password, ...allColumns } = userFound.rows[0];
       const data = {
-        token: GenerateTokens(allColumns.firstname, allColumns.lastname, allColumns.email),
+        token: GenerateTokens(allColumns.userid, allColumns.firstname, allColumns.lastname,
+          allColumns.email),
         ...allColumns,
       };
       success(data, res);

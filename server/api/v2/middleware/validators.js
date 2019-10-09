@@ -31,10 +31,8 @@ const signinValidation = (req, res, next) => {
 // POST /api/v1/articles route validation
 const writeArticleValidation = (req, res, next) => {
   const schema = {
-    data: {
-      title: Joi.string().required(),
-      content: Joi.string().required(),
-    },
+    title: Joi.string().required(),
+    article: Joi.string().required(),
   };
   const { error } = Joi.validate(req.body, schema);
   if (error) return joiError(error, res);
