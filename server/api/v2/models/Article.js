@@ -3,40 +3,40 @@ import pool from './dbConfig';
 
 const articleSchema = `CREATE TABLE IF NOT EXISTS
 articleStore(
-  articleID VARCHAR(100) PRIMARY KEY NOT NULL,
+  articleId VARCHAR(100) PRIMARY KEY NOT NULL,
+  authorId VARCHAR(100) NOT NULL,
   createdOn timestamptz NOT NULL,
-  author VARCHAR(30) NOT NULL,
-  ownerEmail VARCHAR(30) NOT NULL,
   title VARCHAR(100) NOT NULL,
-  content VARCHAR(1000) NOT NULL
-)`;
+  article VARCHAR(1000) NOT NULL,
+  FOREIGN KEY (authorId) REFERENCES userStore(userId) ON DELETE CASCADE ON UPDATE CASCADE
+  )`;
 pool.query(articleSchema, (error, results) => {
-  if(error) return console.log(error); // not able to create
+  if (error) return console.log(`article table error ${error}`); // not able to create
   // console.log('table created')// created table
 });
 
 class Article {
-  constructor(articleId, createdOn, author, ownerEmail, title, content) {
+  constructor(articleId, authorId, createdOn, title, article) {
     this.articleId = articleId;
+    this.authorId = authorId;
     this.createdOn = createdOn;
-    this.author = author;
-    this.ownerEmail = ownerEmail;
     this.title = title;
-    this.content = content;
+    this.article = article;
   }
 
   // create new article  method
   createArticle() {
-   const query = `INSERT INTO articleStore(articleId, createdOn, author, ownerEmail, title, content)
-    VALUES($1, $2, $3, $4, $5 $6)`;
-    const values = [this.articleId, this.createdOn, this.author, this.ownerEmail, this.title, this.content];
+    const query = `INSERT INTO articleStore(articleId, authorId, createdOn, title, article)
+    VALUES($1, $2, $3, $4, $5) RETURNING articleId, authorId, createdOn, title, article`;
+    const values = [this.articleId, this.authorId, this.createdOn, this.title,
+      this.article];
     return pool.query(query, values);
   }
 
   // find artilce by id
   static findArticleById(idFromUser) {
-    return pool.query('SELECT * FROM articleStore WHERE articleId=$1',[idFromUser]);
+    return pool.query('SELECT * FROM articleStore WHERE articleId=$1', [idFromUser]);
   }
 }
 
-export { Article };
+export default Article;

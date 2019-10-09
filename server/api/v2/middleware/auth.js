@@ -2,7 +2,7 @@ import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { articleStore } from '../models/Article';
 import {
-  notFound, accessDenied, serverExceptions,
+  notFound, accessDenied, serverExceptions, forbidden,
 } from '../helpers/messages';
 
 dotenv.config();
@@ -17,7 +17,7 @@ const authUser = (req, res, next) => {
     // const decoded = JWT.verify(token, 'secretKeys'); // sync way
     // async way
     JWT.verify(req.token, process.env.JWT_KEY, (error, data) => {
-      if (error) return res.status(403).json({ status: 403, error }); // forbidden(res);
+      if (error) return res.status(401).json({ status: 401, error }); // unauthorized scenarios
       req.loggedinUser = data;
       next();
     });
@@ -39,7 +39,8 @@ const verifyArticleAndUser = async (req, res, next) => {
       }
     });
     if (article === null) return notFound(res);
-    if (article.ownerEmail !== req.loggedinUser.email) return accessDenied(res);
+    // valid token, but resource not allowed for them
+    if (article.ownerEmail !== req.loggedinUser.email) return forbidden(res);
     req.index = index; // will be used in delete op
     req.articleData = article;
     next();

@@ -45,6 +45,11 @@ class User {
     return pool.query(query, values);
   }
 
+  // delete user
+  static deleteUser(emailFromUser) {
+    return pool.query('DELETE FROM userStore WHERE email=$1', [emailFromUser]);
+  }
+
   // find user by email
   static findUserEmail(emailFromUser) {
     return pool.query('SELECT * FROM userStore WHERE email=$1', [emailFromUser]);

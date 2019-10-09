@@ -1,6 +1,6 @@
 import uuid from 'uuid/v1';
-import { Article, articleStore } from '../models/Article';
-import { Comment } from '../models/Comments';
+import Article from '../models/Article';
+import Comment from '../models/Comments';
 import {
   success, dataCreated, somethingWrongErr,
 } from '../helpers/messages';
@@ -8,16 +8,18 @@ import {
 // post article
 const writeArticle = async (req, res) => {
   try {
-    const { title, content } = req.body.data;
-    const createdOn = new Date();
-    const payload = req.loggedinUser; // token data set at signup/signin
-    const { firstName, lastName, email } = payload; // data set when signing the token
-    const author = `${firstName} ${lastName}`;
-    const articleId = uuid();
-    const article = new Article(articleId, createdOn, author, email, title, content);
-    await article.createArticle();
+    const { title, article } = req.body;
+    const {
+      iat, exp, email, ...author
+    } = req.loggedinUser; // get token data set at signup/signin
+    const newArticle = new Article(uuid(), author.userId, new Date(), title, article);
+    const creatingArticle = await newArticle.createArticle(); // article is created here
+    if (!creatingArticle) return somethingWrongErr(res);
+    const {
+      authorid, articleid, createdon, ...otherData
+    } = creatingArticle.rows[0]; // destructure and spread(otherData) out data
     const data = {
-      articleId, createdOn, author, title, content,
+      articleid, createdon, author, ...otherData,
     };
     return dataCreated(data, res);
   } catch (err) {

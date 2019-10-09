@@ -3,9 +3,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 // generate tokens
-const GenerateTokens = (firstName, lastName, email) => {
+const GenerateTokens = (userId, firstName, lastName, email) => {
   const token = jwt.sign(
-    { firstName, lastName, email }, process.env.JWT_KEY,
+    {
+      userId,
+      firstName,
+      lastName,
+      email,
+    }, process.env.JWT_KEY,
     {
       expiresIn: '1hr',
     },
