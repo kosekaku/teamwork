@@ -79,8 +79,20 @@ const postComment = async (req, res) => {
 const viewAllArticles = async (req, res) => {
   try {
     const articles = await Article.viewAllArtilces();
-    // if (articles.rows.length === 0) return notFound(res);
-    success(articles.rows, res);
+    // implement pagination
+    const pageCount = Math.ceil(articles.rows.length / 10);
+    let page = parseInt(req.query.page, 16);
+    if (!page) { page = 1; }
+    if (page > pageCount) {
+      page = pageCount;
+    }
+    res.status(200).json({
+      status: 200,
+      message: 'Operation successful',
+      pages: `${page} of ${pageCount}`,
+      data: articles.rows.slice(page * 10 - 10, page * 10),
+    });
+    // success(articles.rows, res);
   } catch (error) {
     somethingWrongErr(error, res);
   }
