@@ -27,7 +27,7 @@ const data = [
 
   // article test user, prefix at
   {
-    atUserId: 1,
+    atUserId: '1',
     atFirstName: 'koseTest',
     atLastName: 'uk45Test',
     atEmail: 'uk45Test@gmail.com',

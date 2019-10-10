@@ -20,6 +20,7 @@ const { title, article } = data[5];
 let tokens;
 let notOwnerTokens;
 let expiredToken;
+let articleCreated;
 describe('Article test cases /api/v2/', () => {
   // post article test
   before(async () => {
@@ -27,7 +28,7 @@ describe('Article test cases /api/v2/', () => {
     const newUser = new User(atUserId, atFirstName, atLastName, atEmail, atPassword,
       null, null, null, null, atCreatedOn);
     await newUser.createUser();
-    tokens = GenerateTokens(atUserId, firstName, lastName, email);
+    tokens = GenerateTokens(atUserId, firstName, lastName, atEmail);
     notOwnerTokens = GenerateTokens(2, firstName, lastName, email); // notice the id is 2
     // tokens that expires immediatly after creation
     expiredToken = jwt.sign(
@@ -171,6 +172,7 @@ describe('Article test cases /api/v2/', () => {
           article,
         })
         .end((err, res) => {
+          articleCreated = res.body;
           expect(res.body.message).to.equal('Operation successful, data created');
           expect(res.body.data).to.have.property('articleid');
           expect(res.body.data).to.have.property('createdon');
@@ -180,6 +182,102 @@ describe('Article test cases /api/v2/', () => {
           expect(res.body.data.title).to.equal(title);
           expect(res.body.data.article).to.equal(article);
           expect(res).to.have.status(201);
+          done();
+        });
+    });
+  });
+
+  // // edit article
+  describe('PATCH /articleId', () => {
+    let wrongIdURL;
+    let url;
+    let articleId;
+    before(() => {
+      articleId = articleCreated.data.articleid; // get id of created article
+      // do something here before patching
+      wrongIdURL = '/api/v2/articles/<articleId>';
+      url = `/api/v2/articles/${articleId}`;
+    });
+    it('should not update article when title is empty', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          title: '',
+          article,
+        })
+        .end((err, res) => {
+          expect(res.body.error).to.equal('"title" is not allowed to be empty');
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('should not update article when article is empty', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          title,
+          article: '',
+        })
+        .end((err, res) => {
+          expect(res.body.error).to.equal('"article" is not allowed to be empty');
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('return 404 when there\'s wrong id is given ', (done) => {
+      chai
+        .request(app)
+        .patch(wrongIdURL)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          title,
+          article,
+        })
+        .end((err, res) => {
+          expect(res.body.error).to.equal('resource not found');
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
+
+    it('return 400 when data is not supplied ie request with no data(empty object)', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+        })
+        .end((err, res) => {
+          expect(res.body.error).to.equal('"title" is required');
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('should update article when id matchs ', (done) => {
+      chai
+        .request(app)
+        .patch(url)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          title,
+          article,
+        })
+        .end((err, res) => {
+          expect(res.body.message).to.equal('Operation successful');
+          expect(res.body).to.ownProperty('data');
+          expect(res.body.data).to.have.property('authorid');
+          expect(res.body.data).to.have.property('title');
+          expect(res.body.data).to.have.property('article');
+          expect(res.body.data.title).to.equal(title);
+          expect(res.body.data.article).to.equal(article);
+          expect(res).to.have.status(200);
           done();
         });
     });
