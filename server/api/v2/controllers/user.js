@@ -20,7 +20,7 @@ const signup = async (req, res) => {
     const creatingUser = await user.createUser(); // do something with user data from RETURNING
     if (!creatingUser) return somethingWrongErr(res);
     const data = { // data from postgresql RETURNING
-      token: GenerateTokens(firstName, lastName, email),
+      token: GenerateTokens(creatingUser.rows[0].userid, firstName, lastName, email),
       // get data using spread operator
       ...creatingUser.rows[0],
     };

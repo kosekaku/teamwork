@@ -2,7 +2,7 @@ import uuid from 'uuid/v1';
 import Article from '../models/Article';
 import Comment from '../models/Comments';
 import {
-  success, dataCreated, somethingWrongErr,
+  success, dataCreated, somethingWrongErr, notFound,
 } from '../helpers/messages';
 import { serverExceptions } from '../../v1/helpers/messages';
 
@@ -76,45 +76,33 @@ const postComment = async (req, res) => {
 };
 
 // view all articles showing the most recent ones
-const viewAllArticles = (req, res) => {
-  const result = [];
-  for (let i = 1; i <= articleStore.length; i += 1) {
-    const data = {
-      id: articleStore[articleStore.length - i].articleId,
-      createdOn: articleStore[articleStore.length - i].createdOn,
-      title: articleStore[articleStore.length - i].title,
-      article: articleStore[articleStore.length - i].content,
-    };
-    result.push(data);
+const viewAllArticles = async (req, res) => {
+  try {
+    const articles = await Article.viewAllArtilces();
+    // if (articles.rows.length === 0) return notFound(res);
+    success(articles.rows, res);
+  } catch (error) {
+    somethingWrongErr(error, res);
   }
-  success(result, res);
 };
 
 
 // view specific article details
 const viewSpecificArticle = async (req, res) => {
-  const { articleId } = req.params;
-  const data = await Article.findArticleById(articleId);
-  const dataComment = await Comment.findArticleComments(articleId);
-  if (dataComment.length === 0) {
-    return success({
-      id: data.articleId,
-      createdOn: data.createdOn,
-      titile: data.title,
-      article: data.content,
-      authorId: data.ownerEmail,
-      comments: 'No comment for this article',
-    }, res);
+  try {
+    const { articleId } = req.params;
+
+    const { ...data } = req.articleData.rows[0]; // spread out data set by our middleware
+    // get comments matching article id
+    const comments = await Comment.findArticleComments(articleId);
+    const results = {
+      ...data,
+      comments: comments.rows,
+    };
+    success(results, res);
+  } catch (error) {
+    serverExceptions(error, res);
   }
-  const results = {
-    id: data.articleId,
-    createdOn: data.createdOn,
-    titile: data.title,
-    article: data.content,
-    authorId: data.ownerEmail,
-    comments: dataComment,
-  };
-  success(results, res);
 };
 
 export {
