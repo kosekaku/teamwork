@@ -38,6 +38,9 @@ const data = [
     title: 'first article title',
     article: 'first article body',
   },
+  {
+    comment: 'my first article comment',
+  },
 ];
 
 export default data;

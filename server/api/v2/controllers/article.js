@@ -61,7 +61,6 @@ const postComment = async (req, res) => {
     const { comment } = req.body;
     const commentData = new Comment(articleId, uuid(), new Date(), author, comment);
     const addingComment = await commentData.addComment();
-    // find the article with the given id
     const { createdon, ...otherCommentInfo } = addingComment.rows[0]; // RETURNING postgresql
     const { title, article } = req.articleData.rows[0]; // get data from req set by middleware
     const data = {

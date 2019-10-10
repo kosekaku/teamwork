@@ -15,6 +15,7 @@ const { firstName, lastName, email } = data[0];
 const {
   atUserId, atFirstName, atLastName, atEmail, atPassword, atCreatedOn,
 } = data[4];
+const { comment } = data[6];
 
 const { title, article } = data[5];
 let tokens;
@@ -283,7 +284,70 @@ describe('Article test cases /api/v2/', () => {
         });
     });
   });
+  // comment test cases, add comment before article is deleted
+  describe('POST /:articleId/comments', () => {
+    it('404 not found, cannot add comment when article id does not exist', (done) => {
+      chai
+        .request(app)
+        .post('/api/v2/articles/10/comments') // wrong id 10
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          comment: 'I am just commenting for funs here',
+        })
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.body.error).to.equal('resource not found');
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
+    it('400 bad request, should not add comment when input field is empty', (done) => {
+      chai
+        .request(app)
+        .post(`/api/v2/articles/${articleId}/comments`)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          comment: '',
+        })
+        .end((err, res) => {
+          expect(res.body.error).to.equal('"comment" is not allowed to be empty');
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
 
+    it('return 400 when data is not supplied ie request with no object', (done) => {
+      chai
+        .request(app)
+        .post(`/api/v2/articles/${articleId}/comments`)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send()
+        .end((err, res) => {
+          expect(res.body.error).to.equal('"comment" is required');
+          expect(res).to.have.status(400);
+          done();
+        });
+    });
+
+    it('201 comments created', (done) => {
+      chai
+        .request(app)
+        .post(`/api/v2/articles/${articleId}/comments`)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .send({
+          comment,
+        })
+        .end((err, res) => {
+          expect(res.body.data).to.have.property('createdon');
+          expect(res.body.data).to.have.property('articleTitle');
+          expect(res.body.data).to.have.property('article');
+          expect(res.body.data).to.have.property('comment');
+          expect(res.body.data.comment).to.equals(comment);
+          expect(res).to.have.status(201);
+          done();
+        });
+    });
+  });
   // delete article test
   describe('DELETE /articleId', () => {
     it('404 not found, cannot delete non existing article', (done) => {
