@@ -48,6 +48,11 @@ class Article {
     return pool.query('DELETE FROM articleStore WHERE articleId=$1 RETURNING articleId', [idFromUser]);
   }
 
+  // get all articles showing the most recent ones
+  static viewAllArtilces() {
+    return pool.query('SELECT * FROM articleStore ORDER BY createdOn DESC');
+  }
+
   // find artilce by id
   static findArticleById(idFromUser) {
     return pool.query('SELECT * FROM articleStore WHERE articleId=$1', [idFromUser]);

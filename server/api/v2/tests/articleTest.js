@@ -348,6 +348,22 @@ describe('Article test cases /api/v2/', () => {
         });
     });
   });
+
+  // view all articles
+  describe('GET /api/v2/feeds', () => {
+    it('200 success, show all articles in recently added order', (done) => {
+      chai
+        .request(app)
+        .get('/api/v2/feeds')
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .end((err, res) => {
+          expect(res.body.message).to.equal('Operation successful');
+          expect(res.body.data).to.be.an('array');
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
   // delete article test
   describe('DELETE /articleId', () => {
     it('404 not found, cannot delete non existing article', (done) => {
