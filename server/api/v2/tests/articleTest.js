@@ -364,6 +364,39 @@ describe('Article test cases /api/v2/', () => {
         });
     });
   });
+
+  // view specific article
+  describe('GET /articles/:articleId', () => {
+    it('404 not found, should return 404 when article does not exist', (done) => {
+      chai
+        .request(app)
+        .get('/api/v2/articles/10')
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .end((erro, res) => {
+          expect(res.body.error).to.equal('resource not found');
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
+    it('200 success, should view article details', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v2/articles/${articleId} `)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .end((erro, res) => {
+          expect(res.body.message).to.equal('Operation successful');
+          expect(res.body).to.ownProperty('data');
+          expect(res.body.data).to.have.property('articleid');
+          expect(res.body.data).to.have.property('authorid');
+          expect(res.body.data).to.have.property('createdon');
+          expect(res.body.data).to.have.property('title');
+          expect(res.body.data).to.have.property('article');
+          expect(res.body.data).to.ownProperty('comments');
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
   // delete article test
   describe('DELETE /articleId', () => {
     it('404 not found, cannot delete non existing article', (done) => {
