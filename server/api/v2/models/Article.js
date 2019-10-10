@@ -43,6 +43,11 @@ class Article {
     return pool.query(query, values);
   }
 
+  // delete article
+  static deleteArticle(idFromUser) {
+    return pool.query('DELETE FROM articleStore WHERE articleId=$1 RETURNING articleId', [idFromUser]);
+  }
+
   // find artilce by id
   static findArticleById(idFromUser) {
     return pool.query('SELECT * FROM articleStore WHERE articleId=$1', [idFromUser]);
