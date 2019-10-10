@@ -7,7 +7,7 @@ commentStore(
   articleId VARCHAR(100) REFERENCES articleStore(articleId) ON DELETE CASCADE ON UPDATE CASCADE,
   commentId VARCHAR(100) PRIMARY KEY NOT NULL,
   createdOn timestamptz NOT NULL,
-  authorId VARCHAR(30) NOT NULL,
+  authorId VARCHAR(100) NOT NULL,
   comment VARCHAR(500) NOT NULL
   )`;
 pool.query(commentSchema, (error, results) => {
@@ -26,7 +26,8 @@ class Comment extends Article {
 
   // create new comment
   addComment() {
-    const query = 'INSERT INTO commentStore(articleId, commentId, createdOn, authorId, comment ) VALUES($1, $2, $3, $4, $5)';
+    const query = `INSERT INTO commentStore(articleId, commentId, createdOn, authorId, comment )
+     VALUES($1, $2, $3, $4, $5) RETURNING createdOn, articleId, authorId, comment `;
     const values = [this.articleId, this.commentId, this.createdOn, this.authorId, this.comment];
     return pool.query(query, values);
   }

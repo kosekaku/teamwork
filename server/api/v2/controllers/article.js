@@ -4,6 +4,7 @@ import Comment from '../models/Comments';
 import {
   success, dataCreated, somethingWrongErr,
 } from '../helpers/messages';
+import { serverExceptions } from '../../v1/helpers/messages';
 
 // post article
 const writeArticle = async (req, res) => {
@@ -53,21 +54,25 @@ const deleteArticle = async (req, res) => {
 };
 
 // post comments
-const postComment = (req, res) => {
-  const { articleId } = req.params;
-  const commentId = uuid();
-  const createdOn = new Date();
-  const authorId = req.loggedinUser.email;
-  const { comment } = req.body;
-  const commentData = new Comment(articleId, commentId, createdOn, authorId, comment);
-  commentData.addComment();
-  const data = {
-    createdOn,
-    articleTitle: articleStore[req.ArticleIndex].title, // index was set by our middleware
-    article: articleStore[req.ArticleIndex].content,
-    comment,
-  };
-  dataCreated(data, res);
+const postComment = async (req, res) => {
+  try {
+    const { articleId } = req.params;
+    const author = req.loggedinUser.userId;
+    const { comment } = req.body;
+    const commentData = new Comment(articleId, uuid(), new Date(), author, comment);
+    const addingComment = await commentData.addComment();
+    const { createdon, ...otherCommentInfo } = addingComment.rows[0]; // RETURNING postgresql
+    const { title, article } = req.articleData.rows[0]; // get data from req set by middleware
+    const data = {
+      createdon,
+      articleTitle: title,
+      article,
+      comment: otherCommentInfo.comment,
+    };
+    dataCreated(data, res);
+  } catch (error) {
+    serverExceptions(error, res);
+  }
 };
 
 // view all articles showing the most recent ones

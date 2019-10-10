@@ -45,6 +45,7 @@ const verifyArticleExist = async (req, res, next) => {
     const { articleId } = req.params;
     const article = await Article.findArticleById(articleId);
     if (article.rows.length === 0) return notFound(res);
+    req.articleData = article;
     next();
   } catch (error) { serverExceptions(error, res); }
 };
