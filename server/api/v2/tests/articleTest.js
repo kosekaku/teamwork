@@ -187,11 +187,12 @@ describe('Article test cases /api/v2/', () => {
     });
   });
 
-  // // edit article
+  // variables for botth edit and delete
+  let wrongIdURL;
+  let url;
+  let articleId;
+  // edit article
   describe('PATCH /articleId', () => {
-    let wrongIdURL;
-    let url;
-    let articleId;
     before(() => {
       articleId = articleCreated.data.articleid; // get id of created article
       // do something here before patching
@@ -277,6 +278,46 @@ describe('Article test cases /api/v2/', () => {
           expect(res.body.data).to.have.property('article');
           expect(res.body.data.title).to.equal(title);
           expect(res.body.data.article).to.equal(article);
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
+
+  // delete article test
+  describe('DELETE /articleId', () => {
+    it('404 not found, cannot delete non existing article', (done) => {
+      chai
+        .request(app)
+        .delete(wrongIdURL)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('resource not found');
+          expect(res).to.have.status(404);
+          done();
+        });
+    });
+
+    it('403 forbidden, cannot delete article not own by user', (done) => {
+      chai
+        .request(app)
+        .delete(url)
+        .set('x-auth-token', `Bearer ${notOwnerTokens}`)
+        .end((err, res) => {
+          expect(res.body.error).to.equal('operation forbidden, you dont have access rights');
+          expect(res).to.have.status(403);
+          done();
+        });
+    });
+
+    it('200 sucess, should delete existing article own by user', (done) => {
+      chai
+        .request(app)
+        .delete(url)
+        .set('x-auth-token', `Bearer ${tokens}`)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.body.message).to.equal(`deleted article with id ${articleId} `);
           expect(res).to.have.status(200);
           done();
         });

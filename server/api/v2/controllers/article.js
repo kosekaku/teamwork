@@ -42,8 +42,14 @@ const editArticle = async (req, res) => {
 
 // delete article
 const deleteArticle = async (req, res) => {
-  articleStore.splice(req.index, 1);// delete article
-  res.status(200).json({ status: 200, message: 'deleted article successful' });
+  try {
+    const { articleId } = req.params;
+    const deletingArticle = await Article.deleteArticle(articleId);
+    if (!deletingArticle) return somethingWrongErr(res);
+    res.status(200).json({ status: 200, message: `deleted article with id ${deletingArticle.rows[0].articleid} ` });
+  } catch (error) {
+    somethingWrongErr(error);
+  }
 };
 
 // post comments
